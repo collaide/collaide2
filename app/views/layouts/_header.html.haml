@@ -1,0 +1,7 @@
+%nav.top-bar{'data-topbar' => ''}
+  %ul.title-area
+    %li.name
+      %h1= link_to t('app_name'), eval("root_#{I18n.locale}_path")
+    %li.toggle-topbar.menu-icon
+      %a{href: "#"}
+        %span Menu

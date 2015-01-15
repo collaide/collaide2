@@ -1,0 +1,31 @@
+%h1= t 'main.about.title'
+%blockquote= t('.blockquote')
+%h3= t('.the_authors')
+.row
+  .columns.large-12
+    .panel
+      .row
+        .columns.small-24.large-3
+          =image_tag 'home/yves.jpg'
+        .columns.small-24.large-9
+          %h5 Yves Baumann
+          =simple_format(t('.text.yves'))
+  .columns.large-12
+    .panel
+      .row
+        .columns.small-24.large-3
+          =image_tag 'home/numa.jpg'
+        .columns.small-24.large-9
+          %h5 Numa de Montmollin
+          =simple_format(t('.text.numa'))
+%h3= t('.utils.title')
+%p= t('.utils.text')
+%ul.columns
+  -t('.utils.list').each_line do |a_line|
+    -a_line = a_line.split('|')
+    %li= link_to a_line[0], a_line[1]
+%h3
+  Version
+  = IO.read(File.join(Rails.root, 'VERSION'))
+%ul
+  %li Version minimale avec les pages de bases

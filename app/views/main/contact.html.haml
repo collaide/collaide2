@@ -1,0 +1,16 @@
+%h1= t "static_pages.contact.title"
+%blockquote
+  = raw(t "static_pages.contact.text", mail: mail_to(h('contact@collaide.com')))
+
+%fieldset
+  %legend= t('.form.legend')
+  =simple_form_for(@contact, url: send_email_contact_path) do |f|
+    .form-inputs
+      .row
+        .columns.large-12
+          =f.input :subject
+        .columns.large-12
+          =f.input :email
+      =f.input :content, as: :text
+    .form-actions
+      =f.button :submit, t('.form.button')
