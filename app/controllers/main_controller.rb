@@ -35,8 +35,8 @@ class MainController < ApplicationController
           from: @contact.email, :to => 'contact@collaide.com',
           subject: @contact.subject,
           body: @contact.content
-      ).deliver
-      redirect_to contact_path, notice: t('static_pages.contact.success', email: @contact.email, subject: @contact.subject)
+      ).deliver_later
+      redirect_to contact_path, notice: t('main.contact.success', email: @contact.email, subject: @contact.subject)
     else
       render action: :contact
     end

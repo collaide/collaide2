@@ -16,6 +16,25 @@ fr:
       contact: Contact
       about: A propos
   main:
+    contact:
+      bc: Nous contacter
+      title: Contact
+      title_page: Contact
+      description_meta: Vous pouvez nous contacter avec le formulaire de contact
+      key_words: contact
+      text: |
+        Ce site est fait par des étudiants pour des étudiants. Il est donc possible qu'il y ait quelques erreurs
+         ou bugs. Merci de nous en faire part. Nous cherchons aussi des personnes motivées pour nous aider.
+        Pour nous contacter, il vous suffit de remplir le formulaire suivant ou d'utiliser les réseaux sociaux.
+      form:
+        legend: Formulaire de contact
+        email: Adresse e-mail de contact
+        subject: Sujet du message
+        content: Contenu du message
+        button: Envoyer
+        no_valid_email: Merci d'entrer un email valide.
+      success: "Votre message avec le sujet \"%{subject}\" a bien été envoyé. E-mail pour la réponse : %{email}"
+      recap: Récapitulatif
     about:
       title_page: A propos
       description_meta: Présentation des auteurs et des outils utilisés

@@ -6,7 +6,10 @@ gem 'rails', '4.2.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
+
+# JavaScript library
 gem 'jquery-rails', '~> 4.0.3'
+gem 'ui_datepicker-rails3'
 
 # JSON
 gem 'jbuilder', '~> 2.0'
@@ -26,6 +29,9 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'i18n', '~> 0.7.0'
 gem 'route_translator', '~> 4.0.0'
 
+#Formular
+gem 'simple_form'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -35,5 +41,7 @@ group :development, :test do
   gem 'sqlite3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'quiet_assets', '>= 1.0.1'
 end
 
