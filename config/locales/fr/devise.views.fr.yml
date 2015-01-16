@@ -25,9 +25,16 @@ fr:
       unlock_instructions:
         action: Débloquer mon compte
         greeting: Bonjour %{recipient}!
-        instruction: ! 'Suivez ce lien pour débloquer votre compte:'
+        instruction: "Suivez ce lien pour débloquer votre compte:"
         message: Votre compte a été bloqué suite à un nombre d'essais de connexions manqués trop important
         subject: Instructions pour débloquer votre compte
+      reset_password_instructions:
+        greetings: Bonjour,
+        paraph_1: Vous avez demandé un nouveau mot de passe pour l'adresse %{addres}. Vous pouvez le faire en suivant le lien ci-dessous.
+        change_my_password: Changer mon mot de passe
+        paraph_2: Si vous n'avez pas demandé le changement de mot de passe, veuillez ignorer cet e-mail.
+        paraph_3: À bientôt sur
+        signature: "L'équipe Collaide"
     passwords:
       new:
         forgot_your_password: Mot de passe oublié ?

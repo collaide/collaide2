@@ -30,7 +30,7 @@ fr:
       key_words: contact
       text: |
         Ce site est fait par des étudiants pour des étudiants. Il est donc possible qu'il y ait quelques erreurs
-         ou bugs. Merci de nous en faire part. Nous cherchons aussi des personnes motivées pour nous aider.
+         ou bugs.   Merci de nous en faire part. Nous cherchons aussi des personnes motivées pour nous aider.
         Pour nous contacter, il vous suffit de remplir le formulaire suivant ou d'utiliser les réseaux sociaux.
       form:
         legend: Formulaire de contact
