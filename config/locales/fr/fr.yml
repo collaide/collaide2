@@ -132,3 +132,5 @@ fr:
       infos: "Infos"
     show:
       since: "Membre depuis"
+    avatar:
+      title: "Image de %{user}"

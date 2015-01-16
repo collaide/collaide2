@@ -8,13 +8,16 @@
           %span Menu
     %section.top-bar-section
       %ul.right
-        %li.divider.hide-for-small
         - if user_signed_in?
+          %li.divider.hide-for-small
           %li.has-dropdown
             %a{href: "#"}
               %span.fi-widget
                 %span.show-for-small=t('header.user.settings')
             %ul.dropdown
+              %li= link_to current_user, user_path(current_user)
+              %li.divider
               %li= link_to t('header.user.edit'), edit_user_registration_path
               %li.divider
               %li= link_to t('header.user.logout'), destroy_user_session_path, method: :delete
+          %li.divider.hide-for-small
