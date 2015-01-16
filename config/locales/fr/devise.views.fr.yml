@@ -39,6 +39,11 @@ fr:
       new:
         forgot_your_password: Mot de passe oublié ?
         send_me_reset_password_instructions: Envoyez-moi des instructions pour réinitialiser mon mot de passe
+      edit:
+        title: "Changer mon mot de passe"
+        password: Nouveau mot de passe
+        password_confirmation: Comfirmer le nouveau mot de passe
+        submit: Changer le mot de passe
     registrations:
       edit:
         are_you_sure: Êtes-vous sûr ?!

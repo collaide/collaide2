@@ -9,7 +9,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # JavaScript library
 gem 'jquery-rails', '~> 4.0.3'
-gem 'ui_datepicker-rails3'
+gem 'ui_datepicker-rails3', '~> 1.2.0'
 
 # JSON
 gem 'jbuilder', '~> 2.0'
@@ -22,7 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # HTML
 gem 'foundation-rails', '~> 5.5.0.0'
-gem 'foundation-icons-sass-rails'
+gem 'foundation-icons-sass-rails', '~> 3.0.0'
 gem 'haml', '~> 4.0.6'
 
 # I18n
@@ -34,7 +34,6 @@ gem 'route_translator', '~> 4.0.0'
 gem 'simple_form', '~> 3.1.0'
 
 #User
-gem 'cancan', '~> 1.6.10'
 gem 'devise', '~> 3.4.1'
 gem 'devise-i18n-views', '~> 0.3.3'
 gem 'geocoder', '~> 1.2.6'
