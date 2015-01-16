@@ -38,9 +38,9 @@ fr:
         waiting_confirmation: "%{resource} doit encore être confirmé"
         cancel_my_account: Supprimer mon compte
         leave_blank_if_you_don_t_want_to_change_it: laissez ce champ vide si vous ne voulez pas changer le mot de passe
-        title: Édition du %{resource}
+        title: Modifier mon profil
         we_need_your_current_password_to_confirm_your_changes: nous avons besoin de votre mot de passe actuel pour valider ces modifications
-        update: "Mise à jour"
+        update: "Enregistrer les changements"
         unhappy: "Pas satisafait ? Envoyez un e-mail à contact@collaide.com afin de demander la suppression de votre compte."
         general_change: Général
         change_password: Modifier le mot de passe

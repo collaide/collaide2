@@ -72,6 +72,8 @@ fr:
       group_do_invitation:
         users_id: Personnes à inviter
         message: Message (optionel)
+      user:
+        name: Nom
     placeholders:
       user_message:
         users: Pseudo
