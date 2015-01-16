@@ -1,0 +1,8 @@
+=render(:layout => 'layout') do
+  %p.subheader
+    %span{title: l(@user.created_at, format: :long)}
+      =t'users.show.since'
+      =time_ago_in_words(@user.created_at)
+    %p
+    %a{href: '#', title: t('users.avatar.title', user: @user.to_s), class: 'th'}
+      =image_tag @user.avatar.large

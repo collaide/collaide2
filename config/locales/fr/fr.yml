@@ -127,3 +127,8 @@ fr:
         title: Evolution du présent réglement
         text: |
           Collaide se réserve le droit de modifier les termes, conditions et mentions du présent règlement à tout moment. Par conséquent, vous devriez revoir ce règlement périodiquement.
+  users:
+    side_nav:
+      infos: "Infos"
+    show:
+      since: "Membre depuis"
