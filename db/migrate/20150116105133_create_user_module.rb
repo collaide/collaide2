@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-class CreateTableUser < ActiveRecord::Migration
+class CreateUserModule < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
       ## Database authenticatable
@@ -58,7 +58,7 @@ class CreateTableUser < ActiveRecord::Migration
     add_index :users, :confirmation_token,   :unique => true
     add_index :users, :unlock_token,         :unique => true
     add_index :users, :authentication_token, :unique => true
-end
+  end
 
 
 

@@ -21,7 +21,8 @@ gem 'pg', '~> 0.17.1'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # HTML
-gem 'zurb-foundation', '~> 4.3.2'
+gem 'foundation-rails', '~> 5.5.0.0'
+gem 'foundation-icons-sass-rails'
 gem 'haml', '~> 4.0.6'
 
 # I18n
@@ -45,9 +46,11 @@ gem 'omniauth-google-oauth2', '~> 0.2.6'
 #Helper gems
 gem 'enumerize', '~> 0.9.0'
 gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.0.2'
 
 group :development, :test do
 
+  gem 'byebug', '~> 3.5.1'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

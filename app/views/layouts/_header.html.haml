@@ -1,7 +1,20 @@
-%nav.top-bar{'data-topbar' => ''}
-  %ul.title-area
-    %li.name
-      %h1= link_to t('app_name'), eval("root_#{I18n.locale}_path")
-    %li.toggle-topbar.menu-icon
-      %a{href: "#"}
-        %span Menu
+.contain-to-grid
+  %nav.top-bar{'data-topbar' => ''}
+    %ul.title-area
+      %li.name
+        %h1= link_to t('app_name'), eval("root_#{I18n.locale}_path")
+      %li.toggle-topbar.menu-icon
+        %a{href: "#"}
+          %span Menu
+    %section.top-bar-section
+      %ul.right
+        %li.divider.hide-for-small
+        - if user_signed_in?
+          %li.has-dropdown
+            %a{href: "#"}
+              %span.fi-widget
+                %span.show-for-small=t('header.user.settings')
+            %ul.dropdown
+              %li= link_to t('header.user.edit'), edit_user_registration_path
+              %li.divider
+              %li= link_to t('header.user.logout'), destroy_user_session_path, method: :delete

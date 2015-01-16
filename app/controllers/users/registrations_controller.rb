@@ -7,17 +7,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.update_without_password(params)
   end
 
+  def new
+    redirect_to new_user_session_path
+  end
+
   protected
 
   def sign_up(resource_name, resource)
-    logger.debug 'kajsbdkéasvdésvFASéFVASé'
     sign_in(resource_name, resource)
   end
 
-  # my custom fields are :name, :avatar
-
   def configure_permitted_parameters
-    #logger.debug('called from controllers/users/registrations_controller.rb')
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:name,
                :email, :password, :password_confirmation)

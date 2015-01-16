@@ -3,6 +3,12 @@
 
 fr:
   app_name: Collaide
+  header:
+    user:
+      profil: "Mon profil"
+      edit: Modifier mon profil
+      settings: Paramètres
+      logout: "Déconnexion"
   footer:
     titles:
       documents: Documents étudiants
