@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     session[:previous_url] || root_path
   end
 
+  # Useful for returning back to the last page and better than redirect_to :back
+  def back
+    return root_path unless request.env['HTTP_REFERER']
+    :back
+  end
   private
 
   def set_locale
