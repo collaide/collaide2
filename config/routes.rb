@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'main#index', as: 'root'
+  devise_for :users, :controllers => {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations', sessions: 'users/sessions' }
   localized do
     root :to => 'main#index', as: 'root'
 

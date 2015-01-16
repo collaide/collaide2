@@ -37,13 +37,11 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    bcrypt (3.1.9)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (3.5.1)
-      columnize (~> 0.8)
-      debugger-linecache (~> 1.2)
-      slop (~> 3.6)
+    cancan (1.6.10)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -51,9 +49,15 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    columnize (0.9.0)
     debug_inspector (0.0.2)
-    debugger-linecache (1.2.0)
+    devise (3.4.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+    devise-i18n-views (0.3.3)
     erubis (2.7.0)
     execjs (2.2.2)
     globalid (0.3.0)
@@ -80,6 +84,7 @@ GEM
     multi_json (1.10.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    orm_adapter (0.5.0)
     pg (0.17.1)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -116,6 +121,8 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    responders (2.0.2)
+      railties (>= 4.2.0.alpha, < 5)
     route_translator (4.0.0)
       actionpack (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
@@ -132,7 +139,6 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    slop (3.6.0)
     spring (1.2.0)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -153,6 +159,8 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     ui_datepicker-rails3 (1.2.0)
+    warden (1.2.3)
+      rack (>= 1.0)
     web-console (2.0.0)
       activemodel (~> 4.0)
       binding_of_caller (>= 0.7.2)
@@ -165,8 +173,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
+  cancan (~> 1.6.10)
   coffee-rails (~> 4.1.0)
+  devise (~> 3.4.1)
+  devise-i18n-views (~> 0.3.3)
   haml (~> 4.0.6)
   i18n (~> 0.7.0)
   jbuilder (~> 2.0)
@@ -178,9 +188,9 @@ DEPENDENCIES
   route_translator (~> 4.0.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  simple_form
-  spring
-  sqlite3
+  simple_form (~> 3.1.0)
+  spring (~> 1.2.0)
+  sqlite3 (~> 1.3.10)
   uglifier (>= 1.3.0)
   ui_datepicker-rails3
   web-console (~> 2.0)

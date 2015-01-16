@@ -30,17 +30,30 @@ gem 'i18n', '~> 0.7.0'
 gem 'route_translator', '~> 4.0.0'
 
 #Formular
-gem 'simple_form'
+gem 'simple_form', '~> 3.1.0'
+
+#User
+gem 'cancan', '~> 1.6.10'
+gem 'devise', '~> 3.4.1'
+gem 'devise-i18n-views', '~> 0.3.3'
+gem 'geocoder', '~> 1.2.6'
+# Social networks authentication
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-facebook', '~> 2.0.0'
+gem 'omniauth-google-oauth2', '~> 0.2.6'
+
+#Helper gems
+gem 'enumerize', '~> 0.9.0'
+gem 'carrierwave', '~> 0.10.0'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.10'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '~> 1.2.0'
 
   gem 'quiet_assets', '>= 1.0.1'
 end
