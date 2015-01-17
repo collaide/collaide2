@@ -9,6 +9,8 @@ fr:
       edit: Modifier mon profil
       settings: Paramètres
       logout: "Déconnexion"
+    sign_up: "Inscription"
+    sign_in: "Connexion"
   footer:
     titles:
       documents: Documents étudiants

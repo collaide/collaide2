@@ -45,3 +45,41 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 //    border-right-color: #ffffff;
 //  }
 }
+
+.top-bar-section {
+  .up-button {
+    @include button;
+    color: $primary-color;
+    background-color: $secondary-color;
+    border-width: 1px;
+    border-color: $primary-color;
+    border-style: solid;
+    //border-bottom-width: 4px;
+
+    //box-shadow: 0px 3px 0px $primary-color;
+    border-radius: 5px;
+    margin-top: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+   .in-button {
+     @include button;
+     color: $secondary-color;
+     background-color: $primary-color;
+     border-width: 1px;
+     border-color: $secondary-color;
+     border-style: solid;
+     //border-bottom-width: 4px;
+
+     //box-shadow: 0px 3px 0px $primary-color;
+     border-radius: 5px;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     margin-top: 8px;
+     padding-right: 20px;
+     padding-left: 20px;
+   }
+}

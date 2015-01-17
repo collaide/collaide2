@@ -21,3 +21,6 @@
               %li.divider
               %li= link_to t('header.user.logout'), destroy_user_session_path, method: :delete
           %li.divider.hide-for-small
+        - else
+          %li.has-form= link_to(t('header.sign_up'), "#", class: 'up-button right-off-canvas-toggle', id: 'header-sign-up-button')
+          %li.has-form= link_to(t('header.sign_in'), "#", class: 'in-button right-off-canvas-toggle', id: 'header-sign-in-button')
