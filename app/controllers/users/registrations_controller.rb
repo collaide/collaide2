@@ -11,6 +11,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to new_user_session_path
   end
 
+  def edit
+    view = params[:view]
+    if view == 'general' or view == 'password'
+      super
+    else
+      redirect_to edit_user_registration_path(view: :general)
+    end
+  end
+
   protected
 
   def sign_up(resource_name, resource)

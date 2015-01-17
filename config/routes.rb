@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     post 'contact', to: 'main#send_email', as: 'send_email_contact'
 
     #UsersController
-    resources :users
+    resources :users do
+      get 'groups'
+    end
   end
 end

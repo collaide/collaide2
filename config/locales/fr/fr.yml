@@ -130,10 +130,13 @@ fr:
   users:
     side_nav:
       infos: "Infos"
+      groups: "Mes groupes"
     show:
       since: "Membre depuis"
     avatar:
       title: "Image de %{user}"
+    groups:
+      no_group: "Vous n'êtes membres d'aucun groupes"
   notifications_mailer:
     signup:
       subject: Bienvenue sur collaide.com
@@ -149,3 +152,6 @@ fr:
       p3: Des questions ? Des remarques ? N'hésite pas à nous écrire à l'adresse e-mai contact@collaide.com
       end: A bientôt sur %{collaide} !
       signature: L'équipe collaide
+  groups:
+    buttons:
+      create: "Nouveau groupe"

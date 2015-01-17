@@ -1,0 +1,47 @@
+@import "foundation/functions";
+@import 'foundation-icons';
+$include-html-classes: true;
+$include-html-global-classes: $include-html-classes;
+
+
+@import 'foundation';
+
+$collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
+.collaide-side-nav {
+  min-height: rem-calc(500px);
+  border-right: 1px solid $secondary-color;
+  @include side-nav(
+  // Border color of divider
+  $divider-color: '#ccc',
+    // Font size of nav items
+  $font-size: rem-calc(17px),
+    // Color of navigation links
+  $link-color: $oil,
+    // Color of navigation links on hover
+  $link-color-hover: $oil
+  );
+  li {
+    background-color: #ffffff;
+    margin-bottom: 0px;
+  }
+  li.divider {
+    border-top-color: $secondary-color;
+  }
+  li.active {
+    background-color: $collaide-side-nav-font-color;
+  }
+
+  li.active > a:first-child:not(.button){
+    color: scale-color($oil, $lightness: 10%);
+  }
+
+//  li.active > a:first-child:not(.button):after {
+//    left: 67.5%;
+//    top: 3%;
+//    content: " ";
+//    position: absolute;
+//    pointer-events: none;
+//    border: 20px solid $collaide-side-nav-font-color;
+//    border-right-color: #ffffff;
+//  }
+}

@@ -1,3 +1,8 @@
-%ul.side-nav
-  %li
-    %a{href: user_path(@user)}= t('users.side_nav.infos')
+%ul.collaide-side-nav
+  = build_active_menu :show, link_to(t('users.side_nav.infos'), user_path(@user))
+  %li.divider
+  = build_active_menu :groups, link_to(t('users.side_nav.groups'), user_groups_path(@user))
+  %li.divider
+  %li= link_to 'Mes documents', user_groups_path(@user)
+  %li.divider
+  %li= link_to 'Notifications', user_groups_path(@user)
