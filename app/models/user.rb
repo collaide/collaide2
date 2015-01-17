@@ -1,6 +1,8 @@
 class   User < ActiveRecord::Base
   extend Enumerize
 
+  after_create :send_email
+
   mount_uploader :avatar, UserUploader
 
   devise :database_authenticatable,
@@ -32,7 +34,8 @@ class   User < ActiveRecord::Base
     if (user = User.find_by(email: auth.info.email))
       return user
     end
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+    # where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+    where(provider: auth[:provider], uid: auth[:uid]).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
@@ -48,7 +51,8 @@ class   User < ActiveRecord::Base
     if (user = User.find_by(email: auth.info.email))
       return user
     end
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+    # where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+    where(provider: auth[:provider], uid: auth[:uid]).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
@@ -78,6 +82,12 @@ class   User < ActiveRecord::Base
       else
         return false
     end
+  end
+
+  private
+
+  def send_email
+    NotificationsMailer.signup(self).deliver_later
   end
 
 end

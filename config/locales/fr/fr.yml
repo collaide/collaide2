@@ -134,3 +134,18 @@ fr:
       since: "Membre depuis"
     avatar:
       title: "Image de %{user}"
+  notifications_mailer:
+    signup:
+      subject: Bienvenue sur collaide.com
+      greeting: Cher, Chère %{user}
+      p1: Merci de t'être inscris sur collaide.com et bienvenue !
+      group_created: créé
+      p2: "Collaide facilite tes études grâce à des groupes de travails en ligne. En effet, une fois un groupe %{link} tu peux :"
+      list: |
+        Inviter d'autres personnes à te rejoindre dans ton groupe
+        Mener des discussions approfondies en groupe
+        Partager des fichiers et des dossiers dans le groupe
+        Administrer le groupe
+      p3: Des questions ? Des remarques ? N'hésite pas à nous écrire à l'adresse e-mai contact@collaide.com
+      end: A bientôt sur %{collaide} !
+      signature: L'équipe collaide
