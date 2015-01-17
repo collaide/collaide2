@@ -8,8 +8,8 @@ $include-html-global-classes: $include-html-classes;
 
 $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 .collaide-side-nav {
-  min-height: rem-calc(500px);
   border-right: 1px solid $secondary-color;
+  min-height: 500px;
   @include side-nav(
   // Border color of divider
   $divider-color: '#ccc',
@@ -20,15 +20,26 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
     // Color of navigation links on hover
   $link-color-hover: $oil
   );
+  padding-bottom: 0px;
+  padding-top: 0px;
   li {
-    background-color: #ffffff;
+    background-color: scale-color($secondary-color, $lightness: 70%);
     margin-bottom: 0px;
+    //border-right: 1px solid $secondary-color;
+    //border-bottom: 1px solid $secondary-color;
+    border-top: 1px solid $secondary-color;
+  }
+  li:last-child {
+    border-bottom: 1px solid $secondary-color;
   }
   li.divider {
     border-top-color: $secondary-color;
   }
   li.active {
-    background-color: $collaide-side-nav-font-color;
+    border-left: 3px solid $primary-color;
+    background-color: white;
+    border-right: 3px solid white;
+    margin-right: -1px;
   }
 
   li.active > a:first-child:not(.button){
