@@ -8,4 +8,8 @@ module ApplicationHelper
     end
     "<li #{html_class}>#{h(content)}</li>".html_safe
   end
+
+  def foundation_icons(classes)
+    "<i class=\"#{h(classes)}\"></i> ".html_safe
+  end
 end

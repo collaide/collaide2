@@ -1,18 +1,18 @@
 %h2= t('devise.registrations.edit.title')
 .row
-  .columns.small-12.large-2
+  .columns.small-12.large-3
     %ul.collaide-side-nav
       = build_active_menu :general, link_to(t('devise.registrations.edit.general_change'), edit_user_registration_path(view: :general)), params[:view]
       = build_active_menu :password, link_to(t('devise.registrations.edit.change_password'), edit_user_registration_path(view: :password)), params[:view]
-  .columns.small-12.large-10
+  .columns.small-12.large-9
     = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, multipart: true }) do |f|
       = f.error_notification
       .form-inputs
         .row
           -if params[:view] == 'password'
             .columns.small-12
-              = f.input :password, :autocomplete => "off", :required => false
-              = f.input :password_confirmation, :required => false
+              = f.input :password, :autocomplete => "off"
+              = f.input :password_confirmation
           -else
             .columns.large-6
               = f.input :email, :required => true, :autofocus => true
