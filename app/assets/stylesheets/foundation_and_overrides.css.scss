@@ -3,6 +3,54 @@
 $include-html-classes: true;
 $include-html-global-classes: $include-html-classes;
 
+//$total-columns: 24;
+
+$thirty-color: #ffb700;
+$primary-color: #2C3E4F;
+$primary-light-color: #3D5164;
+$secondary-color: #F6F6F7;
+$link-color: #2980BA;
+$font-color: #363737;
+//$primary-other-color: #DBEEFF;
+
+$secondary-other-color: #ecf0f1;
+
+
+//$header-font-color: $primary-color;
+//$light-font-weight: 300;
+
+// We use these to control various global styles
+//$body-bg: $secondary-color;
+$body-font-color: $font-color;
+$body-font-family: "Open Sans", sans-serif, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-weight: 400;
+
+$alert-color: #C54443;
+$success-color: #43AC6A;
+
+//$header-font-family: $body-font-family;
+//$header-font-weight: 400;
+//$header-font-style: normal;
+//$header-font-color: $primary-color;
+
+$topbar-bg-color: #2C3E4F;
+$topbar-height: rem-calc(60);
+// Je sais pas
+//$topbar-link-weight: 300;
+
+//$button-font-weight: 300;
+
+//$global-radius: 3px;
+
+$anchor-font-color: $link-color;
+
+$off-canvas-overlay-box-shadow: none;
+$off-canvas-width: 400px;
+$off-canvas-bg: $primary-light-color;
+
+
+
+
 
 @import 'foundation';
 
@@ -57,40 +105,122 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 //  }
 }
 
-.top-bar-section {
-  .up-button {
-    @include button;
-    color: $primary-color;
-    background-color: $secondary-color;
-    border-width: 1px;
-    border-color: $primary-color;
-    border-style: solid;
-    //border-bottom-width: 4px;
+.top-bar-section .up-button {
+  @include button;
+  color: $primary-color;
+  background-color: $secondary-color;
+  border-width: 1px;
+  border-color: $primary-color;
+  border-style: solid;
+  //border-bottom-width: 4px;
 
-    //box-shadow: 0px 3px 0px $primary-color;
-    border-radius: 5px;
-    margin-top: 8px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 20px;
-    padding-left: 20px;
+  //box-shadow: 0px 3px 0px $primary-color;
+  border-radius: 5px;
+  margin-top: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
-   .in-button {
-     @include button;
-     color: $secondary-color;
-     background-color: $primary-color;
-     border-width: 1px;
-     border-color: $secondary-color;
-     border-style: solid;
-     //border-bottom-width: 4px;
+.top-bar-section .up-button:hover {
+  color: $secondary-color;
+  background-color: $primary-color;
+  border-width: 1px;
+  border-color: $secondary-color;
+  border-style: solid;
+  border-radius: 5px;
+  box-shadow: none;
+  transition-duration: 300ms;
+  //border-bottom-width: 1px;
+}
 
-     //box-shadow: 0px 3px 0px $primary-color;
-     border-radius: 5px;
-     padding-top: 10px;
-     padding-bottom: 10px;
-     margin-top: 8px;
-     padding-right: 20px;
-     padding-left: 20px;
-   }
+
+.top-bar-section .in-button {
+  @include button;
+  color: $secondary-color;
+  background-color: $primary-color;
+  border-width: 1px;
+  border-color: $secondary-color;
+  border-style: solid;
+  //border-bottom-width: 4px;
+
+  //box-shadow: 0px 3px 0px $primary-color;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 8px;
+  padding-right: 20px;
+  padding-left: 20px;
+
+}
+.top-bar-section .in-button:hover {
+  color: $primary-color;
+  transition-duration: 300ms;
+  background-color: $secondary-color;
+  border-width: 1px;
+  border-color: $primary-color;
+  border-style: solid;
+  border-radius: 5px;
+  box-shadow: none;
+  //border-bottom-width: 1px;
+}
+
+// Sign up panel
+#header-sign-up-panel {
+  padding: 40px;
+  h3 {
+    margin: 25px 0px;
+    color: $secondary-color;
+  }
+  label {
+    color: $secondary-color;
+    margin-bottom: 5px;
+  }
+
+  input[type="checkbox"], input[type="radio"] {
+    margin-right: 20px;
+  }
+  input {
+    background-color: $primary-light-color;
+    color: $secondary-color;
+    border-radius: 5px;
+  }
+  .button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.right-off-canvas-menu {
+  border-left: solid 5px $primary-color;
+}
+
+
+#header-sign-in-panel {
+  padding: 40px;
+  h3 {
+    margin: 25px 0px;
+    color: $primary-color;
+  }
+  label {
+    color: $primary-color;
+    margin-bottom: 5px;
+  }
+
+  input[type="checkbox"], input[type="radio"] {
+    margin-right: 20px;
+  }
+  input {
+    background-color: $secondary-color;
+    border-radius: 5px;
+  }
+  .button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.right-off-canvas-menu {
+  //background-color: $secondary-color;
 }
