@@ -54,6 +54,9 @@ $off-canvas-bg: $primary-light-color;
 
 @import 'foundation';
 
+//########################################
+// ########## SIDE NAV ##################
+// ######################################
 $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 .collaide-side-nav {
   border-right: 1px solid $secondary-color;
@@ -104,7 +107,73 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 //    border-right-color: #ffffff;
 //  }
 }
+//########################################
+// ########## FIN SIDE NAV ###############
+// ######################################
 
+//########################################
+// ########## Bouton standard ###########
+// ######################################
+.std-button {
+  @include button;
+  color: $font-color;
+  background-color: $secondary-color;
+  border-width: 1px;
+  border-color: $primary-color;
+  border-style: solid;
+  //border-bottom-width: 4px;
+
+  box-shadow: 0px 3px 0px $primary-color;
+  border-radius: 5px;
+}
+.std-button:hover {
+  color: $font-color;
+  background-color: $secondary-color;
+  border-width: 1px;
+  border-color: $primary-color;
+  border-style: solid;
+  border-radius: 5px;
+  box-shadow: 0px 1px 0px $primary-color;
+  top: 2px;
+  //border-bottom-width: 1px;
+}
+
+.std-button-i {
+  @include button;
+  color: $secondary-color;
+  background-color: $primary-light-color;
+  border-width: 1px;
+  border-color:  $secondary-color;
+  border-style: solid;
+  //border-bottom-width: 4px;
+
+  box-shadow: 0px 3px 0px $secondary-color;
+  border-radius: 5px;
+}
+.std-button-i:hover {
+  color: $secondary-color;
+  background-color: $primary-light-color;
+  border-width: 1px;
+  border-color: $secondary-color;
+  border-style: solid;
+  border-radius: 5px;
+  box-shadow: 0px 1px 0px $secondary-color;
+  top: 2px;
+  //border-bottom-width: 1px;
+}
+
+.std-button.expand {
+  padding-right: 0;
+  padding-left: 0;
+  width: 100%;
+}
+//########################################
+// ########## FIN Bouton standard ########
+// ######################################
+
+//########################################
+// ########## BOUTON DE LA TOP BAR
+// ######################################
 .top-bar-section .up-button {
   @include button;
   color: $primary-color;
@@ -166,7 +235,9 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   //border-bottom-width: 1px;
 }
 
-// Sign up panel
+//########################################
+// ########## SIGN UP PANEL #############
+// ######################################
 #header-sign-up-panel {
   padding: 40px;
   h3 {
@@ -196,7 +267,9 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   border-left: solid 5px $primary-color;
 }
 
-
+//########################################
+// ########## SIGN IN PANEL #############
+// ######################################
 #header-sign-in-panel {
   padding: 40px;
   h3 {
@@ -224,3 +297,6 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 .right-off-canvas-menu {
   //background-color: $secondary-color;
 }
+//########################################
+// ########## FIN SIGN IN PANEL ##########
+// ######################################

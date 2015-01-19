@@ -11,9 +11,9 @@
           - resource_class.omniauth_providers.each do |provider|
             .large-6.columns
               -if provider.to_s.titleize == 'Google Oauth2'
-                = link_to t("devise.shared.links.sign_in_with_provider", provider: 'Google'), omniauth_authorize_path(resource_name, provider), class: 'button expand'
+                = link_to t("devise.shared.links.sign_in_with_provider", provider: 'Google'), omniauth_authorize_path(resource_name, provider), class: 'std-button expand'
               -else
-                = link_to t("devise.shared.links.sign_in_with_provider", provider: provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), class: 'button expand'
+                = link_to t("devise.shared.links.sign_in_with_provider", provider: provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), class: 'std-button expand'
       %h4.panel-subtitle
         = t'devise.sessions.new.via_app'
       = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
@@ -22,7 +22,7 @@
           = f.input :password, :required => false
           = f.input :remember_me, :as => :boolean, :input_html => { :checked => true } if devise_mapping.rememberable?
         .form-actions
-          = f.button :submit, t("devise.sessions.new.sign_in"), class: 'thirty'
+          = f.button :submit, t("devise.sessions.new.sign_in"), class: 'std-button-i'
       - if devise_mapping.recoverable? && controller_name != 'passwords'
         = link_to t("devise.shared.links.forgot_your_password"), new_password_path(resource_name)
         %br/
