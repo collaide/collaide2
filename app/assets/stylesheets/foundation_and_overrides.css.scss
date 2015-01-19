@@ -224,3 +224,8 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 .right-off-canvas-menu {
   //background-color: $secondary-color;
 }
+
+#main-content {
+  min-height: 900px;//TODO: Do it better
+  position: relative;
+}
