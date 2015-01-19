@@ -30,8 +30,11 @@ headerOffCanvas = () ->
         $('aside.right-off-canvas-menu').show('slow')
   isCanvasOpen = () ->
     $('[data-offcanvas]').hasClass('move-left')
+
+
   stop = (event) ->
     event.stopImmediatePropagation()
     event.preventDefault()
 
-$ -> headerOffCanvas()
+$ ->
+  headerOffCanvas()

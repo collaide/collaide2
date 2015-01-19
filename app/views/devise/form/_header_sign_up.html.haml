@@ -1,6 +1,6 @@
 #header-sign-up-panel
   %h3= t'devise.registrations.new.sign_up'
-  = simple_form_for(User.new, as: :user, :url => user_registration_path, html: {id: 'offcanvas_new_user'}) do |f|
+  = simple_form_for(User.new, as: :user, :url => user_registration_path, defaults: { input_html: { class: 'validate-form' } }, html: {id: 'offcanvas_new_user'}) do |f|
     = f.input :email, autocomplete: 'off', required: false, input_html: {id: 'offcanvas-signup_user_email'}
     = f.input :name, autocomplete: 'off', required: false, input_html: {id: 'offcanvas-signup_user_name'}
     = f.input :password, autocomplete: 'off', required: false, input_html: {id: 'offcanvas-signup_user_password'}

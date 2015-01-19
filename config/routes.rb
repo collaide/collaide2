@@ -16,4 +16,11 @@ Rails.application.routes.draw do
       get 'groups'
     end
   end
+
+  namespace :api do
+    resources :auth_token, controller: 'auth_token', only: [:create]
+    resources :users, controller: 'users', only: :show do
+      post 'valid', on: :collection
+    end
+  end
 end
