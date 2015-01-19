@@ -23,6 +23,7 @@
   %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0' }
   %meta{name: 'author', content: 'Yves Bauman et Numa de Montmollin'}
 
+  %title= yield(:title)
   = favicon_link_tag 'collaide_icon.ico'
   = csrf_meta_tag
   = stylesheet_link_tag 'application'
@@ -36,11 +37,15 @@
   = render 'layouts/header'
   .off-canvas-wrap{'data-offcanvas'=> ''}
     .inner-wrap
-      #get-header-sign-up-panel.hide
-        =render 'devise/form/header_sign_up'
-      #get-header-sign-in-panel.hide
-        =render 'devise/form/header_sign_in'
+      -##get-header-sign-up-panel.hide
+      -#  =render 'devise/form/header_sign_up'
+      -##get-header-sign-in-panel.hide
+      -#  =render 'devise/form/header_sign_in'
       %aside.right-off-canvas-menu
+        #get-header-sign-up-panel
+          =render 'devise/form/header_sign_up'
+        #get-header-sign-in-panel
+          =render 'devise/form/header_sign_in'
       %p
       #flash-msg
       -unless flash.empty?
