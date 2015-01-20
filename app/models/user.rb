@@ -10,6 +10,15 @@ class   User < ActiveRecord::Base
 
   enumerize :role, in: [:admin, :moderator, :author, :banned, :super_admin, :doc_validator, :add_validator], scope: true, predicates: true
 
+  # Les invitations que l'utilisateur a envoyées
+  has_many :sent_invitations, class_name: 'Group::Invitation', foreign_key: 'sender_id'
+  # les invitations reçues
+  has_many :received_invitations, class_name: 'Group::Invitation', foreign_key: 'receiver_id'
+
+  # Les différents groupes auquels appartient l'utilisateur
+  has_many :group_members, class_name: 'Group::GroupMember'
+  has_many :groups, class_name: 'Group::Group', through: :group_members
+
   validates :name, presence: true
 
   #https://github.com/alexreisner/geocoder

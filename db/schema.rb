@@ -11,10 +11,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116105133) do
+ActiveRecord::Schema.define(version: 20150120151556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "group_email_invitations", force: :cascade do |t|
+    t.string  "email"
+    t.text    "message"
+    t.string  "secret_token"
+    t.string  "status"
+    t.integer "group_id"
+    t.integer "user_id"
+  end
+
+  create_table "group_group_members", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.string   "role"
+    t.string   "joined_method"
+    t.integer  "invited_or_added_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_group_members", ["group_id"], name: "index_group_group_members_on_group_id", using: :btree
+  add_index "group_group_members", ["invited_or_added_by_id"], name: "index_group_group_members_on_invited_or_added_by_id", using: :btree
+  add_index "group_group_members", ["user_id"], name: "index_group_group_members_on_user_id", using: :btree
+
+  create_table "group_groups", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "can_index_activity"
+    t.string   "can_delete_group"
+    t.string   "can_read_topic"
+    t.string   "can_index_members"
+    t.string   "can_read_member"
+    t.string   "can_delete_member"
+    t.string   "can_write_file"
+    t.string   "can_index_files"
+    t.string   "can_read_file"
+    t.string   "can_delete_file"
+    t.string   "can_index_topics"
+    t.string   "can_write_topic"
+    t.string   "can_delete_topic"
+    t.string   "can_create_invitation"
+    t.string   "can_manage_invitations"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_invitations", force: :cascade do |t|
+    t.text     "message"
+    t.string   "status"
+    t.integer  "sender_id"
+    t.integer  "group_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_invitations", ["group_id"], name: "index_group_invitations_on_group_id", using: :btree
+  add_index "group_invitations", ["receiver_id"], name: "index_group_invitations_on_receiver_id", using: :btree
+  add_index "group_invitations", ["sender_id"], name: "index_group_invitations_on_sender_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
