@@ -3,6 +3,7 @@
 
 fr:
   app_name: Collaide
+  default_title: Collaide, apprenons ensemble
   header:
     user:
       profil: "Mon profil"
