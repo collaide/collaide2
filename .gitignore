@@ -38,3 +38,5 @@
 dump.rdb
 
 .DS_Store
+.ruby-gemset
+.ruby-version
