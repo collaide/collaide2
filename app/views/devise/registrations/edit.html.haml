@@ -9,18 +9,19 @@
       = f.error_notification
       .form-inputs
         .row
-          -if params[:view] == 'password'
+          %div{class: hide_for?(:password)}
             .columns.small-12
-              = f.input :password, :autocomplete => "off"
-              = f.input :password_confirmation
-          -else
+              = f.input :password, :autocomplete => "off", label: t('devise.passwords.edit.password')
+              = f.input :password_confirmation, label: t('devise.passwords.edit.password_confirmation')
+          %div{class: hide_for?(:general)}
             .columns.large-6
               = f.input :email, :required => true, :autofocus => true
               = f.input :name
             .columns.large-6
               = image_tag resource.avatar.mini
               = f.input :avatar_cache, as: :hidden
-              = f.input :avatar
+              = f.input :avatar, input_html: {class: 'hide'}
+              =link_to t('devise.registrations.edit.avatar'), '#', class: 'std-button', onclick: '$("#user_avatar").click();'
             .columns.small-12
               - if devise_mapping.confirmable? && resource.pending_reconfirmation?
                 %p= t("devise.registrations.edit.waiting_confirmation", resource: resource.unconfirmed_email)

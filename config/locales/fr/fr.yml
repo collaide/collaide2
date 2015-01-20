@@ -3,6 +3,11 @@
 
 fr:
   app_name: Collaide
+  default_title: Apprenons ensemble
+  titles:
+    users:
+      registrations:
+        edit: Modifier mon profil
   header:
     user:
       profil: "Mon profil"

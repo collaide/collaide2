@@ -302,3 +302,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   min-height: 900px; //TODO: Do it better
   position: relative;
 }
+
+.alert-box .close {
+  color: #FFFFFF;
+}

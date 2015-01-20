@@ -56,6 +56,7 @@ fr:
         unhappy: "Pas satisafait ? Envoyez un e-mail à contact@collaide.com afin de demander la suppression de votre compte."
         general_change: Général
         change_password: Modifier le mot de passe
+        avatar: Modifier l'image de profil
       new:
         sign_up: Inscription
         info: Pas de compte ? Créez en un gratuitement !
