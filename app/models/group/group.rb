@@ -40,6 +40,8 @@ class Group::Group < ActiveRecord::Base
   enumerize :can_create_invitation, in: ROLES, multiple: true
   serialize :can_manage_invitations, Array
   enumerize :can_manage_invitations, in: ROLES, multiple: true
+  
+  after_create :add_owner_as_member
 
   # Le créateur du groupe
   belongs_to :user
@@ -63,6 +65,7 @@ class Group::Group < ActiveRecord::Base
   end
 
   validates :name, presence: true, length: {minimum: 2}
+  validates_presence_of :user
 
   before_create :init
 
@@ -86,7 +89,7 @@ class Group::Group < ActiveRecord::Base
     self.can_delete_member << :admin
     self.can_index_members << :member
     self.can_read_member << :member
-    self.can_create_invitation << Group::Roles::MEMBER
+    self.can_create_invitation << :member
   end
 
   # send an invitation to the receivers
@@ -121,18 +124,17 @@ class Group::Group < ActiveRecord::Base
 
   # Ajoute un membre au groupe avec le role, la méthode et le user qui l'a ajouté ou invité
   # On ne peux pas ajouter deux fois le même membre.
-  def add_members(members, role: Group::Roles::MEMBER, joined_method: :by_itself, invited_or_added_by: nil)
+  def add_members(members, role: :member, joined_method: :by_itself, invited_or_added_by: nil)
     if members.kind_of?(Array)
       members.each do |m|
         unless Group::GroupMember.where(group: self, member: m).take
           gm = Group::GroupMember.new
-          gm.member = m
+          gm.user = m
           gm.role = role
           gm.joined_method = joined_method
           gm.invited_or_added_by = invited_or_added_by
           self.group_members << gm
           self.save
-          create_activity(:joined, trackable: self, owner: m, create_related_activity_param: true)
         end
       end
     else
@@ -140,13 +142,12 @@ class Group::Group < ActiveRecord::Base
         return false
       end
       gm = Group::GroupMember.new
-      gm.member = members
+      gm.user = members
       gm.role = role
       gm.joined_method = joined_method
       gm.invited_or_added_by = invited_or_added_by
       self.group_members << gm
       self.save
-      create_activity(:joined, trackable: self, owner: members, create_related_activity_param: true)
     end
   end
 
@@ -169,6 +170,11 @@ class Group::Group < ActiveRecord::Base
     else
       can_do(can_action, can_type).include?(member_actor.role.to_sym)
     end
+  end
+
+  private
+  def add_owner_as_member
+    self.add_members(self.user, role: :admin)
   end
 
   private

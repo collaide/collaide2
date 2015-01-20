@@ -12,9 +12,11 @@ Rails.application.routes.draw do
     post 'contact', to: 'main#send_email', as: 'send_email_contact'
 
     #UsersController
-    resources :users do
+    resources :users, only: [:show] do
       get 'groups'
     end
+
+    resources :groups, as: 'group_groups', controller: 'group/groups', only: [:create, :new, :show]
   end
 
   namespace :api do

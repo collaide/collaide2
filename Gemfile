@@ -47,6 +47,9 @@ gem 'enumerize', '~> 0.9.0'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.0.2'
 
+# Gems for the group module
+gem 'repository-manager', '~> 0.2.10'
+
 group :development, :test do
 
   gem 'byebug', '~> 3.5.1'
@@ -58,5 +61,13 @@ group :development, :test do
   gem 'spring', '~> 1.2.0'
 
   gem 'quiet_assets', '>= 1.0.1'
+
+  gem 'cucumber-rails', '~> 1.4.2', require: false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner', '~> 1.4.0'
+  gem 'rspec-expectations', '~> 3.1.2'
+  gem 'selenium-webdriver', '~> 2.44.0'
+
+  gem 'factory_girl', '~> 4.5.0'
 end
 

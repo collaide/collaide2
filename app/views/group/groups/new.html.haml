@@ -1,0 +1,4 @@
+=simple_form_for @group do |f|
+  .row
+    =f.input :name, wrapper_html: {class: 'columns small-9'}
+    =f.button :submit, t('groups.buttons.create'), wrapper_html: {class: 'columns small-3'}
