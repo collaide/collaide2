@@ -74,6 +74,7 @@ fr:
         message: Message (optionel)
       user:
         name: Nom
+        avatar: Image de profil
     placeholders:
       user_message:
         users: Pseudo

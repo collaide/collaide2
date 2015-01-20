@@ -23,6 +23,11 @@ module ApplicationHelper
     "<i class=\"#{h(classes)}\"></i> ".html_safe
   end
 
+  # Used for hiding part of the form for editing user's profile
+  def hide_for?(view)
+    params[:view] != view.to_s ? 'hide' : nil
+  end
+
   private
   def generate_meta(meta, text = '')
     if text.blank?
@@ -42,6 +47,6 @@ module ApplicationHelper
     translation << meta.to_s.pluralize
     translation.reverse!.reject! {|term| term.blank?}
     logger.debug "looking translation for SEO in: #{translation.join '.'}"
-    t(translation.join('.'), default: t("default_#{meta.to_s}"))
+    t(translation.join('.'), default: t("default_#{meta.to_s}")) + ' - ' + t('app_name')
   end
 end
