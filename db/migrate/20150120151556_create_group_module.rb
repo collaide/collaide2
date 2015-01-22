@@ -28,6 +28,11 @@ class CreateGroupModule < ActiveRecord::Migration
       t.timestamps
     end
 
+    create_table :group_group_creation do |t|
+      t.belongs_to :group
+      t.string :email
+    end
+
     create_table :group_group_members do |t|
       t.belongs_to :group, index: true
       t.belongs_to :user, index: true

@@ -45,6 +45,9 @@ class Group::Group < ActiveRecord::Base
   
   after_create :add_owner_as_member
 
+  # Pour la création du groupe étape par étape, enregistre les infos annexes au groupe
+  has_one :group_creation, class_name: 'Group::GroupCreation'
+
   # Le créateur du groupe
   belongs_to :user
   has_many :group_members, class_name: 'Group::GroupMember'

@@ -25,6 +25,11 @@ ActiveRecord::Schema.define(version: 20150120161438) do
     t.integer "user_id"
   end
 
+  create_table "group_group_creation", force: :cascade do |t|
+    t.integer "group_id"
+    t.string  "email"
+  end
+
   create_table "group_group_members", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
@@ -42,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150120161438) do
   create_table "group_groups", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "steps"
+    t.string   "steps"
     t.boolean  "is_finished",            default: false
     t.string   "can_index_activity"
     t.string   "can_delete_group"

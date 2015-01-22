@@ -162,3 +162,6 @@ fr:
   groups:
     buttons:
       create: "Nouveau groupe"
+    group_creation:
+      errors:
+        valid_email: "Doit être une adresse e-mail valide"
