@@ -4,6 +4,9 @@ class CreateGroupModule < ActiveRecord::Migration
       t.string :name
       t.text :description
 
+      t.string :steps
+      t.boolean :is_finished, default: false
+
       t.string :can_index_activity
       t.string :can_delete_group
       t.string :can_read_topic

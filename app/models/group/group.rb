@@ -40,6 +40,8 @@ class Group::Group < ActiveRecord::Base
   enumerize :can_create_invitation, in: ROLES, multiple: true
   serialize :can_manage_invitations, Array
   enumerize :can_manage_invitations, in: ROLES, multiple: true
+
+  enumerize :steps, in: [:user_login, :password, :invitations]
   
   after_create :add_owner_as_member
 
@@ -65,7 +67,6 @@ class Group::Group < ActiveRecord::Base
   end
 
   validates :name, presence: true, length: {minimum: 2}
-  validates_presence_of :user
 
   before_create :init
 

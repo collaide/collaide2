@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20150120161438) do
   create_table "group_groups", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.integer  "steps"
+    t.boolean  "is_finished",            default: false
     t.string   "can_index_activity"
     t.string   "can_delete_group"
     t.string   "can_read_topic"
