@@ -19,6 +19,8 @@ class   User < ActiveRecord::Base
   has_many :group_members, class_name: 'Group::GroupMember'
   has_many :groups, class_name: 'Group::Group', through: :group_members
 
+  has_many :groups_created, class_name: 'Group::Group'
+
   validates :name, presence: true
 
   #https://github.com/alexreisner/geocoder

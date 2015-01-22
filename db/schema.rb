@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150120161438) do
     t.integer "user_id"
   end
 
-  create_table "group_group_creation", force: :cascade do |t|
+  create_table "group_group_creations", force: :cascade do |t|
     t.integer "group_id"
     t.string  "email"
   end
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150120161438) do
     t.string   "name"
     t.text     "description"
     t.string   "steps"
-    t.boolean  "is_finished",            default: false
+    t.boolean  "finished",               default: false
     t.string   "can_index_activity"
     t.string   "can_delete_group"
     t.string   "can_read_topic"

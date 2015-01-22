@@ -1,0 +1,11 @@
+%h1= t('groups.group_creation.password.unknow_user.h1_title')
+
+=simple_form_for @user, url: registration_path('user'), html: {id: 'user_sign_in'} do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :email, :required => true, :autofocus => true, input_html: { autocomplete: 'off' }
+    = f.input :name
+    = f.input :password, :required => true, input_html: { autocomplete: 'off' }
+    = f.input :password_confirmation, :required => true
+  .form-actions
+    = f.button :submit, t("devise.registrations.new.sign_up"), class: 'thirty'

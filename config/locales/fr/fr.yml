@@ -165,3 +165,14 @@ fr:
     group_creation:
       errors:
         valid_email: "Doit être une adresse e-mail valide"
+      notices:
+        group_finished: "La création du groupe est finie"
+      user_login:
+        h1_title: "S'autentifier pour créer un groupe"
+        with_email: "Avec une adresse e-mail"
+        submit: "Suivant"
+      password:
+        unknow_user:
+          h1_title: "Un mot de passe est nécessaire pour terminer la création du groupe"
+        user_exists:
+          h1_title: "Bonjour %{user}, nous avons besoin de votre mot de passe pour terminer la création du groupe"

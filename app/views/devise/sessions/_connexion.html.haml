@@ -16,7 +16,7 @@
                 = link_to t("devise.shared.links.sign_in_with_provider", provider: provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), class: 'std-button expand'
       %h4.panel-subtitle
         = t'devise.sessions.new.via_app'
-      = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {id: 'user_sign_in'}) do |f|
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: 'user_sign_in'}) do |f|
         .form-inputs
           = f.input :email, :required => false, :autofocus => true, input_html: { id: 'sign_in_email' }
           = f.input :password, :required => false, input_html: { id: 'sign_in_password' }

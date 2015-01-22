@@ -5,7 +5,7 @@ class CreateGroupModule < ActiveRecord::Migration
       t.text :description
 
       t.string :steps
-      t.boolean :is_finished, default: false
+      t.boolean :finished, default: false
 
       t.string :can_index_activity
       t.string :can_delete_group
@@ -28,7 +28,7 @@ class CreateGroupModule < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :group_group_creation do |t|
+    create_table :group_group_creations do |t|
       t.belongs_to :group
       t.string :email
     end

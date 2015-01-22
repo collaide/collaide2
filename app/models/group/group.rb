@@ -43,7 +43,7 @@ class Group::Group < ActiveRecord::Base
 
   enumerize :steps, in: [:user_login, :password, :invitations]
   
-  after_create :add_owner_as_member
+  before_create :add_owner_as_member
 
   # Pour la création du groupe étape par étape, enregistre les infos annexes au groupe
   has_one :group_creation, class_name: 'Group::GroupCreation'
@@ -53,7 +53,7 @@ class Group::Group < ActiveRecord::Base
   has_many :group_members, class_name: 'Group::GroupMember'
 
   # Renvoi les membres du groupes
-  has_many :members, through: :group_members, source: :user, source_type: 'User'
+  has_many :members, through: :group_members, source: :user, class_name: 'User'
 
   # Les invitations envoyées à des utilisateurs pour qu'ils rejoingngent le groupe
   has_many :invitations, class_name: 'Group::Invitation'
@@ -142,16 +142,14 @@ class Group::Group < ActiveRecord::Base
         end
       end
     else
-      if Group::GroupMember.get_a_member members, self
-        return false
+      unless Group::GroupMember.get_a_member members, self
+        gm = Group::GroupMember.new
+        gm.user = members
+        gm.role = role
+        gm.joined_method = joined_method
+        gm.invited_or_added_by = invited_or_added_by
+        self.group_members << gm
       end
-      gm = Group::GroupMember.new
-      gm.user = members
-      gm.role = role
-      gm.joined_method = joined_method
-      gm.invited_or_added_by = invited_or_added_by
-      self.group_members << gm
-      self.save
     end
   end
 
