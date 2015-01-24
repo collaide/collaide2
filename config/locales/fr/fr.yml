@@ -180,6 +180,11 @@ fr:
     groups:
       new:
         title: "Nom du groupe"
+      layout:
+        title: "Groupe %{group}"
+      menu:
+        welcome: "Accueil"
+        topic: "Discussions"
   group:
     layouts:
       hy_title: "Création du groupe, étape %{step}"
