@@ -171,8 +171,19 @@ fr:
         h1_title: "S'autentifier pour créer un groupe"
         with_email: "Avec une adresse e-mail"
         submit: "Suivant"
+        social_networks: "Avec les réseaux sociaux"
       password:
         unknow_user:
           h1_title: "Un mot de passe est nécessaire pour terminer la création du groupe"
         user_exists:
           h1_title: "Bonjour %{user}, nous avons besoin de votre mot de passe pour terminer la création du groupe"
+    groups:
+      new:
+        title: "Nom du groupe"
+  group:
+    layouts:
+      hy_title: "Création du groupe, étape %{step}"
+      cancel: "Annuler"
+      confirm: "Êtes-vous sûr de vouloir annuler la création du groupe ?"
+      backward: "Précédent"
+      next: "Suivant"

@@ -114,7 +114,6 @@ class Group::Group < ActiveRecord::Base
       end
     elsif receivers.is_a? Group::DoInvitation
       do_invitation receivers, sender: sender, receiver_type: receiver_type
-      # TODO demander à Numa comment récupérer les infos
     else
       invitation = Group::Invitation.new(message: message)
       invitation.sender = sender

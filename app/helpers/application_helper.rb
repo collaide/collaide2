@@ -6,6 +6,10 @@ module ApplicationHelper
     generate_meta :title, text
   end
 
+  def back
+    request.env['HTTP_REFERER'] || root_path
+  end
+
   # generate a <li> tag and added the html class active if the +name+ is equal to +compar_to+
   # if +compar_to+ is eaqual to nil, +name+ is compared to the value of params[:action]
   def build_active_menu(name, content, compar_to = nil)

@@ -1,6 +1,18 @@
-%h1= t('groups.group_creation.user_login.h1_title')
-
-%h5= t('groups.group_creation.user_login.with_email')
-=simple_form_for @group_creation, url: group_group_create_user_login_path(group_group_id: @group) do |t|
- =t.input :email
- =t.button :submit, t('groups.group_creation.user_login.submit')
+= render layout: 'group/layouts/group_creation', locals: {step: 2} do
+  %h2= t('groups.group_creation.user_login.h1_title')
+  %h5.panel-subtitle
+    = t'devise.sessions.new.via_omniauth'
+    %p
+      %i= t'devise.sessions.new.via_omniauth_info'
+    .row
+      - User.omniauth_providers.each do |provider|
+        .large-6.columns
+          -if provider.to_s.titleize == 'Google Oauth2'
+            = link_to t("devise.shared.links.sign_in_with_provider", provider: 'Google'), omniauth_authorize_path('user', provider), class: 'std-button expand'
+          -else
+            = link_to t("devise.shared.links.sign_in_with_provider", provider: provider.to_s.titleize), omniauth_authorize_path('user', provider), class: 'std-button expand'
+  %h5= t('groups.group_creation.user_login.with_email')
+  =simple_form_for @group_creation, url: group_group_create_user_login_path(group_group_id: @group) do |t|
+    =t.input :email
+    -#=t.button :submit, t('groups.group_creation.user_login.submit')
+    =render partial: 'group/layouts/navigation', locals: {backward: new_group_group_path}

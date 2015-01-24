@@ -1,0 +1,8 @@
+%h4= t('group.layouts.hy_title', step: step)
+= yield
+-#.row
+-#  .columns.small-9
+-#    = link_to t('group.layouts.cancel'), root_path, class: 'left', confirm: t('group.layouts.confirm')
+-#  .columns.small-3
+-#    = link_to t('group.layouts.backward'), back, class: 'std-button-i'
+-#    = link_to t('group.layouts.next'), next_step_path, class: 'std-button' unless next_step_path.nil?

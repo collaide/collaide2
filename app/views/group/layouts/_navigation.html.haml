@@ -1,0 +1,10 @@
+%hr
+.clearfix
+  .left
+    = link_to t('group.layouts.cancel'), root_path, class: 'left', confirm: t('group.layouts.confirm')
+  .right
+    .row
+      .columns.small-6
+        = link_to t('group.layouts.backward'), backward, class: 'std-button'
+      .columns.small-6
+        %input{type: 'submit', name: 'commit', value: t('group.layouts.next'), class: 'std-button-i'}
