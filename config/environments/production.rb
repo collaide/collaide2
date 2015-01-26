@@ -37,7 +37,7 @@ Rails.application.configure do
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
-  ActionMailer::Base.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :user_name => ENV['SMTP_USERNAME'],
     :password => ENV['SMTP_PASSWORD'],
     :domain => 'gentle-bayou-6128.herokuapp.com',
