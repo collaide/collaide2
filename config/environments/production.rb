@@ -43,7 +43,7 @@ Rails.application.configure do
     :domain => 'gentle-bayou-6128.herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
-    :authentication => :plain,
+    :authentication => :auth,
     :enable_starttls_auto => true
   }
 
