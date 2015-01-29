@@ -48,6 +48,10 @@ gem 'carrierwave', '~> 0.10.0' # Upload de fichier facilité
 gem 'mini_magick', '~> 4.0.2' # Redimmensionnement d'image
 gem 'kaminari', '~> 0.16.2' # Pagination
 
+#Tinymce (html editor)
+gem 'tinymce-rails', '~> 4.1.6'
+gem 'tinymce-rails-langs', '~> 4.20140129'
+
 # Gems for the group module
 gem 'repository-manager', '~> 0.2.10'
 

@@ -3,7 +3,3 @@
   = build_active_menu path: user_groups_path(@user), text: t('users.side_nav.groups'), icon: 'torsos-male-female'
   = build_active_menu path: '', text: 'Mes documents', icon: 'page-multiple'
   = build_active_menu path: '', text: 'Notifications', icon: 'compass'
-  -#= build_active_menu :show, link_to(foundation_icons('fi-info large') + t('users.side_nav.infos'), user_path(@user))
-  -#= build_active_menu :groups, link_to(foundation_icons('fi-torsos-male-female large') + t('users.side_nav.groups'), user_groups_path(@user))
-  -#%li= link_to(foundation_icons('fi-page-multiple large') + 'Mes documents', user_groups_path(@user))
-  -#%li= link_to foundation_icons('fi-compass large') +'Notifications', user_groups_path(@user)

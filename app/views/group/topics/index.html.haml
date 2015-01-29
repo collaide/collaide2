@@ -1,11 +1,9 @@
 =render(layout: 'group/layouts/layout') do
-  %h1= t('group.topics.index.h1_title')
-  %blockquote= t('group.topics.index.description')
+  %h2.subheader= t('groups.topics.index.h1_title')
+  %blockquote= t('groups.topics.index.description')
   =render 'group/topics/form'
   .row
     .columns.small-24
-      #infinite-scroll
-        %h4.subheader= t('group.topics.index.last_discussions')
-        .page
-          =render(partial: 'topic', collection: @topics, as: 'topic', locals: {limit: 3}) || t('group.topics.index.empty')
+      %h4.subheader= t('groups.topics.index.last_discussions')
+      =render(partial: 'topic', collection: @topics, as: 'topic', locals: {limit: 3}) || t('groups.topics.index.empty')
       =paginate @topics

@@ -197,8 +197,14 @@ fr:
         admin: "Administration"
     topics:
       form:
-        title_placeholder: (Optionel)
-        submit: Nouvelle Discussion !
+        title_placeholder: Le sujet de votre discussion en une phrase (Optionel)
+        message_placeholder: Mettez en forme votre message
+        submit: "Nouvelle Discussion !"
+      index:
+        h1_title: "Discussions"
+        description: "Échangez avec les mebres du groupe dans un forum spécializé"
+        last_discussions: "Dernières discussions"
+        empty: "Aucune discussions dans ce groupe pour le moment"
     layouts:
       hy_title: "Création du groupe, étape %{step}"
       cancel: "Annuler"
