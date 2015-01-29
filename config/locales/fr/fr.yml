@@ -202,8 +202,8 @@ fr:
         submit: "Nouvelle Discussion !"
       index:
         h1_title: "Discussions"
-        description: "Échangez avec les mebres du groupe dans un forum spécializé"
-        last_discussions: "Dernières discussions"
+        description: Nouvelle discussion avec les membres de votre groupe
+        last_discussions: "Discussions en cours"
         empty: "Aucune discussions dans ce groupe pour le moment"
       create:
         success: "Vous venez de lancer une nouvele discussion"

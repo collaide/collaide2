@@ -1,6 +1,6 @@
 =render(layout: 'group/layouts/layout') do
-  %h2.subheader= t('groups.topics.index.h1_title')
-  %blockquote= t('groups.topics.index.description')
+  %h4.subheader= t('groups.topics.index.description')
+  -#%blockquote= t('groups.topics.index.description')
   =render 'group/topics/form'
   .row
     .columns.small-24

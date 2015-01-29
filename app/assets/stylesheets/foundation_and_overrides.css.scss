@@ -312,3 +312,19 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 .alert-box .close {
   color: #FFFFFF;
 }
+
+//#############################################
+// ### Statistique d'un groupe dans le header##
+// ############################################
+.statistics {
+  font-size: rem-calc(20px);
+  color: scale_color($secondary-color, $lightness: -30%);
+
+  a {
+    color: scale_color($secondary-color, $lightness: -30%);
+  }
+
+  a:hover {
+    color: scale_color($secondary-color, $lightness: -40%);
+  }
+}
