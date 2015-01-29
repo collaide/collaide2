@@ -7,24 +7,32 @@ class Group::TopicsController < ApplicationController
     @topics = @group.topics.order('updated_at DESC').includes({comments: :user}, :user).page(params[:page])
   end
 
+  # POST /groups/:group_group_id/topics
+  def create
+    @topic = Group::Topic.new(topic_params)
+    @topic.user = current_user
+    @topic.group = @group
+    if @topic.save
+      redirect_to group_group_topic_path(group_group_id: @group, id: @topic), notice: t('groups.topics.create.success')
+    else
+      render :new
+    end
+  end
+
   def edit
-    check_permission { @group.can? :write, :topic, current_user }
     @topic = @group.topics.where(id: params[:id]).take
   end
 
   def new
-    check_permission{ @group.can? :write, :topic, current_user }
-    @topic = Topic.new
+    @topic = Group::Topic.new
   end
 
   def show
-    check_permission{ @group.can? :read, :topic, current_user }
     @topic = @group.topics.where(id: params[:id]).take
     @comments = @topic.comments.page(params[:page])
   end
 
   def destroy
-    check_permission { @group.can? :delete, :topic, current_user }
     topic = @group.topics.where(id: params[:id]).take
     comments = topic.comments
     comments.each { |comment| comment.destroy }
@@ -33,6 +41,11 @@ class Group::TopicsController < ApplicationController
   end
 
   private
+
+  def topic_params
+    params.require(:group_topic).permit(:title, :message)
+  end
+
   def get_required_objects
     @comment = Group::Comment.new
     @group = Group::Group.find(params[:group_group_id])

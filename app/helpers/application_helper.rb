@@ -14,8 +14,8 @@ module ApplicationHelper
   # +path+ is the path of the link where the item land for, blank by deafult
   # +text+ is the text of the item, blank by default
   # +icon+ is a icon from foundation in large format. Just give the name of the icon without the fi-, nil by default
-  def build_active_menu(path: '', text: '', icon: nil)
-    if path == request.fullpath
+  def build_active_menu(path: '', text: '', icon: nil, controller: nil)
+    if (controller.nil? and path == request.fullpath) or controller == params[:controller]
       html_class = 'class="active"'
     else
       html_class = ''

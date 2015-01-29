@@ -205,6 +205,8 @@ fr:
         description: "Échangez avec les mebres du groupe dans un forum spécializé"
         last_discussions: "Dernières discussions"
         empty: "Aucune discussions dans ce groupe pour le moment"
+      create:
+        success: "Vous venez de lancer une nouvele discussion"
     layouts:
       hy_title: "Création du groupe, étape %{step}"
       cancel: "Annuler"
