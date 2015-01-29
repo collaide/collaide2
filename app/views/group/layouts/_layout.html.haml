@@ -3,7 +3,7 @@
   .columns.small-3
     %ul.collaide-side-nav
       = build_active_menu :show, link_to(foundation_icons('fi-info large') + t('groups.groups.menu.welcome'), group_group_path(@group))
-      = build_active_menu :groups, link_to(foundation_icons('fi-comments large') + t('groups.groups.menu.topic'), '')
+      = build_active_menu :topics_index, link_to(foundation_icons('fi-comments large') + t('groups.groups.menu.topic'), group_group_topics_path(group_group_id: @group)), "#{params[:controller]}_#{params[:action]}"
       %li= link_to(foundation_icons('fi-page-multiple large') + 'Dépot de fichiers', '')
       %li= link_to foundation_icons('fi-torsos-male-female large') +'Invitations', ''
       %li= link_to foundation_icons('fi-widget large') +'Administration', ''

@@ -61,6 +61,9 @@ class Group::Group < ActiveRecord::Base
   # Les invitations envoyées à des non-membres pour qu'ils rejoingnent le groupe
   has_many :email_invitations, foreign_key: 'group_group_id'
 
+  # Les topics (discussions) d'un groupe
+  has_many :topics, class_name: 'Group::Topic', dependent: :destroy
+
   def invitations_waiting_a_reply
     self.invitations.give_a_reply
   end

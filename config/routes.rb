@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       post 'create/user-infos', controller: 'group/groups_creator', action: 'save_user_login', as: 'create_user_login' # Pour la création d'un groupe pas à pas
       get 'create/password', controller: 'group/groups_creator', action: 'password', as: 'create_password' # Pour la création d'un groupe pas à pas
       get 'create/invitations', controller: 'group/groups_creator', action: 'invitations', as: 'create_invitations' # Pour la création d'un groupe pas à pas
+      # TopicsController -> discussions
+      resources :topics, controller: 'group/topics', only: :index
     end
   end
 

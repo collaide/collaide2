@@ -8,6 +8,13 @@ fr:
     users:
       registrations:
         edit: Modifier mon profil
+  views:
+    pagination:
+      first: "&laquo; Premier"
+      last: "Dernier &raquo;"
+      previous: "&lsaquo; Précedant"
+      next: "Suivant &rsaquo;"
+      truncate: "..."
   header:
     user:
       profil: "Mon profil"
@@ -185,7 +192,10 @@ fr:
       menu:
         welcome: "Accueil"
         topic: "Discussions"
-  group:
+    topics:
+      form:
+        title_placeholder: (Optionel)
+        submit: Nouvelle Discussion !
     layouts:
       hy_title: "Création du groupe, étape %{step}"
       cancel: "Annuler"

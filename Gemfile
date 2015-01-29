@@ -43,9 +43,10 @@ gem 'omniauth-facebook', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 0.2.6'
 
 #Helper gems
-gem 'enumerize', '~> 0.9.0'
-gem 'carrierwave', '~> 0.10.0'
-gem 'mini_magick', '~> 4.0.2'
+gem 'enumerize', '~> 0.9.0' # Enumration dans les modèles
+gem 'carrierwave', '~> 0.10.0' # Upload de fichier facilité
+gem 'mini_magick', '~> 4.0.2' # Redimmensionnement d'image
+gem 'kaminari', '~> 0.16.2' # Pagination
 
 # Gems for the group module
 gem 'repository-manager', '~> 0.2.10'
