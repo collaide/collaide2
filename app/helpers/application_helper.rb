@@ -10,16 +10,18 @@ module ApplicationHelper
     request.env['HTTP_REFERER'] || root_path
   end
 
-  # generate a <li> tag and added the html class active if the +name+ is equal to +compar_to+
-  # if +compar_to+ is eaqual to nil, +name+ is compared to the value of params[:action]
-  def build_active_menu(name, content, compar_to = nil)
-    compar_to ||= params[:action]
-    if name.to_s == compar_to
+  # generate a <li> tag and added the html class active if the +path+ is equal to the current_path
+  # +path+ is the path of the link where the item land for, blank by deafult
+  # +text+ is the text of the item, blank by default
+  # +icon+ is a icon from foundation in large format. Just give the name of the icon without the fi-, nil by default
+  def build_active_menu(path: '', text: '', icon: nil)
+    if path == request.fullpath
       html_class = 'class="active"'
     else
       html_class = ''
     end
-    "<li #{html_class}>#{h(content)}</li>".html_safe
+    icon.nil? ? fi_icon = '' : fi_icon = foundation_icons("fi-#{icon} large")
+    "<li #{html_class}>#{link_to(fi_icon + h(text), path)}</li>".html_safe
   end
 
   # add a foundation icon

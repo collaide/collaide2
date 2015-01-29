@@ -192,6 +192,9 @@ fr:
       menu:
         welcome: "Accueil"
         topic: "Discussions"
+        files: "Dépòt de fichiers"
+        invitations: "Invitations"
+        admin: "Administration"
     topics:
       form:
         title_placeholder: (Optionel)
