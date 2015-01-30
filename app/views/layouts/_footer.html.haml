@@ -1,28 +1,30 @@
 %footer
-  .panel
-    .row
-      .columns.large-6
-        %h6= link_to t('app_name'), eval("root_#{I18n.locale.to_s}_path")
-        %ul
-          -#%li= link_to t('footer.collaide.documents'), document_documents_path
-          -#%li= link_to t('footer.collaide.groups'), group_groups_path
-          %li= link_to t('footer.collaide.rules'), rules_path
-          %li= link_to t('footer.collaide.partners'), partners_path
-          %li= link_to t('footer.collaide.about'), about_path
-          %li= link_to t('footer.collaide.contact'), contact_path
-      .columns.large-6
-        %h6= t('footer.titles.follow_us')
-        %ul.inline-list
-          %li= link_to 'Facebook', 'http://www.facebook.com/infocollaide', class: 'webicon facebook large'
-          %li= link_to 'Twitter', 'http://twitter.com/#!/collaide', class: 'webicon twitter large'
+  .row
+    .large-6.columns
+      %p= link_to(image_tag("collaide_logo.svg", size: "70x200"), eval("root_#{I18n.locale}_path"))
+      %p Copyright 2014, tous droits réservés.
+    .columns.large-6
+      %p= t('footer.titles.follow_us')
+      %ul.inline-list
+        %li= link_to 'Facebook', 'http://www.facebook.com/infocollaide', class: 'webicon facebook large'
+        %li= link_to 'Twitter', 'http://twitter.com/#!/collaide', class: 'webicon twitter large'
+  .row
+    .columns.large-12
+      %ul
+        -#%li= link_to t('footer.collaide.documents'), document_documents_path
+        -#%li= link_to t('footer.collaide.groups'), group_groups_path
+        %li= link_to t('footer.collaide.rules'), rules_path
+        %li= link_to t('footer.collaide.partners'), partners_path
+        %li= link_to t('footer.collaide.about'), about_path
+        %li= link_to t('footer.collaide.contact'), contact_path
 
-    -#%li
-    -#  =t'header.lang'
-    -#  %br
-    -#  -I18n.available_locales.map do |l|
-    -#    -active = ''
-    -#    -if l.to_s == I18n.locale.to_s
-    -#      -active = 'active'
-    -#    =link_to t("translation.#{l}"),  url_for(:locale => l.to_s), class: active
-    -#    %br
+  -#%li
+  -#  =t'header.lang'
+  -#  %br
+  -#  -I18n.available_locales.map do |l|
+  -#    -active = ''
+  -#    -if l.to_s == I18n.locale.to_s
+  -#      -active = 'active'
+  -#    =link_to t("translation.#{l}"),  url_for(:locale => l.to_s), class: active
+  -#    %br
 -#%p= debug(params) if Rails.env.development?
