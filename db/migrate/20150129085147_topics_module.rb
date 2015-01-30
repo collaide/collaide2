@@ -3,6 +3,7 @@ class TopicsModule < ActiveRecord::Migration
     create_table :group_topics do |t|
       t.string :title
       t.text :message
+      t.integer :views, default: 0
       t.belongs_to :user
       t.belongs_to :group
 

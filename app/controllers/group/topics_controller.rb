@@ -30,15 +30,18 @@ class Group::TopicsController < ApplicationController
   def show
     @topic = @group.topics.where(id: params[:id]).take
     @comments = @topic.comments.page(params[:page])
+    render :show
+    @topic.views += 1
+    @topic.save
   end
 
-  def destroy
-    topic = @group.topics.where(id: params[:id]).take
-    comments = topic.comments
-    comments.each { |comment| comment.destroy }
-    topic.delete
-    redirect_to group_work_group_topics_path, notice: 'supprimé.'
-  end
+  # def destroy
+  #   topic = @group.topics.where(id: params[:id]).take
+  #   comments = topic.comments
+  #   comments.each { |comment| comment.destroy }
+  #   topic.delete
+  #   redirect_to group_work_group_topics_path, notice: 'supprimé.'
+  # end
 
   private
 

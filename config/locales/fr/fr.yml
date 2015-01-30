@@ -205,6 +205,13 @@ fr:
         description: Nouvelle discussion avec les membres de votre groupe
         last_discussions: "Discussions en cours"
         empty: "Aucune discussions dans ce groupe pour le moment"
+        table:
+          subject: "Sujet"
+          messages: "Messages"
+          views: "Vues"
+          users: "Utilisateurs"
+          activity: "Activité"
+          new: "Nouveau"
       create:
         success: "Vous venez de lancer une nouvele discussion"
     layouts:

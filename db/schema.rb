@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150129085147) do
   create_table "group_topics", force: :cascade do |t|
     t.string   "title"
     t.text     "message"
+    t.integer  "views"
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at"

@@ -328,3 +328,35 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
     color: scale_color($secondary-color, $lightness: -40%);
   }
 }
+
+.td-subheader {
+  a {
+    color: black;
+  }
+
+  a:hover {
+    color: scale_color(black, $lightness: 30%);
+  }
+}
+
+// ##########################################
+// ### Tronquation de lignes d'un text #####
+// ##########################################
+.truncate {
+  overflow: hidden;
+  position: relative;
+}
+.truncate:after {
+  content: "";
+  height: 1em;
+  display: block;
+  width: 100%;
+  position: absolute;
+  background-color: white;
+  opacity: 0.8;
+  bottom: -0.3em;
+}
+
+.lines-1 {
+  height: rem-calc(20px);
+}

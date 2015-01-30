@@ -12,9 +12,17 @@ class Group::Topic < ActiveRecord::Base
   has_many :comments, class_name: 'Group::Comment', dependent: :destroy
 
   # Un topic doit au miniumu avoir un message, un utilisateur et appartenir à un groupe
+  validates :title, length: { maximum: 100 }
   validates_presence_of :message
   validates_presence_of :user
   validates_presence_of :group
+
+  # Retourne un Array avec toutes les personnes ayant participées à la conversation
+  def contributors
+    comments.order('updated_at DESC').limit(2).map do |c|
+      c.user
+    end << user
+  end
 
   def to_s
     if title.blank?

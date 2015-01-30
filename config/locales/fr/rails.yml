@@ -1,0 +1,46 @@
+fr:
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one:   "~ 1 h"
+        other: "~ %{count} h"
+      about_x_months:
+        one:   "~ 1 mois"
+        other: "~ %{count} m"
+      about_x_years:
+        one:   "~ 1 an"
+        other: "~ %{count} ans"
+      almost_x_years:
+        one:   "< 1 an"
+        other: "< %{count} ans"
+      half_a_minute: "une demi-minute"
+      less_than_x_minutes:
+        zero:  "< 1 min"
+        one:   "< 1 min"
+        other: "< %{count} mins"
+      less_than_x_seconds:
+        zero:  "< 1 s"
+        one:   "< 1 s"
+        other: "< %{count} s"
+      over_x_years:
+        one:   "> 1 an"
+        other: "> %{count} ans"
+      x_days:
+        one:   "1 j"
+        other: "%{count} j"
+      x_minutes:
+        one:   "1 min"
+        other: "%{count} min"
+      x_months:
+        one:   "1 m"
+        other: "%{count} m"
+      x_seconds:
+        one:   "1 s"
+        other: "%{count} s"
+    prompts:
+      day:    "Jour"
+      hour:   "Heure"
+      minute: "Minute"
+      month:  "Mois"
+      second: "Seconde"
+      year:   "Année"
