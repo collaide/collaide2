@@ -16,9 +16,11 @@ module Collaide2
 
     # Social keys for networks authentication
     social_keys = File.join(Rails.root, 'config', 'social_keys.yml')
-    CONFIG = HashWithIndifferentAccess.new(YAML::load(IO.read(social_keys)))[Rails.env]
-    CONFIG.each do |k,v|
-      ENV[k.upcase] ||= v
+    if File.exists?(social_keys)
+      CONFIG = HashWithIndifferentAccess.new(YAML::load(IO.read(social_keys)))[Rails.env]
+      CONFIG.each do |k,v|
+        ENV[k.upcase] ||= v
+      end
     end
   end
 end

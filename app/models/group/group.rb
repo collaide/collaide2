@@ -61,6 +61,9 @@ class Group::Group < ActiveRecord::Base
   # Les invitations envoyées à des non-membres pour qu'ils rejoingnent le groupe
   has_many :email_invitations, foreign_key: 'group_group_id'
 
+  # Les topics (discussions) d'un groupe
+  has_many :topics, class_name: 'Group::Topic', dependent: :destroy
+
   def invitations_waiting_a_reply
     self.invitations.give_a_reply
   end
@@ -114,7 +117,6 @@ class Group::Group < ActiveRecord::Base
       end
     elsif receivers.is_a? Group::DoInvitation
       do_invitation receivers, sender: sender, receiver_type: receiver_type
-      # TODO demander à Numa comment récupérer les infos
     else
       invitation = Group::Invitation.new(message: message)
       invitation.sender = sender

@@ -43,9 +43,14 @@ gem 'omniauth-facebook', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 0.2.6'
 
 #Helper gems
-gem 'enumerize', '~> 0.9.0'
-gem 'carrierwave', '~> 0.10.0'
-gem 'mini_magick', '~> 4.0.2'
+gem 'enumerize', '~> 0.9.0' # Enumration dans les modèles
+gem 'carrierwave', '~> 0.10.0' # Upload de fichier facilité
+gem 'mini_magick', '~> 4.0.2' # Redimmensionnement d'image
+gem 'kaminari', '~> 0.16.2' # Pagination
+
+#Tinymce (html editor)
+gem 'tinymce-rails', '~> 4.1.6'
+gem 'tinymce-rails-langs', '~> 4.20140129'
 
 # Gems for the group module
 gem 'repository-manager', '~> 0.2.10'
@@ -69,5 +74,10 @@ group :development, :test do
   gem 'selenium-webdriver', '~> 2.44.0'
 
   gem 'factory_girl', '~> 4.5.0'
+
+  gem 'faker', '~> 1.4.3' # populate with fake datas
 end
 
+group :production do
+  gem 'rails_12factor'
+end

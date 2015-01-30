@@ -1,0 +1,7 @@
+=simple_form_for @topic, url: group_group_topics_path do |f|
+  .form-inputs
+    =f.input :title, placeholder: t('groups.topics.form.title_placeholder')
+    =f.input :message,  input_html: {class: 'tinymce', id: 'topic_message_id'}, placeholder: t('groups.topics.form.message_placeholder')
+    %br
+  .form-actions
+    =f.button :submit, t('groups.topics.form.submit')

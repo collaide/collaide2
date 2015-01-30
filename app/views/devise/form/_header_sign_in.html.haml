@@ -1,5 +1,7 @@
 #header-sign-in-panel
   %h3= t'devise.sessions.new.sign_in'
+  =render 'devise/shared/social_networks'
+  %h5.panel-subtitle= t('devise.offcanvas.signin.manual')
   = simple_form_for(User.new, as: :user, :url => user_session_path, html: {id: 'offcanvas_sign_in'}) do |f|
     = f.input :email, :required => false, input_html: {id: 'offcanvas-connection_user_email'}
     -#%small.error

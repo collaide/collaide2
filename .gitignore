@@ -40,3 +40,5 @@ dump.rdb
 .DS_Store
 .ruby-gemset
 .ruby-version
+
+heroku_set_var.rb

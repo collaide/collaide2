@@ -8,6 +8,13 @@ fr:
     users:
       registrations:
         edit: Modifier mon profil
+  views:
+    pagination:
+      first: "&laquo; Premier"
+      last: "Dernier &raquo;"
+      previous: "&lsaquo; Précedant"
+      next: "Suivant &rsaquo;"
+      truncate: "..."
   header:
     user:
       profil: "Mon profil"
@@ -171,8 +178,51 @@ fr:
         h1_title: "S'autentifier pour créer un groupe"
         with_email: "Avec une adresse e-mail"
         submit: "Suivant"
+        social_networks: "Avec les réseaux sociaux"
       password:
         unknow_user:
           h1_title: "Un mot de passe est nécessaire pour terminer la création du groupe"
         user_exists:
           h1_title: "Bonjour %{user}, nous avons besoin de votre mot de passe pour terminer la création du groupe"
+    groups:
+      new:
+        title: "Nom du groupe"
+      layout:
+        title: "Groupe %{group}"
+      menu:
+        welcome: "Accueil"
+        topic: "Discussions"
+        files: "Dépòt de fichiers"
+        invitations: "Invitations"
+        admin: "Administration"
+    topics:
+      form:
+        title_placeholder: Le sujet de votre discussion en une phrase (Optionel)
+        message_placeholder: Mettez en forme votre message
+        submit: "Nouvelle Discussion !"
+      index:
+        h1_title: "Discussions"
+        description: Nouvelle discussion avec les membres de votre groupe
+        last_discussions: "Discussions en cours"
+        empty: "Aucune discussions dans ce groupe pour le moment"
+        table:
+          subject: "Sujet"
+          messages: "Messages"
+          views: "Vues"
+          users: "Utilisateurs"
+          activity: "Activité"
+          new: "Nouveau"
+      create:
+        success: "Vous venez de lancer une nouvele discussion"
+    layouts:
+      hy_title: "Création du groupe, étape %{step}"
+      cancel: "Annuler"
+      confirm: "Êtes-vous sûr de vouloir annuler la création du groupe ?"
+      backward: "Précédent"
+      next: "Suivant"
+  devise:
+    offcanvas:
+      signin:
+        manual: "Via votre compte Collaide"
+      signup:
+        manual: "En créant un compte sur Collaide"

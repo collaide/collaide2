@@ -1,0 +1,11 @@
+%h5.panel-subtitle
+  = t'devise.sessions.new.via_omniauth'
+%p
+  %i= t'devise.sessions.new.via_omniauth_info'
+.row
+  - User.omniauth_providers.each do |provider|
+    .large-12.columns
+      -if provider.to_s.titleize == 'Google Oauth2'
+        = link_to t("devise.shared.links.sign_in_with_provider", provider: 'Google'), omniauth_authorize_path('user', provider), class: 'std-button expand'
+      -else
+        = link_to t("devise.shared.links.sign_in_with_provider", provider: provider.to_s.titleize), omniauth_authorize_path('user', provider), class: 'std-button expand'

@@ -34,3 +34,6 @@ fr:
         avatar: Image de profil
       group_group:
         name: Nom
+      group_topic:
+        title: Titre
+        message: Message

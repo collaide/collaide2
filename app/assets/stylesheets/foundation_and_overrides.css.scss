@@ -74,7 +74,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   padding-bottom: 0px;
   padding-top: 0px;
   li {
-    background-color: scale-color($secondary-color, $lightness: 70%);
+    background-color: scale-color($secondary-color, $lightness: 40%);
     margin-bottom: 0px;
     //border-right: 1px solid $secondary-color;
     //border-bottom: 1px solid $secondary-color;
@@ -138,7 +138,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   //border-bottom-width: 1px;
 }
 
-.std-button-i {
+#header-sign-up-panel .std-button, .std-button-i {
   @include button;
   color: $secondary-color;
   background-color: $primary-light-color;
@@ -240,7 +240,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 // ######################################
 #header-sign-up-panel {
   padding: 40px;
-  h3 {
+  h3, h4, h5, p, i {
     margin: 25px 0px;
     color: $secondary-color;
   }
@@ -294,6 +294,12 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   }
 }
 
+//######################################
+//##### POSTFIX FOR NEW BUTTON #########
+//######################################
+.postfix {
+}
+
 .right-off-canvas-menu {
   //background-color: $secondary-color;
 }
@@ -305,4 +311,52 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 
 .alert-box .close {
   color: #FFFFFF;
+}
+
+//#############################################
+// ### Statistique d'un groupe dans le header##
+// ############################################
+.statistics {
+  font-size: rem-calc(20px);
+  color: scale_color($secondary-color, $lightness: -30%);
+
+  a {
+    color: scale_color($secondary-color, $lightness: -30%);
+  }
+
+  a:hover {
+    color: scale_color($secondary-color, $lightness: -40%);
+  }
+}
+
+.td-subheader {
+  a {
+    color: black;
+  }
+
+  a:hover {
+    color: scale_color(black, $lightness: 30%);
+  }
+}
+
+// ##########################################
+// ### Tronquation de lignes d'un text #####
+// ##########################################
+.truncate {
+  overflow: hidden;
+  position: relative;
+}
+.truncate:after {
+  content: "";
+  height: 1em;
+  display: block;
+  width: 100%;
+  position: absolute;
+  background-color: white;
+  opacity: 0.8;
+  bottom: -0.3em;
+}
+
+.lines-1 {
+  height: rem-calc(20px);
 }

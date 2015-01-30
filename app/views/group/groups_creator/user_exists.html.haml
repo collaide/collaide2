@@ -1,10 +1,10 @@
-%h1= t('groups.group_creation.password.user_exists.h1_title', user: @user)
+= render layout: 'group/layouts/group_creation', locals: {step: 3} do
+  %h2= t('groups.group_creation.password.user_exists.h1_title', user: @user)
 
-= simple_form_for(@user, url: session_path('user'), method: :post, html: {id: 'user_sign_in'}) do |f|
-  .form-inputs
-    = f.input :email, :required => false, :autofocus => true, input_html: { id: 'sign_in_email' }
-    = f.input :password, :required => false, input_html: { id: 'sign_in_password' }
-    .hide
-      = f.input :remember_me, :as => :boolean, input_html: { :checked => true, id: 'sign_in_remember_em' }
-  .form-actions
-    = f.button :submit, t("devise.sessions.new.sign_in"), class: 'std-button-i', id: 'sign_in_button'
+  = simple_form_for(@user, url: session_path('user'), method: :post, html: {id: 'user_sign_in'}) do |f|
+    .form-inputs
+      = f.input :email, :required => false, :autofocus => true, input_html: { id: 'sign_in_email' }
+      = f.input :password, :required => false, input_html: { id: 'sign_in_password' }
+      .hide
+        = f.input :remember_me, :as => :boolean, input_html: { :checked => true, id: 'sign_in_remember_em' }
+      =render partial: 'group/layouts/navigation', locals: {backward: group_group_create_user_login_path}

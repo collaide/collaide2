@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120161438) do
+ActiveRecord::Schema.define(version: 20150129085147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "group_comments", force: :cascade do |t|
+    t.text     "message"
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "group_email_invitations", force: :cascade do |t|
     t.string  "email"
@@ -82,6 +90,16 @@ ActiveRecord::Schema.define(version: 20150120161438) do
   add_index "group_invitations", ["group_id"], name: "index_group_invitations_on_group_id", using: :btree
   add_index "group_invitations", ["receiver_id"], name: "index_group_invitations_on_receiver_id", using: :btree
   add_index "group_invitations", ["sender_id"], name: "index_group_invitations_on_sender_id", using: :btree
+
+  create_table "group_topics", force: :cascade do |t|
+    t.string   "title"
+    t.text     "message"
+    t.integer  "views"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rm_repo_items", force: :cascade do |t|
     t.integer "owner_id"

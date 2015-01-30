@@ -1,7 +1,7 @@
 class Group::GroupsCreatorController < ApplicationController
 
   before_action :get_group
-  #before_action :redirect_to_current_steps, except: [:save_user_login]
+  before_action :redirect_if_finished
 
   def user_login
     if user_signed_in?
@@ -23,6 +23,7 @@ class Group::GroupsCreatorController < ApplicationController
     end
   end
 
+  # TODO: Split in two methods
   def password
     if user_signed_in?
       redirect_if_user_signed_in
@@ -39,11 +40,17 @@ class Group::GroupsCreatorController < ApplicationController
   end
 
   def invitations
+    @group.finished = true
+    @group.save
   end
 
   private
   def redirect_to_steps
     redirect_to eval("group_group_create_#{@group.steps}_path(group_group_id: #{@group.id})")
+  end
+
+  def redirect_if_finished
+    redirect_to group_group_path(@group), notice: t('groups.group_creation.notices.group_finished') if @group.finished?
   end
 
   def redirect_to_current_steps
