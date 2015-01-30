@@ -74,6 +74,8 @@ group :development, :test do
   gem 'selenium-webdriver', '~> 2.44.0'
 
   gem 'factory_girl', '~> 4.5.0'
+
+  gem 'faker', '~> 1.4.3' # populate with fake datas
 end
 
 group :production do

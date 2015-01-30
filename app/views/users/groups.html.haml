@@ -6,3 +6,8 @@
       .row
         =f.input :name, wrapper_html: {class: 'columns small-9'}
         =f.button :submit, t('groups.buttons.create'), wrapper_html: {class: 'columns small-3'}
+  -else
+    %ul.no-bullet
+      -@groups.each do |group|
+        %li
+          %h3= link_to group, group_group_path(group)

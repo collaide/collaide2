@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def groups
-    @groups = []
+    @groups = @user.groups
   end
 
   private

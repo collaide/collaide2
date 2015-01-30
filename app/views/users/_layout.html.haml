@@ -2,6 +2,7 @@
 %h1
   = @user.name
   =link_to t('header.user.edit'), edit_user_registration_path(view: :general), class: 'std-button tiny'
+%hr
 .row
   .large-3.columns
     =render 'menu'
