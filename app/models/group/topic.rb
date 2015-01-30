@@ -10,6 +10,10 @@ class Group::Topic < ActiveRecord::Base
 
   # Un topic peut avoir entre 0 et infini commentaire (ie: réponses)
   has_many :comments, class_name: 'Group::Comment', dependent: :destroy
+  has_many :index_comments,
+           -> { limit(2).order('updated_at DESC') },
+           class_name: 'Group::Comment',
+           dependent: :destroy
 
   # Un topic doit au miniumu avoir un message, un utilisateur et appartenir à un groupe
   validates :title, length: { maximum: 100 }
@@ -19,7 +23,8 @@ class Group::Topic < ActiveRecord::Base
 
   # Retourne un Array avec toutes les personnes ayant participées à la conversation
   def contributors
-    comments.order('updated_at DESC').limit(2).map do |c|
+    #TODO: Optimize N+1 Query
+    index_comments.map do |c|
       c.user
     end << user
   end

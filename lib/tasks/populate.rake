@@ -1,7 +1,7 @@
 include Faker if Rails.env == 'development'
 namespace :populate do
   desc 'Populate Database with fake datas'
-  task all: :environment do
+  task all: %w(environment db:dev_only) do
     u = User.find_or_create_by! email: 'q@qwe.as' do |u|
       u.name = Name.name
       u.password = 'grimpe'

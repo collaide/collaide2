@@ -27,6 +27,6 @@
                 %td= t.views
                 %td
                   - t.contributors.each do |user|
-                    = image_tag user.avatar.mini, class: 'th', height: 25, width: '25'
+                    = link_to image_tag(user.avatar.mini, class: 'th', height: 25, width: '25'), user_path(user)
                 %td= time_ago_in_words t.updated_at
         = paginate @topics
