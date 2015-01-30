@@ -213,3 +213,9 @@ fr:
       confirm: "Êtes-vous sûr de vouloir annuler la création du groupe ?"
       backward: "Précédent"
       next: "Suivant"
+  devise:
+    offcanvas:
+      signin:
+        manual: "Via votre compte Collaide"
+      signup:
+        manual: "En créant un compte sur Collaide"

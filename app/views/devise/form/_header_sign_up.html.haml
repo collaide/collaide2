@@ -1,5 +1,7 @@
 #header-sign-up-panel
   %h3= t'devise.registrations.new.sign_up'
+  = render 'devise/shared/social_networks'
+  %h5= t('devise.offcanvas.signup.manual')
   = simple_form_for(User.new, as: :user, :url => user_registration_path, defaults: { input_html: { class: 'validate-form' } }, html: {id: 'offcanvas_new_user'}) do |f|
     = f.input :email, autocomplete: 'off', required: false, input_html: {id: 'offcanvas-signup_user_email'}
     = f.input :name, autocomplete: 'off', required: false, input_html: {id: 'offcanvas-signup_user_name'}

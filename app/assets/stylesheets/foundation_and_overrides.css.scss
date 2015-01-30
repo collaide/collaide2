@@ -138,7 +138,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   //border-bottom-width: 1px;
 }
 
-.std-button-i {
+#header-sign-up-panel .std-button, .std-button-i {
   @include button;
   color: $secondary-color;
   background-color: $primary-light-color;
@@ -240,7 +240,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 // ######################################
 #header-sign-up-panel {
   padding: 40px;
-  h3 {
+  h3, h4, h5, p, i {
     margin: 25px 0px;
     color: $secondary-color;
   }
