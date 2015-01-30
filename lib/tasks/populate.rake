@@ -1,4 +1,4 @@
-include Faker
+include Faker if Rails.env == 'development'
 namespace :populate do
   desc 'Populate Database with fake datas'
   task all: :environment do
