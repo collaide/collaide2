@@ -1,10 +1,10 @@
 =render(layout: 'group/layouts/layout') do
-  %h4.subheader= t('groups.topics.index.description')
+  %h4= t('groups.topics.index.description')
   -#%blockquote= t('groups.topics.index.description')
   =render 'group/topics/form'
   .row
     .columns.small-24
-      %h4.subheader= t('groups.topics.index.last_discussions')
+      %h4= t('groups.topics.index.last_discussions')
       -if @topics.empty?
         %p= t('groups.topics.index.empty')
       -else
@@ -20,13 +20,14 @@
             -@topics.each do |t|
               %tr.item
                 %td.td-subheader
-                  = link_to(t.title.blank? ? strip_tags(t.message).truncate(100, seprator: ' ') : t.title, group_group_topic_path(group_group_id: @group, id: t))
+                  = link_to(print_topic_title(t), group_group_topic_path(group_group_id: @group, id: t))
                   - if t.created_at + 15.minutes >= Time.now
                     %span.label.success= t('groups.topics.index.table.new')
                 %td= t.comments.size + 1
                 %td= t.views
                 %td
-                  - t.contributors.each do |user|
-                    = link_to image_tag(user.avatar.mini, class: 'th', height: 25, width: '25'), user_path(user)
+                  - t.last_contributors.each do |user|
+                    = user_image(user)
                 %td= time_ago_in_words t.updated_at
-        = paginate @topics
+        .hide
+          = paginate @topics

@@ -34,6 +34,33 @@ module ApplicationHelper
     params[:view] != view.to_s ? 'hide' : nil
   end
 
+  # Generate an image which represent a left arrow
+  def left_arrow(path)
+    link_to image_tag('left-arrow.png', width: 25, height: 25), path
+  end
+
+  # Print the title of the topic
+  def print_topic_title(t)
+    t.title.blank? ? strip_tags(t.message).truncate(100, seprator: ' ') : t.title
+  end
+
+  # Print the user image in a really small format
+  def user_image(user, size: :mini, name: false)
+    case size
+      when :mini
+        height = 25
+        width = 25
+        image = user.avatar.mini
+      when :small
+        height = 50
+        width = 50
+        image = user.avatar.mini
+    end
+    content = image_tag(image, class: 'th', height: height, width: width)
+    content += user if name
+    link_to content, user_path(user)
+  end
+
   private
   def generate_meta(meta, text = '')
     if text.blank?

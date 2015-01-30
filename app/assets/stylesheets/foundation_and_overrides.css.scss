@@ -360,3 +360,29 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 .lines-1 {
   height: rem-calc(20px);
 }
+
+// ##########################################
+// ### CSS spécifique aux topiques #####
+// ##########################################
+.row .topic-message {
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  padding-top: rem-calc(20px);
+  margin-top: rem-calc(30px);
+  margin-bottom: rem-calc(20px);
+}
+
+.comments-topic {
+  li:nth-of-type(even) {
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    padding-top: rem-calc(20px);
+    margin-top: rem-calc(10px);
+    margin-bottom: rem-calc(10px);
+  }
+
+  li:nth-of-type(odd) {
+    padding-top: rem-calc(10px);
+    background-color: $secondary-color;
+  }
+}

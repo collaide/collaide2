@@ -22,11 +22,23 @@ class Group::Topic < ActiveRecord::Base
   validates_presence_of :group
 
   # Retourne un Array avec toutes les personnes ayant participées à la conversation
-  def contributors
+  def last_contributors
     #TODO: Optimize N+1 Query
-    index_comments.map do |c|
+    users = index_comments.map do |c|
       c.user
     end << user
+    users.uniq { |u| u.id }
+  end
+
+  def contributors
+    users = comments.map do |c|
+      c.user
+    end << user
+    users.uniq { |u| u.id }
+  end
+
+  def update_view
+    self.update_column(:views, self.views + 1)
   end
 
   def to_s

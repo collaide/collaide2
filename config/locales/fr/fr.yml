@@ -209,11 +209,16 @@ fr:
           subject: "Sujet"
           messages: "Messages"
           views: "Vues"
-          users: "Utilisateurs"
+          users: "Participants"
           activity: "Activité"
           new: "Nouveau"
       create:
         success: "Vous venez de lancer une nouvele discussion"
+      show:
+        started_at: "Commencé le %{date} |"
+        with: "Avec"
+        message_placeholder: "Répondre au dernier message"
+        submit: "Répondre"
     layouts:
       hy_title: "Création du groupe, étape %{step}"
       cancel: "Annuler"
@@ -226,3 +231,7 @@ fr:
         manual: "Via votre compte Collaide"
       signup:
         manual: "En créant un compte sur Collaide"
+  group:
+    topics:
+      new:
+        title: "Nouvelle Discussion"

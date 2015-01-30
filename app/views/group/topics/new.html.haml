@@ -1,4 +1,3 @@
 =render(layout: 'group/layouts/layout') do
-  %h1= t('group.topics.new.title')
-  %blockquote= t('group.topics.new.description')
+  %h4= left_arrow(group_group_topics_path(group_group_id: @group)) + t('groups.topics.index.description')
   =render 'group/topics/form'
