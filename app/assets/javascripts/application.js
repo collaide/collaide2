@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require tinymce
 //= require tinymce-jquery
 //= require jquery.infinitescroll
 //= require_tree .
