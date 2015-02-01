@@ -395,6 +395,16 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
     background-color: $secondary-color;
   }
 }
+#post-indicator {
+  background-color: black;
+  color: white;
+  padding-top: rem-calc(20px);
+  z-index: 2;
+}
+
+#post-indicator-sticky-wrapper {
+  margin-bottom: rem-calc(30px);
+}
 // ############### FOOTER ###################
 // ##########################################
 footer {

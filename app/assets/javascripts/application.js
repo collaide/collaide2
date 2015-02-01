@@ -15,6 +15,7 @@
 //= require tinymce-jquery
 //= require jquery.infinitescroll
 //= require jquery.appear
+//= require jquery.sticky
 //= require_tree .
 
 //= require foundation
