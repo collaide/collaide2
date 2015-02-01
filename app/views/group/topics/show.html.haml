@@ -8,7 +8,7 @@
     = @topic.contributors.map {|u| user_image(u)}.to_sentence.html_safe
   .row.topic-message
     .columns.small-11.push-1
-      =@topic.message.html_safe
+      =s(@topic.message).html_safe
     .columns.small-1.pull-11
       = user_image @topic.user, size: :small, name: true
   -if @topic.comments.any?
@@ -17,7 +17,7 @@
         %li
           .row
             .columns.small-11.push-1
-              = comment.message.html_safe
+              = s(comment.message).html_safe
             .columns.small-1.pull-11
               = user_image comment.user, size: :small, name: true
   %hr

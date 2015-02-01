@@ -4,7 +4,7 @@ module SanitizeHelper
   # https://github.com/rgrove/sanitize
   def s(text, config = nil)
     if config.nil?
-      config = get_custom_relaxed_config
+      config = CustomSanitize.instance.custom_relaxed_config
       config[:transformers] = [accept_specified_style,
                                #linkify_urls,
                                #remove_empty_elements,
@@ -22,18 +22,9 @@ module SanitizeHelper
   end
 
   private
-    def get_custom_relaxed_config
-      @config = Sanitize::Config::RELAXED.deep_dup
-      @config[:add_attributes] = {
-          'a' => {'rel' => 'nofollow'}
-      }
-      @config[:elements].push('span')
-      @config
-    end
 
     def get_custom_relaxed_inner_config
-      @inner_config = get_custom_relaxed_config
-      p @inner_config[:attributes][:all].inspect
+      @inner_config = CustomSanitize.instance.custom_relaxed_config
       @inner_config[:attributes][:all].add('style')
       @inner_config
     end
