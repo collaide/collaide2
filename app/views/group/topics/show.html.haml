@@ -5,22 +5,22 @@
   %h6
     = t('groups.topics.show.started_at', date: l(@topic.created_at, format: :short))
     = t('groups.topics.show.with')
-    = @topic.contributors.map {|u| user_image(u)}.to_sentence.html_safe
+    = @topic.contributors(@comments).map {|u| user_image(u)}.to_sentence.html_safe
   .row.topic-message
     .columns.small-11.push-1
       =s(@topic.message).html_safe
     .columns.small-1.pull-11
       = user_image @topic.user, size: :small, name: true
-  -if @topic.comments.any?
+  -if @comments.any?
     %ul.small-block-grid-1.comments-topic
-      - @topic.comments.each do |comment|
+      - @comments.each do |comment|
         %li
           .row
             .columns.small-11.push-1
               = s(comment.message).html_safe
             .columns.small-1.pull-11
               = user_image comment.user, size: :small, name: true
-  %hr
+    %hr
   .row
     .columns.small-12
       =simple_form_for @comment, url: group_group_topic_comments_path(group_group_id: @group, topic_id: @topic) do |f|

@@ -4,7 +4,7 @@ class Group::TopicsController < ApplicationController
   # GET /groups/:group_group_id/topics
   def index
     @topic = Group::Topic.new # Pour le formulaire
-    @topics = @group.topics.order('group_topics.updated_at DESC, group_topics.created_at DESC, group_topics.views DESC').includes({index_comments: :user}, :user).page(params[:page])
+    @topics = @group.topics.order('group_topics.updated_at DESC, group_topics.created_at DESC, group_topics.views DESC').includes({comments: :user}, :user).page(params[:page])
   end
 
   # POST /groups/:group_group_id/topics
@@ -29,7 +29,7 @@ class Group::TopicsController < ApplicationController
 
   def show
     @topic = @group.topics.where(id: params[:id]).take!
-    @comments = @topic.comments.page(params[:page])
+    @comments = Group::Comment.includes(:user).where(topic_id: @topic).page(params[:page])
     render :show
     @topic.update_view
   end
