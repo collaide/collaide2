@@ -2,8 +2,8 @@
 .row
   .columns.small-12.large-3
     %ul.collaide-side-nav
-      = build_active_menu :general, link_to(t('devise.registrations.edit.general_change'), edit_user_registration_path(view: :general)), params[:view]
-      = build_active_menu :password, link_to(t('devise.registrations.edit.change_password'), edit_user_registration_path(view: :password)), params[:view]
+      = build_active_menu path: edit_user_registration_path(view: :general), text: t('devise.registrations.edit.general_change')
+      = build_active_menu path: edit_user_registration_path(view: :password), text: t('devise.registrations.edit.change_password')
   .columns.small-12.large-9
     = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name, view: params[:view]), :html => { :method => :put, multipart: true }) do |f|
       = f.error_notification
