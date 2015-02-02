@@ -396,10 +396,13 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   }
 }
 #post-indicator {
-  background-color: black;
-  color: white;
-  padding-top: rem-calc(20px);
   z-index: 2;
+}
+
+#comment-navigation {
+  .button, input {
+    margin-bottom: rem-calc(3px);
+  }
 }
 
 #post-indicator-sticky-wrapper {

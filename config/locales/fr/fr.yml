@@ -219,6 +219,9 @@ fr:
         with: "Avec"
         message_placeholder: "Répondre au dernier message"
         submit: "Répondre"
+      comments:
+        top: "En-haut"
+        bottom: "En-bas"
     layouts:
       hy_title: "Création du groupe, étape %{step}"
       cancel: "Annuler"

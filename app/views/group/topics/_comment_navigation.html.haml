@@ -1,0 +1,22 @@
+.row#post-indicator
+  .columns.small-4
+    %p
+      %span#comment-number
+        1 /
+      %span#comment-size
+        =@comments.size + 1
+  .columns.small-8
+    .progress.success
+      %span.meter#comment-percent{style: "width: #{(1.0/@comments.size.to_f) * 100}%"}
+  .columns.small-12#comment-navigation
+    .row
+      .columns.small-12.small-centered
+        %a.button.expand.tiny{href: '#'}= t('groups.topics.comments.top')
+    .row.collapse
+      .columns.small-6
+        %input#comment-input{type: 'text', value: '1', autofocus: 'autofocus'}
+      .columns.small-6
+        %a.button.postfix Aller
+    .row
+      .columns.small-12.small-centered
+        %a.button.expand.tiny{href: '#'}= t('groups.topics.comments.bottom')

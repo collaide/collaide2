@@ -10,11 +10,15 @@
 %hr
 .row
   .columns.small-3
-    %ul.collaide-side-nav
-      = build_active_menu path: group_group_path(@group), text: t('groups.groups.menu.welcome'), icon: 'info'
-      = build_active_menu path: group_group_topics_path(group_group_id: @group), text: t('groups.groups.menu.topic'), icon: 'comments', controller: 'group/topics'
-      = build_active_menu path: '', text: t('groups.groups.menu.files'), icon: 'page-multiple'
-      = build_active_menu path: '', text: t('groups.groups.menu.invitations'), icon: 'info'
-      = build_active_menu path: '', text: t('groups.groups.menu.admin'), icon: 'widget'
+    .row
+      .columns.small-12
+        %ul.collaide-side-nav
+          = build_active_menu path: group_group_path(@group), text: t('groups.groups.menu.welcome'), icon: 'info'
+          = build_active_menu path: group_group_topics_path(group_group_id: @group), text: t('groups.groups.menu.topic'), icon: 'comments', controller: 'group/topics'
+          = build_active_menu path: '', text: t('groups.groups.menu.files'), icon: 'page-multiple'
+          = build_active_menu path: '', text: t('groups.groups.menu.invitations'), icon: 'info'
+          = build_active_menu path: '', text: t('groups.groups.menu.admin'), icon: 'widget'
+    -if not local_assigns[:more].nil?
+      = render partial: more
   .columns.small-9
     =yield

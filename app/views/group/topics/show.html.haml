@@ -1,4 +1,4 @@
-=render(layout: 'group/layouts/layout') do
+=render(layout: 'group/layouts/layout', locals: {more: 'group/topics/comment_navigation'}) do
   .row
     .columns.small-9
       %h4
@@ -9,27 +9,15 @@
     = t('groups.topics.show.started_at', date: l(@topic.created_at, format: :short))
     = t('groups.topics.show.with')
     = @topic.contributors(@comments).map {|u| user_image(u)}.to_sentence.html_safe
-  .row.topic-message
+  .row.topic-message.comment{:'data-element-nb' => '1'}
     .columns.small-11.push-1
       =s(@topic.message).html_safe
     .columns.small-1.pull-11
       = user_image @topic.user, size: :small, name: true
-  .row#post-indicator
-    .columns.small-1
-      %span#comment-number 1
-    .columns.small-6
-      .progress.success
-        %span.meter{style: 'width: 1%'}
-    .columns.small-5
-      .row.collapse
-        .columns.small-6
-          %input{type: 'text', placeholder: '1'}
-        .columns.small-6
-          %a.button.postfix Aller
   -if @comments.any?
     %ul.small-block-grid-1.comments-topic
       - @comments.each_with_index do |comment, i|
-        %li.comment{id: "comment-#{i}"}
+        %li.comment{id: "comment-#{comment.id}", :'data-element-nb' => i + 2}
           .row
             .columns.small-11.push-1
               = s(comment.message).html_safe
