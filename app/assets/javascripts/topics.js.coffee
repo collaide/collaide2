@@ -1,9 +1,10 @@
 comment_number = 1
+main_comment = 1
 appear = () ->
   $('.comment').appear()
   comment_size = parseInt($('#comment-size').text())
   $(document).on('appear', '.comment', (e, $all_appeared_elements)->
-    last_element = $all_appeared_elements[$all_appeared_elements.length - 1]
+    last_element = $all_appeared_elements[0]
     current_number = parseInt($(last_element).attr('data-element-nb'))
     if comment_number != current_number
       percentage = (current_number / comment_size) * 100
@@ -11,21 +12,24 @@ appear = () ->
       $('#comment-number').html(current_number + ' /')
       $('#comment-input').attr('value', current_number)
       comment_number = current_number
+      main_comment = current_number
       update_hash(go_down(current_number))
   )
 goto_anchor = (selector) ->
-  console.log(selector)
   element = $(selector)
   return if element.length == 0
+  main_comment = element.attr('data-element-nb')
+  console.log main_comment
   element_top = element.position().top
   element_height = element.outerHeight()
   scroll_amount = (element_top)
-  console.log("should scroll to #{scroll_amount}")
-  $('html body').animate({
-      scrollTop: scroll_amount
-    }, 1000, () ->
-    element.addClass('current-comment')
-  )
+#  $('html body').animate({
+#      scrollTop: scroll_amount
+#    }, 1000, () ->
+#    element.addClass('current-comment')
+#  )
+  element.get(0).scrollIntoView()
+  element.addClass('current-comment')
 anchor = () ->
   hash = window.location.hash
   hash = hash.substring(1, hash.length)
@@ -37,12 +41,11 @@ anchor = () ->
 go_down = (nb) ->
   "[data-element-nb='#{nb}']"
 update_hash = (selector) ->
-  id = $(selector).attr('id').split('-')
+  id = $(selector).attr('id')
+  return if id == undefined
+  id = id.split('-')
   window.location.hash = "##{id[id.length - 1]}"
 navigation = () ->
-  current_comment = 0
-  if current_comment == 0
-    current_comment = comment_number
   $('#comment-down').on('click', (e) ->
     e.preventDefault()
     nb = parseInt($('#comment-size').text())
@@ -56,22 +59,25 @@ navigation = () ->
   )
   $('#comment-plus').on('click', (e) ->
     e.preventDefault()
-    current_comment = current_comment + 10
-    update_hash(go_down(current_comment))
-    goto_anchor(go_down(current_comment))
+    console.log(main_comment)
+    update_hash(go_down(main_comment + 10))
+    goto_anchor(go_down(main_comment + 10))
   )
   $('#comment-minus').on('click', (e) ->
     e.preventDefault()
-    current_comment = current_comment - 10
-    console.log(nb)
-    update_hash(go_down(current_comment))
-    goto_anchor(go_down(current_comment))
+    console.log(main_comment)
+    if main_comment - 10 == 1
+      window.location.hash = '#top'
+    else
+      update_hash(go_down(main_comment - 10))
+    goto_anchor(go_down(main_comment - 10))
   )
 $ ->
   $('#post-indicator').stickyJQuery({topSpacing: 30})
   appear()
-  anchor()
   navigation()
+window.onload = () ->
+  anchor()
 #
 #  // trigger Masonry as a callback
 #  function( newElements ) {
