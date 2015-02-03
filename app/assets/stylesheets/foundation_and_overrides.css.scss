@@ -406,7 +406,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 }
 
 .current-comment {
-  background-color: aliceblue;
+  background-color: aliceblue !important;
 }
 
 #post-indicator-sticky-wrapper {

@@ -11,12 +11,12 @@
   .columns.small-12#comment-navigation
     .row
       .columns.small-12.small-centered
-        %a.button.expand.tiny{href: '#'}= t('groups.topics.comments.top')
+        %a.button.expand.tiny#comment-top{href: '#'}= t('groups.topics.comments.top')
     .row.collapse
       .columns.small-6
-        %input#comment-input{type: 'text', value: '1', autofocus: 'autofocus'}
+        %a.button.postfix#comment-minus 10 avant
       .columns.small-6
-        %a.button.postfix Aller
+        %a.button.postfix#comment-plus 10 après
     .row
       .columns.small-12.small-centered
-        %a.button.expand.tiny{href: '#'}= t('groups.topics.comments.bottom')
+        %a.button.expand.tiny#comment-down{href: '#'}= t('groups.topics.comments.bottom')
