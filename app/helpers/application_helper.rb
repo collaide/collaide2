@@ -57,7 +57,7 @@ module ApplicationHelper
         image = user.avatar.mini
     end
     content = image_tag(image, class: 'th', height: height, width: width)
-    content += user if name
+    content += ' ' + user.to_s if name
     link_to content, user_path(user)
   end
 

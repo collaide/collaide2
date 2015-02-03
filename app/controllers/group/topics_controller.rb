@@ -29,7 +29,7 @@ class Group::TopicsController < ApplicationController
 
   def show
     @topic = @group.topics.where(id: params[:id]).take!
-    @comments = Group::Comment.includes(:user).where(topic_id: @topic).page(params[:page])
+    @comments = Group::Comment.includes(:user).where(topic_id: @topic)
     render :show
     @topic.update_view
   end

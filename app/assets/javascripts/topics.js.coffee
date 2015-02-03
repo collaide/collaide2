@@ -12,9 +12,24 @@ appear = () ->
       $('#comment-input').attr('value', current_number)
       comment_number = current_number
   )
+anchor = () ->
+  hash = window.location.hash
+  hash = hash.substring(1, hash.length)
+  if hash
+    comment = $("#comment-#{hash}")
+    comment_top = comment.position().top
+    comment_height = comment.outerHeight()
+    scroll_amount = (comment_top - 2 * comment_height) * 100
+    console.log("should scroll to #{scroll_amount}")
+    $('html body').animate({
+      scrollTop: scroll_amount
+    }, 1000, () ->
+      comment.addClass('current-comment')
+    )
 $ ->
   $('#post-indicator').stickyJQuery({topSpacing: 30})
   appear()
+  anchor()
 #
 #  // trigger Masonry as a callback
 #  function( newElements ) {

@@ -19,11 +19,11 @@ namespace :populate do
       group.topics << Group::Topic.create!(title: title, message: message, user: u, group: group)
     end
     group.topics.each do |topic|
-      1000.times do
+      100.times do
         topic.comments << Group::Comment.create!(message: message, user: u, topic: topic)
       end
     end
-    puts "Created 100 topics with 1000 comments each for #{group.name} owned by #{u.name} (#{u.email} password: grimpe)"
+    puts "Created 100 topics with 100 comments each for #{group.name} owned by #{u.name} (#{u.email} password: grimpe)"
   end
 end
 

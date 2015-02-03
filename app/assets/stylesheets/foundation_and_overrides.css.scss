@@ -405,6 +405,10 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   }
 }
 
+.current-comment {
+  background-color: aliceblue;
+}
+
 #post-indicator-sticky-wrapper {
   margin-bottom: rem-calc(30px);
 }
