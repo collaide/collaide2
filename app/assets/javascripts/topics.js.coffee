@@ -13,7 +13,7 @@ appear = () ->
       $('#comment-input').attr('value', current_number)
       comment_number = current_number
       main_comment = current_number
-      update_hash(go_down(current_number))
+#      update_hash(go_down(current_number))
   )
 goto_anchor = (selector) ->
   element = $(selector)
@@ -49,7 +49,7 @@ navigation = () ->
   $('#comment-down').on('click', (e) ->
     e.preventDefault()
     nb = parseInt($('#comment-size').text())
-    update_hash(go_down(nb))
+#    update_hash(go_down(nb))
     goto_anchor(go_down(nb))
   )
   $('#comment-top').on('click', (e) ->
@@ -60,16 +60,16 @@ navigation = () ->
   $('#comment-plus').on('click', (e) ->
     e.preventDefault()
     console.log(main_comment)
-    update_hash(go_down(main_comment + 10))
+#    update_hash(go_down(main_comment + 10))
     goto_anchor(go_down(main_comment + 10))
   )
   $('#comment-minus').on('click', (e) ->
     e.preventDefault()
     console.log(main_comment)
-    if main_comment - 10 == 1
-      window.location.hash = '#top'
-    else
-      update_hash(go_down(main_comment - 10))
+#    if main_comment - 10 == 1
+#      window.location.hash = '#top'
+#    else
+#      update_hash(go_down(main_comment - 10))
     goto_anchor(go_down(main_comment - 10))
   )
 $ ->
