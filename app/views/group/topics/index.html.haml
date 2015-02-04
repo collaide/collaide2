@@ -1,7 +1,10 @@
 =render(layout: 'group/layouts/layout') do
   %h4= t('groups.topics.index.description')
   -#%blockquote= t('groups.topics.index.description')
-  =render 'group/topics/form'
+  .sticky-element
+    = link_to foundation_icons('fi-plus large') + t('groups.topics.form.submit'), '#', class: 'std-button show-hidden', :'data-show-element' => 'new-topic-form'
+    #new-topic-form.hide.toggled-element
+      = render 'group/topics/form'
   .row
     .columns.small-24
       %h4= t('groups.topics.index.last_discussions')

@@ -44,6 +44,23 @@ infinite = ->
       finishedMsg: "<em>Il n'y a pas d'autres eléments à afficher</em>",
       msgText: "<em>Chargement des prochains eléments</em>",
     }
+
+show_hidden = () ->
+  toggled_element = $('.toggled-element')
+  toggled_element.hide()
+  toggled_element.removeClass('hide')
+  $(document).on('click', '.show-hidden', (e) ->
+    e.preventDefault()
+    sticker = $('.sticky-wrapper')
+    sticker.removeAttr('style')
+    id = $(this).attr('data-show-element')
+    console.log id
+    element = $("##{id}")
+    console.log element
+    return if element == undefined
+    element.toggle('slow')
+  )
 $ ->
   headerOffCanvas()
   infinite()
+  show_hidden()

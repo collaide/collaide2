@@ -199,7 +199,7 @@ fr:
       form:
         title_placeholder: Le sujet de votre discussion en une phrase (Optionel)
         message_placeholder: Mettez en forme votre message
-        submit: "Nouvelle Discussion !"
+        submit: "Nouvelle Discussion"
       index:
         h1_title: "Discussions"
         description: Nouvelle discussion avec les membres de votre groupe
@@ -222,6 +222,7 @@ fr:
       comments:
         top: "En-haut"
         bottom: "En-bas"
+        reply: "Réponse"
     layouts:
       hy_title: "Création du groupe, étape %{step}"
       cancel: "Annuler"

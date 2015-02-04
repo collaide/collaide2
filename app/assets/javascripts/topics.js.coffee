@@ -16,6 +16,7 @@ appear = () ->
 #      update_hash(go_down(current_number))
   )
 goto_anchor = (selector) ->
+  $('.current-comment').removeClass('current-comment')
   element = $(selector)
   return if element.length == 0
   main_comment = element.attr('data-element-nb')
@@ -54,7 +55,6 @@ navigation = () ->
   )
   $('#comment-top').on('click', (e) ->
     e.preventDefault()
-    window.location.hash = '#top'
     goto_anchor(go_down(1))
   )
   $('#comment-plus').on('click', (e) ->
@@ -72,7 +72,9 @@ navigation = () ->
 #      update_hash(go_down(main_comment - 10))
     goto_anchor(go_down(main_comment - 10))
   )
+
 $ ->
+  $('.sticky-element').stickyJQuery({topSpacing: 0})
   $('#post-indicator').stickyJQuery({topSpacing: 30})
   appear()
   navigation()
