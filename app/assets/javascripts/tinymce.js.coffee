@@ -31,5 +31,8 @@ tiny_mce = () ->
 
   tinymce_init('single-tinymce')
 
+  $(document).on('tinymce:init', () ->
+    tinymce_init('single-tinymce')
+  )
 $ ->
   tiny_mce()

@@ -1,0 +1,4 @@
+=simple_form_for @comment, url: group_group_topic_comment_path(group_group_id: @group, topic_id: @topic, id: @comment) do |f|
+  = f.input :message, input_html: {class: 'tinymce', id: 'single-tinymce'}, placeholder: t('groups.topics.show.message_placeholder')
+  %br
+  = f.button :submit, t('groups.comments.edit.submit')

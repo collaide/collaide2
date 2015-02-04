@@ -5,10 +5,11 @@
       #new-topic-form.hide.toggled-element
         .row
           .columns.small-12
-            =simple_form_for @comment, url: group_group_topic_comments_path(group_group_id: @group, topic_id: @topic) do |f|
-              = f.input :message, input_html: {class: 'tinymce', id: 'comment-reply-form'}, placeholder: t('groups.topics.show.message_placeholder')
-              %br
-              = f.button :submit, t('groups.topics.show.submit')
+            #comment-form-container
+              =simple_form_for @comment, url: group_group_topic_comments_path(group_group_id: @group, topic_id: @topic) do |f|
+                = f.input :message, input_html: {class: 'tinymce', id: 'comment-reply-form'}, placeholder: t('groups.topics.show.message_placeholder')
+                %br
+                = f.button :submit, t('groups.topics.show.submit')
   .row
     .columns.small-12
       .clearfix
@@ -38,7 +39,7 @@
                 .left
                   = user_image comment.user, size: :small, name: true
                 .right
-                  = link_to foundation_icons('fi-pencil large') + t('groups.topics.show.modify_message'), edit_group_group_topic_comment_path(group_group_id: @group, topic_id: @topic, id: comment), class: 'button secondary tiny'
+                  = link_to foundation_icons('fi-pencil large') + t('groups.topics.show.modify_message'), edit_group_group_topic_comment_path(group_group_id: @group, topic_id: @topic, id: comment), class: 'button secondary tiny', remote: true
                   = link_to foundation_icons('fi-x large') + t('groups.topics.show.delete_topic'), group_group_topic_comment_path(group_group_id: @group, topic_id: @topic, id: comment), method: :delete, data: {confirm: t('dico.are_you_sure')}, class: 'button alert tiny'
               .columns.small-11
                 = s(comment.message).html_safe
