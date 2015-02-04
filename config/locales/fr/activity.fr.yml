@@ -1,0 +1,21 @@
+fr:
+  activity:
+    unknown: Un inconnu
+#    user:
+#      create: "Bienvenue à %{user} qui a rejoint la communauté Collaide."
+    group_group:
+      create: "%{owner} a créé le groupe"
+      not_exist: mais ce groupe n'existe plus
+      update: "%{owner} a modifier le groupe"
+      destroy: "%{owner} a supprimé un groupe"
+      joined: "%{owner} a rejoint le groupe"
+      in: dans le groupe
+      in_link: dans le groupe %{group}
+    topic:
+      create: "%{owner} a lancé une discussion"
+      not_exist: mais cette discussion n'existe plus
+      in: une discussion
+      in_link: dans la discussion %{link}
+    comment:
+      create: "%{owner} a commenté"
+      not_exist: mais ce commentaire n'existe plus

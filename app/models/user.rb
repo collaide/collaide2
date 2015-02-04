@@ -31,6 +31,33 @@ class   User < ActiveRecord::Base
       only_integer: true
   }
 
+  #################################################
+  ############## MODULE ACTIVITIES ################
+  #################################################
+  has_many :params_activities, as: :owner, :class_name => 'Activity::Parameter'
+
+  def activities
+    params = self.params_activities.to_a
+    where_sql = ''
+    where_params = []
+    params.each do |p|
+      where_sql += ' (
+      ((activity_activities.trackable_id = ? AND activity_activities.trackable_type = ?) OR
+      (activity_activities.recipient_id = ? AND activity_activities.recipient_type = ?))
+      AND (activity_activities.created_at between ? and ?)
+      ) OR '
+      where_params << p.trackable.id << p.trackable.class.base_class.to_s << p.trackable.id << p.trackable.class.base_class.to_s << p.starting_at << p.ending_at
+    end
+    where_sql += "activity_activities.public = 't'"
+
+    Activity::Activity.where(where_sql, *where_params)
+  end
+  has_many :activities, through: :params_activities, :class_name => 'Activity::Activity'
+
+  #################################################
+  ################ FIN ACTIVITIES #################
+  #################################################
+
   # Renvoi le nom de l'utilisateur
   def to_s
     self.name

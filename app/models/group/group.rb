@@ -1,4 +1,6 @@
 class Group::Group < ActiveRecord::Base
+
+  #include Concerns::ActivityConcern
   extend Enumerize
 
   ROLES = [:all, :admin, :writer, :member]
@@ -141,6 +143,7 @@ class Group::Group < ActiveRecord::Base
           gm.invited_or_added_by = invited_or_added_by
           self.group_members << gm
           self.save
+          #create_activity(:joined, trackable: self, owner: m, create_related_activity_param: true)
         end
       end
     else
@@ -151,6 +154,7 @@ class Group::Group < ActiveRecord::Base
         gm.joined_method = joined_method
         gm.invited_or_added_by = invited_or_added_by
         self.group_members << gm
+        #create_activity(:joined, trackable: self, owner: members, create_related_activity_param: true)
       end
     end
   end

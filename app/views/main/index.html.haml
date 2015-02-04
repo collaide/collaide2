@@ -1,1 +1,3 @@
 =link_to 'Créer un groupe', new_group_group_path, class: 'std-button'
+
+= render_activity @activities, layout: 'activity', locals: {specification: nil}
