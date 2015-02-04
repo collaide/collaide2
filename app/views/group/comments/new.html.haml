@@ -1,0 +1,10 @@
+= render layout: 'group/layouts/layout' do
+  %h4
+    %a.left-arrow.left{href: group_group_topic_path(group_group_id: @group, id: @topic)} &#10092;
+    = t('groups.comments.new.h4_title', topic: print_topic_title(@topic))
+  .row
+    .columns.small-12
+      =simple_form_for @comment, url: group_group_topic_comments_path(group_group_id: @group, topic_id: @topic) do |f|
+        = f.input :message, input_html: {class: 'tinymce', id: 'comment-reply-form'}, placeholder: t('groups.topics.show.message_placeholder')
+        %br
+        = f.button :submit, t('groups.topics.show.submit')

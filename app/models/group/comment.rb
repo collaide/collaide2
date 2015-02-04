@@ -12,4 +12,6 @@ class Group::Comment < ActiveRecord::Base
 
   # Par défaut les commentaire sont ordinnés par leur date de création
   default_scope -> {order('created_at ASC')}
+
+  validates_presence_of :message
 end

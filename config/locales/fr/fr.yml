@@ -219,16 +219,32 @@ fr:
         with: "Avec"
         message_placeholder: "Répondre au dernier message"
         submit: "Répondre"
+        modify_message: "Modifier"
+        delete_topic: "Supprimer"
       comments:
         top: "En-haut"
         bottom: "En-bas"
         reply: "Réponse"
+      notice:
+        deleted: "Le sujet '%{topic}' a été supprimé"
+      edit:
+        h1_title: "Modifier le sujet '%{topic}'"
+        submit: "Modifier le sujet"
     layouts:
       hy_title: "Création du groupe, étape %{step}"
       cancel: "Annuler"
       confirm: "Êtes-vous sûr de vouloir annuler la création du groupe ?"
       backward: "Précédent"
       next: "Suivant"
+    comments:
+      notices:
+        comment_created: "Votre réponse a été ajoutée"
+        comment_updated: "Commentaire mis à jour"
+        comment_deleted: "Commentaire supprimé"
+      new:
+        h4_title: "Ajouter une réponse au sujet '%{topic}'"
+      edit:
+        submit: "Mettre le commentaire à jour"
   devise:
     offcanvas:
       signin:
@@ -239,3 +255,9 @@ fr:
     topics:
       new:
         title: "Nouvelle Discussion"
+    comments:
+      edit:
+        h4_title: "Édition du commentaire"
+  dico:
+    delete: "Supprimer"
+    are_you_sure: "Êtes-vous sûr ? Cette opération ne peut être annulée"

@@ -19,8 +19,17 @@ class Group::TopicsController < ApplicationController
     end
   end
 
+  def update
+    @topic = @group.topics.where(id: params[:id]).take!
+    if @topic.update(topic_params)
+      redirect_to group_group_topic_path(group_group_id: @group, id: @topic)
+    else
+      render :edit
+    end
+  end
+
   def edit
-    @topic = @group.topics.where(id: params[:id]).take
+    @topic = @group.topics.where(id: params[:id]).take!
   end
 
   def new
@@ -34,13 +43,13 @@ class Group::TopicsController < ApplicationController
     @topic.update_view
   end
 
-  # def destroy
-  #   topic = @group.topics.where(id: params[:id]).take
-  #   comments = topic.comments
-  #   comments.each { |comment| comment.destroy }
-  #   topic.delete
-  #   redirect_to group_work_group_topics_path, notice: 'supprimé.'
-  # end
+  def destroy
+    topic = @group.topics.where(id: params[:id]).take
+    comments = topic.comments
+    comments.each { |comment| comment.destroy }
+    topic.delete
+    redirect_to group_group_topics_path, notice: t('groups.topics.notice.deleted', topic: topic)
+  end
 
   private
 

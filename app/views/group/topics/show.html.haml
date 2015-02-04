@@ -1,14 +1,4 @@
 =render(layout: 'group/layouts/layout', locals: {more: 'group/topics/comment_navigation'}) do
-  .row
-    .columns.small-9
-      %h4
-        %a.left-arrow{href: group_group_topics_path(@group)} &#10092;
-        = print_topic_title @topic
-    .columns.small-3
-  %h6
-    = t('groups.topics.show.started_at', date: l(@topic.created_at, format: :short))
-    = t('groups.topics.show.with')
-    = @topic.contributors(@comments).map {|u| user_image(u)}.to_sentence.html_safe
   .sticky-element.row
     .columns.small-12
       = link_to foundation_icons('fi-plus large') + t('groups.topics.comments.reply'), '#', class: 'std-button show-hidden', :'data-show-element' => 'new-topic-form'
@@ -16,9 +6,23 @@
         .row
           .columns.small-12
             =simple_form_for @comment, url: group_group_topic_comments_path(group_group_id: @group, topic_id: @topic) do |f|
-              = f.input :message, input_html: {class: 'tinymce', id: 'comment_message_id'}, placeholder: t('groups.topics.show.message_placeholder')
+              = f.input :message, input_html: {class: 'tinymce', id: 'comment-reply-form'}, placeholder: t('groups.topics.show.message_placeholder')
               %br
               = f.button :submit, t('groups.topics.show.submit')
+  .row
+    .columns.small-12
+      .clearfix
+        %h4
+          %a.left-arrow.left{href: group_group_topics_path(@group)} &#10092;
+          .left
+            = print_topic_title @topic
+          .right
+            = link_to foundation_icons('fi-pencil large') + t('groups.topics.show.modify_message'), edit_group_group_topic_path(group_group_id: @group, id: @topic), class: 'button secondary tiny'
+            = link_to foundation_icons('fi-x large') + t('groups.topics.show.delete_topic'), group_group_topic_path(group_group_id: @group, id: @topic), method: :delete, data: {confirm: t('dico.are_you_sure')}, class: 'button alert tiny'
+      %h6
+        = t('groups.topics.show.started_at', date: l(@topic.created_at, format: :short))
+        = t('groups.topics.show.with')
+        = @topic.contributors(@comments).map {|u| user_image(u)}.to_sentence.html_safe
   #topic-scroll
     .row.topic-message.comment{:'data-element-nb' => '1'}
       .columns.small-12
@@ -30,7 +34,11 @@
         - @comments.each_with_index do |comment, i|
           %li.comment{id: "comment-#{comment.id}", :'data-element-nb' => i + 2}
             .row
-              .columns.small-12
-                = user_image comment.user, size: :small, name: true
+              .columns.small-12.clearfix
+                .left
+                  = user_image comment.user, size: :small, name: true
+                .right
+                  = link_to foundation_icons('fi-pencil large') + t('groups.topics.show.modify_message'), edit_group_group_topic_comment_path(group_group_id: @group, topic_id: @topic, id: comment), class: 'button secondary tiny'
+                  = link_to foundation_icons('fi-x large') + t('groups.topics.show.delete_topic'), group_group_topic_comment_path(group_group_id: @group, topic_id: @topic, id: comment), method: :delete, data: {confirm: t('dico.are_you_sure')}, class: 'button alert tiny'
               .columns.small-11
                 = s(comment.message).html_safe

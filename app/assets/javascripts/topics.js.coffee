@@ -4,7 +4,7 @@ appear = () ->
   $('.comment').appear()
   comment_size = parseInt($('#comment-size').text())
   $(document).on('appear', '.comment', (e, $all_appeared_elements)->
-    last_element = $all_appeared_elements[0]
+    last_element = $all_appeared_elements[$all_appeared_elements.length - 1]
     current_number = parseInt($(last_element).attr('data-element-nb'))
     if comment_number != current_number
       percentage = (current_number / comment_size) * 100
@@ -29,7 +29,7 @@ goto_anchor = (selector) ->
 #    }, 1000, () ->
 #    element.addClass('current-comment')
 #  )
-  element.get(0).scrollIntoView()
+  element.get(0).scrollIntoView(false)
   element.addClass('current-comment')
 anchor = () ->
   hash = window.location.hash

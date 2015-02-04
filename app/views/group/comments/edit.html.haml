@@ -1,4 +1,10 @@
 =render(layout: 'group/layouts/layout') do
-  -#-add_breadcrumb I18n.t('group.topics.index.edit'),  edit_group_work_group_topic_path(@group, @topic)
-  %h1= t('group.topics.index.h1_title')
-  =render 'comments/form', submit_text: t('dico.edit'), object: @topic, path: group_work_group_topic_path(@group, @topic)
+  %h4
+    %a.left-arrow.left{href: group_group_topic_path(group_group_id: @group, id: @topic, anchor: @comment.id)} &#10092;
+    = t('group.comments.edit.h4_title')
+  .row
+    .columns.small-12
+      =simple_form_for @comment, url: group_group_topic_comment_path(group_group_id: @group, topic_id: @topic, id: @comment) do |f|
+        = f.input :message, input_html: {class: 'tinymce', id: 'single-tinymce'}, placeholder: t('groups.topics.show.message_placeholder')
+        %br
+        = f.button :submit, t('groups.comments.edit.submit')

@@ -29,5 +29,7 @@ tiny_mce = () ->
   $('textarea.tinymce').click ->
     tinymce_init($(this).attr('id'))
 
+  tinymce_init('single-tinymce')
+
 $ ->
   tiny_mce()

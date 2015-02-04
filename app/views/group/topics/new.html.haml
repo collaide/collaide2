@@ -1,3 +1,5 @@
 =render(layout: 'group/layouts/layout') do
-  %h4= left_arrow(group_group_topics_path(group_group_id: @group)) + t('groups.topics.index.description')
+  %h4
+    %a.left-arrow.left{href: group_group_topics_path(@group)} &#10092;
+    = t('groups.topics.index.description')
   =render 'group/topics/form'

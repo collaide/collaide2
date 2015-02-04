@@ -1,4 +1,13 @@
 =render(layout: 'group/layouts/layout') do
-  -add_breadcrumb I18n.t('group.topics.index.edit'),  edit_group_work_group_topic_path(@group, @topic)
-  %h1= t('group.topics.index.h1_title')
-  =render 'group/topics/form'
+  %h4
+    %a.left-arrow.left{href: group_group_topic_path(group_group_id: @group, id: @topic)} &#10092;
+    = t('groups.topics.edit.h1_title', topic: print_topic_title(@topic))
+  .row
+    .columns.small-12
+      =simple_form_for @topic, url: group_group_topic_path(group_group_id: @group, id: @topic) do |f|
+        .form-inputs
+          =f.input :title, placeholder: t('groups.topics.form.title_placeholder')
+          =f.input :message,  input_html: {class: 'tinymce', id: 'single-tinymce'}, placeholder: t('groups.topics.form.message_placeholder')
+          %br
+        .form-actions
+          =f.button :submit, t('groups.topics.edit.submit')
