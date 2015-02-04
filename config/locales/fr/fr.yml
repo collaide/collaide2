@@ -221,6 +221,8 @@ fr:
         submit: "Répondre"
         modify_message: "Modifier"
         delete_topic: "Supprimer"
+        10_less: "10 avant"
+        10_more: "10 après"
       comments:
         top: "En-haut"
         bottom: "En-bas"

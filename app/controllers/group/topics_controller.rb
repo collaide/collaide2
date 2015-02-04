@@ -1,5 +1,6 @@
 class Group::TopicsController < ApplicationController
   before_action :get_required_objects
+  before_action :find_topic, only: [:update, :edit, :show]
 
   # GET /groups/:group_group_id/topics
   def index
@@ -20,7 +21,6 @@ class Group::TopicsController < ApplicationController
   end
 
   def update
-    @topic = @group.topics.where(id: params[:id]).take!
     if @topic.update(topic_params)
       redirect_to group_group_topic_path(group_group_id: @group, id: @topic)
     else
@@ -29,7 +29,7 @@ class Group::TopicsController < ApplicationController
   end
 
   def edit
-    @topic = @group.topics.where(id: params[:id]).take!
+
   end
 
   def new
@@ -37,7 +37,6 @@ class Group::TopicsController < ApplicationController
   end
 
   def show
-    @topic = @group.topics.where(id: params[:id]).take!
     @comments = Group::Comment.includes(:user).where(topic_id: @topic)
     render :show
     @topic.update_view
@@ -52,6 +51,10 @@ class Group::TopicsController < ApplicationController
   end
 
   private
+
+  def find_topic
+    @topic = @group.topics.where(id: params[:id]).take!
+  end
 
   def topic_params
     params.require(:group_topic).permit(:title, :message)

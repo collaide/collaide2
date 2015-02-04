@@ -12,22 +12,21 @@
                 = f.button :submit, t('groups.topics.show.submit')
   .row
     .columns.small-12
-      .clearfix
-        %h4
-          %a.left-arrow.left{href: group_group_topics_path(@group)} &#10092;
-          .left
-            = print_topic_title @topic
-          .right
-            = link_to foundation_icons('fi-pencil large') + t('groups.topics.show.modify_message'), edit_group_group_topic_path(group_group_id: @group, id: @topic), class: 'button secondary tiny'
-            = link_to foundation_icons('fi-x large') + t('groups.topics.show.delete_topic'), group_group_topic_path(group_group_id: @group, id: @topic), method: :delete, data: {confirm: t('dico.are_you_sure')}, class: 'button alert tiny'
+      %h4
+        %a.left-arrow.left{href: group_group_topics_path(@group)} &#10092;
+        = print_topic_title @topic
       %h6
         = t('groups.topics.show.started_at', date: l(@topic.created_at, format: :short))
         = t('groups.topics.show.with')
         = @topic.contributors(@comments).map {|u| user_image(u)}.to_sentence.html_safe
   #topic-scroll
     .row.topic-message.comment{:'data-element-nb' => '1'}
-      .columns.small-12
-        = user_image @topic.user, size: :small, name: true
+      .columns.small-12.clearfix
+        .left
+          = user_image @topic.user, size: :small, name: true
+        .right
+          = link_to foundation_icons('fi-pencil large') + t('groups.topics.show.modify_message'), edit_group_group_topic_path(group_group_id: @group, id: @topic), class: 'button secondary tiny'
+          = link_to foundation_icons('fi-x large') + t('groups.topics.show.delete_topic'), group_group_topic_path(group_group_id: @group, id: @topic), method: :delete, data: {confirm: t('dico.are_you_sure')}, class: 'button alert tiny'
       .columns.small-11
         =s(@topic.message).html_safe
     -if @comments.any?
