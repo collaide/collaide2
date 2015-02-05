@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     #UsersController
     resources :users, only: [:show] do
       get 'groups'
+      get 'notifications'
     end
 
     # GroupsController

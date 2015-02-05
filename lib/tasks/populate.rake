@@ -18,7 +18,7 @@ namespace :populate do
       end
       group.topics << Group::Topic.create!(title: title, message: message, user: u, group: group)
     end
-    group.topics.each do |topic|
+    group.topics.limit(5).each do |topic|
       100.times do
         topic.comments << Group::Comment.create!(message: message, user: u, topic: topic)
       end

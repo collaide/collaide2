@@ -61,6 +61,17 @@ module ApplicationHelper
     link_to content, user_path(user)
   end
 
+  # Print to the topbar an item to read the notifications and show the number of unreaded notifications
+  def print_unread_notifications
+    return unless user_signed_in?
+    notifications_size = current_user.notifications.where(is_viewed: false).size
+    # todo: update with the current_path method
+    # ie: current_page?(:controller => 'users', :action => 'index')
+    if notifications_size > 0 and request.fullpath != user_notifications_path(current_user)
+      "<li><a href='#{user_notifications_path(current_user)}'>#{t('header.user.notifications', size: notifications_size)}</a></li>".html_safe
+    end
+  end
+
   private
   def generate_meta(meta, text = '')
     if text.blank?

@@ -19,7 +19,11 @@ class   User < ActiveRecord::Base
   has_many :group_members, class_name: 'Group::GroupMember'
   has_many :groups, class_name: 'Group::Group', through: :group_members
 
+  # Les groupes créés par un utilisateur
   has_many :groups_created, class_name: 'Group::Group'
+
+  # Les notifications d'un utilisateur
+  has_many :notifications
 
   validates :name, presence: true
 

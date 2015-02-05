@@ -58,7 +58,7 @@ gem 'repository-manager', '~> 0.2.10'
 
 group :development, :test do
 
-  gem 'byebug', '~> 3.5.1'
+  gem 'byebug', '~> 3.5.1' # Debugger
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -66,15 +66,17 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.2.0'
 
-  gem 'quiet_assets', '>= 1.0.1'
+  gem 'quiet_assets', '>= 1.0.1' # messages de logs plus lisibles
 
   gem 'cucumber-rails', '~> 1.4.2', require: false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner', '~> 1.4.0'
-  gem 'rspec-expectations', '~> 3.1.2'
+  gem 'rspec-expectations', '~> 3.2.0'
+  gem 'rspec-rails', '~> 3.2.0'
   gem 'selenium-webdriver', '~> 2.44.0'
 
   gem 'factory_girl', '~> 4.5.0'
+  gem 'factory_girl_rails', '~> 4.5.0'
 
   gem 'faker', '~> 1.4.3' # populate with fake datas
 end

@@ -133,6 +133,18 @@ ActiveRecord::Schema.define(version: 20150204000000) do
     t.datetime "updated_at"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string   "class_name"
+    t.string   "method_name"
+    t.text     "values"
+    t.boolean  "is_viewed",   default: false
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
   create_table "rm_repo_items", force: :cascade do |t|
     t.integer "owner_id"
     t.string  "owner_type"

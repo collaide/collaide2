@@ -21,6 +21,7 @@ fr:
       edit: Modifier mon profil
       settings: Paramètres
       logout: "Déconnexion"
+      notifications: "Notifications (%{size})"
     sign_up: "Inscription"
     sign_in: "Connexion"
   footer:
@@ -151,6 +152,8 @@ fr:
       title: "Image de %{user}"
     groups:
       no_group: "Vous n'êtes membres d'aucun groupes"
+    notifications:
+      no_records: "Pas de notifications"
   notifications_mailer:
     signup:
       subject: Bienvenue sur collaide.com
