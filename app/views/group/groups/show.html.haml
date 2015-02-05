@@ -1,2 +1,8 @@
 =render layout: 'group/layouts/layout' do
-  %p= @group.name
+  %h3= "Fil d'actualités"
+  .row
+    .columns.small-24
+      - @activities.each do |activity|
+        .activity
+          -# :specification says if it is specific for group or general, etc
+          = render_activity activity, layout: 'activity', locals: {specification: :group}

@@ -11,10 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129085147) do
+ActiveRecord::Schema.define(version: 20150204000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activity_activities", force: :cascade do |t|
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "key"
+    t.boolean  "public",         default: false
+    t.text     "parameters"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activity_activities", ["owner_type", "owner_id"], name: "index_activity_activities_on_owner_type_and_owner_id", using: :btree
+  add_index "activity_activities", ["recipient_type", "recipient_id"], name: "index_activity_activities_on_recipient_type_and_recipient_id", using: :btree
+  add_index "activity_activities", ["trackable_type", "trackable_id"], name: "index_activity_activities_on_trackable_type_and_trackable_id", using: :btree
+
+  create_table "activity_parameters", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "starting_at"
+    t.datetime "ending_at"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activity_parameters", ["owner_type", "owner_id"], name: "index_activity_parameters_on_owner_type_and_owner_id", using: :btree
+  add_index "activity_parameters", ["trackable_type", "trackable_id"], name: "index_activity_parameters_on_trackable_type_and_trackable_id", using: :btree
 
   create_table "group_comments", force: :cascade do |t|
     t.text     "message"
