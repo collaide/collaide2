@@ -9,4 +9,6 @@
             .right.info_text
               = time_ago_in_words(n.created_at)
             = n.print_message.html_safe
+            -unless n.is_viewed?
+              %span.label.success= t('groups.topics.index.table.new')
     =paginate @notifications
