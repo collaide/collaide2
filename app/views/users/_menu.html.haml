@@ -2,4 +2,4 @@
   = build_active_menu path: user_path(@user), text: t('users.side_nav.infos'), icon: 'info'
   = build_active_menu path: user_groups_path(@user), text: t('users.side_nav.groups'), icon: 'torsos-male-female'
   = build_active_menu path: '', text: 'Mes documents', icon: 'page-multiple'
-  = build_active_menu path: '', text: 'Notifications', icon: 'compass'
+  = build_active_menu path: user_notifications_path(@user), text: 'Notifications', icon: 'compass'

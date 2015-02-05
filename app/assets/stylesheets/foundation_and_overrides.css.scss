@@ -60,7 +60,6 @@ $footer-height: 200px;
 $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 .collaide-side-nav {
   border-right: 1px solid $secondary-color;
-  min-height: 500px;
   @include side-nav(
   // Border color of divider
   $divider-color: '#ccc',
@@ -388,7 +387,9 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
     background-color: $secondary-color;
   }
 }
+
 #post-indicator {
+  margin-top: rem-calc(15px);
   z-index: 2;
 }
 
@@ -416,6 +417,12 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   z-index: 2;
   background-color: white;
   border-bottom: 1px solid $secondary-color;
+}
+
+.is-sticky {
+  .sticky-element {
+    padding-top: rem-calc(15px);
+  }
 }
 // ############### FOOTER ###################
 // ##########################################

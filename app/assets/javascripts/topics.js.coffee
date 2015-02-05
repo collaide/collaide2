@@ -75,7 +75,7 @@ navigation = () ->
 
 $ ->
   $('.sticky-element').stickyJQuery({topSpacing: 0})
-  $('#post-indicator').stickyJQuery({topSpacing: 30})
+  $('#post-indicator').stickyJQuery({topSpacing: 0})
   appear()
   navigation()
 window.onload = () ->

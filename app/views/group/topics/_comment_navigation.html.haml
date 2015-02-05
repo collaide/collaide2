@@ -1,11 +1,11 @@
 .row#post-indicator
-  .columns.small-4
+  .columns.small-5
     %p
       %span#comment-number
         1 /
       %span#comment-size
         =@comments.size + 1
-  .columns.small-8
+  .columns.small-7
     .progress.success
       %span.meter#comment-percent{style: "width: #{(1.0/@comments.size.to_f) * 100}%"}
   .columns.small-12#comment-navigation
