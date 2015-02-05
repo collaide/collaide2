@@ -223,6 +223,7 @@ fr:
         delete_topic: "Supprimer"
         10_less: "10 avant"
         10_more: "10 après"
+        comment_date: "Le %{date}"
       comments:
         top: "En-haut"
         bottom: "En-bas"

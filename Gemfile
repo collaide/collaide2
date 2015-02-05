@@ -47,7 +47,7 @@ gem 'enumerize', '~> 0.9.0' # Enumration dans les modèles
 gem 'carrierwave', '~> 0.10.0' # Upload de fichier facilité
 gem 'mini_magick', '~> 4.0.2' # Redimmensionnement d'image
 gem 'kaminari', '~> 0.16.2' # Pagination
-gem 'sanitize', '~> 3.1.0' # Escape les éléments HTML sauf ceux spécifiés
+# gem 'sanitize', '~> 3.1.0' # Escape les éléments HTML sauf ceux spécifiés
 
 #Tinymce (html editor)
 gem 'tinymce-rails', '~> 4.1.6'

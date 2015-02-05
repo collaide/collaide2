@@ -8,7 +8,7 @@ class CustomSanitize
       @config[:add_attributes] = {
           'a' => {'rel' => 'nofollow'}
       }
-      @config[:elements].push('span')
+      @config[:elements].push('spsan')
       @config
     end
   end
