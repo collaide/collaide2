@@ -26,13 +26,13 @@ tiny_mce = () ->
     #strikethrough : {inline : 'del'},
     }
   })
-  $('textarea.tinymce').click ->
+  $(document).on('click', 'textarea.tinymce', ->
     tinymce_init($(this).attr('id'))
-
+  )
   tinymce_init('single-tinymce')
-
-  $(document).on('tinymce:init', () ->
-    tinymce_init('single-tinymce')
+  $(document).on('tinymce:init', (event) ->
+    tinymce_area = $('.tinymce')
+    tinymce_init(tinymce_area.attr('id'))
   )
 $ ->
   tiny_mce()

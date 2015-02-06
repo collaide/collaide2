@@ -1,15 +1,12 @@
 =render(layout: 'group/layouts/layout', locals: {more: 'group/topics/comment_navigation'}) do
   .sticky-element.row
     .columns.small-12
-      = link_to foundation_icons('fi-plus large') + t('groups.topics.comments.reply'), '#', class: 'std-button show-hidden', :'data-show-element' => 'new-topic-form'
+      = link_to foundation_icons('fi-plus large') + t('groups.topics.comments.reply'), '#', id: 'new-comment', class: 'std-button show-hidden', :'data-show-element' => 'new-topic-form', :'data-other-text' => foundation_icons('fi-minus large') + t('dico.cancel')
       #new-topic-form.hide.toggled-element
         .row
           .columns.small-12
             #comment-form-container
-              =simple_form_for @comment, url: group_group_topic_comments_path(group_group_id: @group, topic_id: @topic) do |f|
-                = f.input :message, input_html: {class: 'tinymce', id: 'comment-reply-form'}, placeholder: t('groups.topics.show.message_placeholder')
-                %br
-                = f.button :submit, t('groups.topics.show.submit')
+              = render partial: 'group/comments/create_form'
   .row
     .columns.small-12
       %h4

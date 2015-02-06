@@ -26,7 +26,7 @@ module ApplicationHelper
 
   # add a foundation icon
   def foundation_icons(classes)
-    "<i class=\"#{h(classes)}\"></i> ".html_safe
+    "<i class='#{h(classes)}'></i> ".html_safe
   end
 
   # Used for hiding part of the form for editing user's profile

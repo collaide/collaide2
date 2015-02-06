@@ -2,7 +2,7 @@
   %h4= t('groups.topics.index.description')
   -#%blockquote= t('groups.topics.index.description')
   .sticky-element
-    = link_to foundation_icons('fi-plus large') + t('groups.topics.form.submit'), '#', class: 'std-button show-hidden', :'data-show-element' => 'new-topic-form'
+    = link_to foundation_icons('fi-plus large') + t('groups.topics.form.submit'), '#', class: 'std-button show-hidden', :'data-show-element' => 'new-topic-form', :'data-other-text' => foundation_icons('fi-minus large') + t('dico.cancel')
     #new-topic-form.hide.toggled-element
       = render 'group/topics/form'
   .row

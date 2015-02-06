@@ -54,11 +54,13 @@ show_hidden = () ->
     sticker = $('.sticky-wrapper')
     sticker.removeAttr('style')
     id = $(this).attr('data-show-element')
-    console.log id
     element = $("##{id}")
-    console.log element
     return if element == undefined
     element.toggle('slow')
+    actor = $(this)
+    current_text = actor.html()
+    actor.html(actor.attr('data-other-text'))
+    actor.attr('data-other-text', current_text)
   )
 $ ->
   headerOffCanvas()

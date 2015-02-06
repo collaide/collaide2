@@ -267,3 +267,4 @@ fr:
   dico:
     delete: "Supprimer"
     are_you_sure: "Êtes-vous sûr ? Cette opération ne peut être annulée"
+    cancel: "Annuler"
