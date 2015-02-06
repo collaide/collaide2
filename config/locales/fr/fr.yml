@@ -232,6 +232,7 @@ fr:
         bottom: "En-bas"
         reply: "Réponse"
         deleted: "Commentaire supprimé le %{date}"
+        modified: "Modifié le %{date}"
       notice:
         deleted: "Le sujet '%{topic}' a été supprimé"
       edit:
