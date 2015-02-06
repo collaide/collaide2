@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :auth_token, controller: 'auth_token', only: [:create]
+    resources :comment_views, controller: 'comment_views', only: [:create, :index]
     resources :users, controller: 'users', only: :show do
       post 'valid', on: :collection
     end

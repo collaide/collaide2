@@ -18,5 +18,13 @@ class TopicsModule < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    create_table :group_comment_views do |t|
+      t.belongs_to :user
+      t.belongs_to :topic
+      t.belongs_to :comment
+
+      t.timestamps
+    end
   end
 end

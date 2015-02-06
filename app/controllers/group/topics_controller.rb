@@ -38,6 +38,7 @@ class Group::TopicsController < ApplicationController
 
   def show
     @comments = Group::Comment.includes(:user).where(topic_id: @topic)
+
     render :show
     @topic.update_view
   end

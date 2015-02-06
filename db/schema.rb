@@ -48,6 +48,14 @@ ActiveRecord::Schema.define(version: 20150204000000) do
   add_index "activity_parameters", ["owner_type", "owner_id"], name: "index_activity_parameters_on_owner_type_and_owner_id", using: :btree
   add_index "activity_parameters", ["trackable_type", "trackable_id"], name: "index_activity_parameters_on_trackable_type_and_trackable_id", using: :btree
 
+  create_table "group_comment_views", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "group_comments", force: :cascade do |t|
     t.text     "message"
     t.boolean  "deleted",    default: false

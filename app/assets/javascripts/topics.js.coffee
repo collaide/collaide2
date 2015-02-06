@@ -1,5 +1,6 @@
 comment_number = 1
 main_comment = 1
+search_comment = false
 appear = () ->
   $('.comment').appear()
   comment_size = parseInt($('#comment-size').text())
@@ -13,14 +14,46 @@ appear = () ->
       $('#comment-input').attr('value', current_number)
       comment_number = current_number
       main_comment = current_number
+      save_comment_viewd($(go_down(current_number)))
 #      update_hash(go_down(current_number))
   )
+save_comment_viewd = (element) ->
+  return if element == undefined
+  comment_id = element.attr('id').split('-')[1]
+  url = window.location.pathname.split('/')
+  topic_id = url[url.length - 1]
+  $.ajax({
+      type: 'POST',
+      url: '/api/comment_views',
+      dataType: 'application/json',
+      success: () ->
+        console.log('success')
+      data: {
+        group_comment_views: {
+          comment_id: comment_id,
+          topic_id: topic_id
+        }
+      }
+  }
+  )
+
+get_comment_viewed = () ->
+  return if !search_comment
+  url = window.location.pathname.split('/')
+  topic_id = url[url.length - 1]
+  $.ajax({
+    type: 'GET',
+    url: "/api/comment_views?topic_id=#{topic_id}",
+    dataType: 'json',
+    success: (data) ->
+      console.log(data)
+      goto_anchor("#comment-#{data.comment_id}")
+  })
 goto_anchor = (selector) ->
   $('.current-comment').removeClass('current-comment')
   element = $(selector)
   return if element.length == 0
   main_comment = element.attr('data-element-nb')
-  console.log main_comment
   element_top = element.position().top
   element_height = element.outerHeight()
   scroll_amount = (element_top)
@@ -34,11 +67,13 @@ goto_anchor = (selector) ->
 anchor = () ->
   hash = window.location.hash
   hash = hash.substring(1, hash.length)
+  search_comment = true
   if hash
     if hash == 'top'
       goto_anchor(go_down(1))
     else
       goto_anchor("#comment-#{hash}")
+    search_comment = false
 go_down = (nb) ->
   "[data-element-nb='#{nb}']"
 update_hash = (selector) ->
@@ -80,6 +115,7 @@ $ ->
   navigation()
 window.onload = () ->
   anchor()
+  get_comment_viewed()
 #
 #  // trigger Masonry as a callback
 #  function( newElements ) {
