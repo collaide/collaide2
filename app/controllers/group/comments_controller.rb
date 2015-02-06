@@ -31,8 +31,9 @@ class Group::CommentsController < ApplicationController
 
   # DELETE /groups/:group_group_id/topics/:topic_id/comments/:id
   def destroy
-    @comment.delete
-    redirect_to group_group_topic_path(group_group_id: @group, id: @topic), notice: t('groups.comments.notices.comment_deleted')
+    @comment.deleted = true
+    @comment.save
+    redirect_to group_group_topic_path(group_group_id: @group, id: @topic, anchor: @comment.id), notice: t('groups.comments.notices.comment_deleted')
   end
 
   private

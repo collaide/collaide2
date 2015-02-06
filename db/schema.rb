@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150204000000) do
 
   create_table "group_comments", force: :cascade do |t|
     t.text     "message"
+    t.boolean  "deleted",    default: false
     t.integer  "user_id"
     t.integer  "topic_id"
     t.datetime "created_at"

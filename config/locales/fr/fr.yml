@@ -231,6 +231,7 @@ fr:
         top: "En-haut"
         bottom: "En-bas"
         reply: "Réponse"
+        deleted: "Commentaire supprimé le %{date}"
       notice:
         deleted: "Le sujet '%{topic}' a été supprimé"
       edit:
@@ -268,3 +269,4 @@ fr:
     delete: "Supprimer"
     are_you_sure: "Êtes-vous sûr ? Cette opération ne peut être annulée"
     cancel: "Annuler"
+    modified: "Modifié"
