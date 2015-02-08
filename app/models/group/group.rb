@@ -67,11 +67,11 @@ class Group::Group < ActiveRecord::Base
   has_many :topics, class_name: 'Group::Topic', dependent: :destroy
 
   def invitations_waiting_a_reply
-    self.invitations.give_a_reply
+    self.invitations.wait_a_reply
   end
 
-  def p_or_l_email_invitations
-    self.email_invitations.give_a_reply
+  def email_invitations_waiting_a_reply
+    self.email_invitations.wait_a_reply
   end
 
   validates :name, presence: true, length: {minimum: 2}

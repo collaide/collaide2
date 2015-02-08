@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get 'create/password', controller: 'group/groups_creator', action: 'password', as: 'create_password' # Pour la création d'un groupe pas à pas
       get 'create/invitations', controller: 'group/groups_creator', action: 'invitations', as: 'create_invitations' # Pour la création d'un groupe pas à pas
       # TopicsController -> discussions
+      resources :invitations, controller: 'group/invitations', only: [:index, :create]
       resources :topics, controller: 'group/topics' do
         resources :comments, controller: 'group/comments', only: [:create, :update, :edit, :destroy]
       end
@@ -35,6 +36,11 @@ Rails.application.routes.draw do
     resources :comment_views, controller: 'comment_views', only: [:create, :index]
     resources :users, controller: 'users', only: :show do
       post 'valid', on: :collection
+    end
+    resources :search, only: :index do
+      collection do
+        get :users
+      end
     end
   end
 end

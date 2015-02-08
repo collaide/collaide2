@@ -253,6 +253,19 @@ fr:
         h4_title: "Ajouter une réponse au sujet '%{topic}'"
       edit:
         submit: "Mettre le commentaire à jour"
+    invitations:
+      index:
+        h4_title: "Gestion des invitations"
+        form_title: "Inviter des nouvelles personnes"
+        people_invited:
+          zero: "Aucune personne invitée"
+          one: "Une personne invitée"
+          other: "%{count} personnes invitées"
+        no_people_invited: "Aucune personne invitée"
+        invit: "Inviter"
+      create:
+        notice: "Toutes les invitations ont été envoyées"
+        submit: "Envoyer les invitations"
   devise:
     offcanvas:
       signin:
@@ -271,3 +284,11 @@ fr:
     are_you_sure: "Êtes-vous sûr ? Cette opération ne peut être annulée"
     cancel: "Annuler"
     modified: "Modifié"
+    destroy: "Suprimer"
+  simple_form:
+    labels:
+      group_do_invitation:
+        users_id: "Personnes à inviter"
+    placeholders:
+      group_do_invitation:
+        users_id: "Nom ou adresse e-mail des personnes à inviter"

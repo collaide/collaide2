@@ -16,6 +16,8 @@
 //= require jquery.infinitescroll
 //= require jquery.appear
 //= require jquery.sticky
+//= require select2
+//= require select2_locale_fr
 //= require_tree .
 
 //= require foundation

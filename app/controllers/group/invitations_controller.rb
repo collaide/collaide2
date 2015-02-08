@@ -5,12 +5,28 @@ class Group::InvitationsController < ApplicationController
 
   # Liste toutes les invitations qui n'ont pas reçues de réponses positives du groupe
    def index
-
+     @invitation = Group::DoInvitation.new
    end
+
+  def create
+    do_invitation = Group::DoInvitation.new(group_invitation_params)
+    do_invitation.group_id = params[:group_group_id]
+    if do_invitation.valid?
+      @group.send_invitations(do_invitation, sender: current_user)
+      redirect_to group__group_invitations_path(@group), notice: t('groups.invitations.create.notice')
+    else
+      @invitation = do_invitation
+      render 'group/invitations/index'
+    end
+  end
 
   private
 
   def find_the_group
     @group = Group::Group.find params[:group_group_id]
+  end
+
+  def group_invitation_params
+    params.require(:group_do_invitation).permit(:users_id, :email_list, :message)
   end
 end

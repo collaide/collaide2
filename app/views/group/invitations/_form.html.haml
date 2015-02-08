@@ -1,0 +1,6 @@
+=simple_form_for @invitation, url: group_group_invitations_path do |f|
+  =f.input :users_id, as: :hidden, input_html: { class: 's2_general'},
+    label: t('simple_form.labels.group_do_invitation.users_id'),
+    placeholder: t('simple_form.placeholders.group_do_invitation.users_id')
+  =f.input :message, as: :text
+  =f.button :submit, t('groups.invitations.create.submit')

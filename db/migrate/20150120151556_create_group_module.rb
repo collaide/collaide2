@@ -60,7 +60,7 @@ class CreateGroupModule < ActiveRecord::Migration
       t.text :message
       t.string :secret_token
       t.string :status
-      t.belongs_to :group
+      t.belongs_to :group_group
       t.belongs_to :user
     end
 

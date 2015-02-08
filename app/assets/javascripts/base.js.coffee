@@ -66,3 +66,4 @@ $ ->
   headerOffCanvas()
   infinite()
   show_hidden()
+  $('.sticky-element').stickyJQuery({topSpacing: 0})

@@ -32,6 +32,7 @@ gem 'route_translator', '~> 4.0.0'
 
 #Formular
 gem 'simple_form', '~> 3.1.0'
+gem 'select2-rails', '~> 3.5.9.1' # séléction multiple
 
 #User
 gem 'devise', '~> 3.4.1'

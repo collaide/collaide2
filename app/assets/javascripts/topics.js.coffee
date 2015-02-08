@@ -38,7 +38,7 @@ save_comment_viewd = (element) ->
   )
 
 get_comment_viewed = () ->
-  return if !search_comment
+  return if !search_comment || $('#topic-scroll').length == 0
   url = window.location.pathname.split('/')
   topic_id = url[url.length - 1]
   $.ajax({
@@ -109,7 +109,6 @@ navigation = () ->
   )
 
 $ ->
-  $('.sticky-element').stickyJQuery({topSpacing: 0})
   $('#post-indicator').stickyJQuery({topSpacing: 0})
   appear()
   navigation()

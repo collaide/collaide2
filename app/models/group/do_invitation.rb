@@ -23,7 +23,6 @@ class Group::DoInvitation
       end
     end
     self.email_list = e_list
-    Rails.logger.debug(self.email_list.inspect + ' akjsdahjsdvhjasvdjhavsdjk')
     self.users = id_list
   end
 end

@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150204000000) do
     t.text    "message"
     t.string  "secret_token"
     t.string  "status"
-    t.integer "group_id"
+    t.integer "group_group_id"
     t.integer "user_id"
   end
 
