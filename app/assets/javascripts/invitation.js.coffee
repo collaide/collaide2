@@ -15,7 +15,7 @@ invitation  = () ->
     minimumInputLength: 2
     multiple: true
     ajax: #instead of writing the function to execute the request we use Select2's convenient helper
-      url: '/users/search'
+      url: '/api/search/users'
       dataType: 'json'
       data: (term, page) ->
         term: term
@@ -45,7 +45,7 @@ invitation  = () ->
         if isNaN(invitation_id)
           datas.push({id: invitation_id, text: invitation_id + ' (non membre)'})
         else
-          $.ajax('/users/search.json?id='+invitation_id).done((data) ->
+          $.ajax('/api/search/users.json?id='+invitation_id).done((data) ->
             if data.length > 0
               jsonNeede = true
               data[0].text = data[0].name

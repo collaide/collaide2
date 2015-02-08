@@ -35,6 +35,8 @@ class   User < ActiveRecord::Base
       only_integer: true
   }
 
+  scope :search_by_email_or_name, -> (term) { where('email LIKE :email or name LIKE :name', email: "%#{term}%", name: "%#{term}%").limit 10 }
+
   #################################################
   ############## MODULE ACTIVITIES ################
   #################################################
