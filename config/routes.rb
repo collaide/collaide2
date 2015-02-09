@@ -28,6 +28,12 @@ Rails.application.routes.draw do
       resources :topics, controller: 'group/topics' do
         resources :comments, controller: 'group/comments', only: [:create, :update, :edit, :destroy]
       end
+      resources :email_invitations, controller: 'group/email_invitations', only: [:destroy] do
+        collection do
+          patch ':id/secret_token/:secret_token', action: :update, as: ''
+          get ':id/secret_token/:secret_token', action: :update, as: ''
+        end
+      end
     end
   end
 

@@ -424,6 +424,13 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
     padding-top: rem-calc(15px);
   }
 }
+// ##########################################
+// ############### SELECT2 ##################
+// ##########################################
+.s2, .s2_users_select, .s2_general, .select2-search-field  {
+  width: 100%;
+  padding-bottom: 1em;
+}
 // ############### FOOTER ###################
 // ##########################################
 footer {

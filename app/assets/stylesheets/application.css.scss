@@ -11,6 +11,7 @@
  * file per style scope.
  *
  * Leave it in last position!
+ *= require select2
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides

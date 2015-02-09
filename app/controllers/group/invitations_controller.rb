@@ -13,10 +13,10 @@ class Group::InvitationsController < ApplicationController
     do_invitation.group_id = params[:group_group_id]
     if do_invitation.valid?
       @group.send_invitations(do_invitation, sender: current_user)
-      redirect_to group__group_invitations_path(@group), notice: t('groups.invitations.create.notice')
+      redirect_to group_group_invitations_path(@group), notice: t('groups.invitations.create.notice')
     else
       @invitation = do_invitation
-      render 'group/invitations/index'
+      render 'group/invitations/new'
     end
   end
 

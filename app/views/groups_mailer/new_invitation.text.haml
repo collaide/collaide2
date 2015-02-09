@@ -1,0 +1,9 @@
+=t('mailers.groups.new_invitation.subject', user: @user.to_s, group: @group.to_s)
+===============================================
+-unless @message.blank?
+  = t('mailers.groups.new_invitation.message')
+  \-----------------------------------------------
+  = @message
+  \-----------------------------------------------
+= t('mailers.groups.new_invitation.text.description')
+=group_group_email_invitations_url(group_group_id: @group.id, id: @email_id, secret_token: @secret_token)

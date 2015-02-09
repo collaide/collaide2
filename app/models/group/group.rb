@@ -61,7 +61,7 @@ class Group::Group < ActiveRecord::Base
   has_many :invitations, class_name: 'Group::Invitation'
 
   # Les invitations envoyées à des non-membres pour qu'ils rejoingnent le groupe
-  has_many :email_invitations, foreign_key: 'group_group_id'
+  has_many :email_invitations
 
   # Les topics (discussions) d'un groupe
   has_many :topics, class_name: 'Group::Topic', dependent: :destroy
@@ -194,19 +194,19 @@ class Group::Group < ActiveRecord::Base
       do_invitation.users.each do |an_id|
         next if an_id.to_i < 1 or !an_id.to_i.is_a? Fixnum
         invitation  = Group::Invitation.new message: do_invitation.message,  receiver_type: receiver_type, receiver_id: an_id, sender: sender
-        self.group_invitations << invitation
+        self.invitations << invitation
       end
       do_invitation.email_list.each do |an_email|
         if an_email =~ Group::DoInvitationValidator::VALID_EMAIL_REGEX
           a_user = User.find_by email: an_email
           if a_user
             invitation  = Group::Invitation.new message: do_invitation.message,  receiver_type: receiver_type, receiver_id: a_user.id, sender: sender
-            self.group_invitations << invitation
+            self.invitations << invitation
           else
             ei = Group::EmailInvitation.create(
-                email: an_email, message: do_invitation.message, group_group: self, user: sender, secret_token: SecureRandom.hex(16)
+                email: an_email, message: do_invitation.message, group: self, sender: sender, secret_token: SecureRandom.hex(16)
             )
-            GroupMailer.new_invitation(ei).deliver
+            GroupsMailer.new_invitation(ei).deliver_later
             ei.save
           end
         end

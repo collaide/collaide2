@@ -1,0 +1,8 @@
+%h3= t('mailers.groups.new_invitation.subject', user: @user.to_s, group: @group.to_s)
+
+-unless @message.blank?
+  %h4= t('mailers.groups.new_invitation.message')
+  .panel
+    =@message
+%p
+  = t('mailers.groups.new_invitation.html.description', link: link_to(t('mailers.groups.new_invitation.join_group'), group_group_email_invitations_url(group_group_id: @group.id, id: @email_id, secret_token: @secret_token))).html_safe

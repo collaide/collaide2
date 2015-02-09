@@ -47,16 +47,17 @@ invitation  = () ->
         else
           $.ajax('/api/search/users.json?id='+invitation_id).done((data) ->
             if data.length > 0
-              jsonNeede = true
+              jsonNeeded = true
               data[0].text = data[0].name
               datas.push(data[0])
               $.event.trigger({type:'init:done'})
           )
-      if jsonNeeded
-        $(document).on('init:done', ->
-          callback(datas)
-        )
-      else callback(datas)
+      if !jsonNeeded
+        callback(datas)
+      $(document).on('init:done', ->
+        callback(datas)
+      )
+
   });
 
 $ ->

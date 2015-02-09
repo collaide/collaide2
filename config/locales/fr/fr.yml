@@ -263,9 +263,36 @@ fr:
           other: "%{count} personnes invitées"
         no_people_invited: "Aucune personne invitée"
         invit: "Inviter"
+        cancel_invitation: "Annuler l'invitation"
       create:
         notice: "Toutes les invitations ont été envoyées"
         submit: "Envoyer les invitations"
+      update:
+        notice:
+          accept: Bienvenue dans le groupe
+          later: Noubliez pas de donner une réponse plus tard...
+          refuse: Vous avez refusé l'invitation
+          bordel: Toi t'as foutu le bordel
+          already_member: Vous êtes déjà membre de ce groupe
+      validation:
+        not_blank: Ne peut pas être vide
+        no_group: Invitez les gens depuis un groupe
+        no_valid:
+          one: "L'adresse '%{email}' n'est pas valide"
+          other: "Les addresses suivantes ne sont pas valides: %{email}"
+        already_invited:
+          one: "%{people} à déjà été invitée"
+          other: Les personnes %{people} ont déjà été invitées
+        already_invited_by_email:
+          one: "Un e-mail a déjà été envoyé à '%{email}'"
+          other: "les e-mails ont déjà été envoyé aux addresses '%{email}'"
+        already_member:
+          one: "%{people} est déjà membre"
+          other: Les personnes %{people} sont déjà membres
+      destroy:
+        notice: "Invitation supprimée"
+    email_invitations:
+      error: "Impossible de vous ajouter dans ce groupe. Peut-être que vous êtes déjà membre ou que l'invitation a été supprimée"
   devise:
     offcanvas:
       signin:
@@ -279,12 +306,13 @@ fr:
     comments:
       edit:
         h4_title: "Édition du commentaire"
+    email_invitations:
+      member: "Vous êtes maintenant membre de ce groupe !"
   dico:
     delete: "Supprimer"
     are_you_sure: "Êtes-vous sûr ? Cette opération ne peut être annulée"
     cancel: "Annuler"
     modified: "Modifié"
-    destroy: "Suprimer"
   simple_form:
     labels:
       group_do_invitation:
@@ -292,3 +320,13 @@ fr:
     placeholders:
       group_do_invitation:
         users_id: "Nom ou adresse e-mail des personnes à inviter"
+  mailers:
+    groups:
+      new_invitation:
+        subject: "%{user} vous invite à rejoindre le groupe %{group} sur Collaide"
+        message: "Voici son message :"
+        text:
+          description: "Utilisez le lien suivant pour rejoindre le groupe :"
+        html:
+          description: Cliquez sur ce lien pour %{link}.
+        join_group: rejoindre le groupe

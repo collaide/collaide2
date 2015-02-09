@@ -1,0 +1,5 @@
+=render(layout: 'group/layouts/layout') do
+  %h4
+    %a.left-arrow.left{href: group_group_invitations_path(@group)} &#10092;
+    = t('groups.invitations.index.form_title')
+  =render 'group/invitations/form'

@@ -16,10 +16,9 @@
         - @group.invitations_waiting_a_reply.each do |an_invitation|
           .row
             .columns.medium-12
-              = link_to t('dico.destroy')
+              = link_to t('groups.invitations.index.cancel_invitation')
         - @group.email_invitations_waiting_a_reply.each do |email_invit|
           .row
-            .columns.medium-12
+            .columns.small-12
               = email_invit.email
-            .columns.medium-12
-              = link_to t('dico.destroy')
+              = link_to t('groups.invitations.index.cancel_invitation'), group_group_email_invitation_path(group_group_id: @group, id: email_invit), method: :delete, data: {confirm: t('dico.are_you_sure')}, class: 'button tiny secondary'
