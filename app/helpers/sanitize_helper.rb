@@ -57,8 +57,7 @@ module SanitizeHelper
   #     end
   #   end
   #
-  # ## TODO : Changer aussi les adresses qui commencent par "www",
-  # ## TODO: faire la methode replace_text_with_node
+
   # #def has_anchor_ancestor(node)
   # #  until node.nil?
   # #    return true if node.name == 'a'
