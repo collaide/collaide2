@@ -1,5 +1,5 @@
 class Group::EmailInvitationsController < ApplicationController
-  before_action :find_email_invitation
+  before_action :find_required_objects
 
   def update
     # TODO Gérer le cas d'une invitation marquée comme supprimée
@@ -41,7 +41,8 @@ class Group::EmailInvitationsController < ApplicationController
   end
 
   private
-  def find_email_invitation
-    @ei = Group::EmailInvitation.find params[:id]
+  def find_required_objects
+    @group = Group::Group.find params[:group_group_id]
+    @ei = @group.email_invitations.where(id: params[:id]).take!
   end
 end

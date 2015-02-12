@@ -2,6 +2,12 @@ include Faker if Rails.env == 'development'
 namespace :populate do
   desc 'Populate Database with fake datas'
   task all: %w(environment db:dev_only) do
+    puts 'starting to populate...'
+    User.find_or_create_by! email: 'user@example.com' do |u|
+      u.name = Name.name
+      u.password = 'grimpe'
+      u.password_confirmation = 'grimpe'
+    end
     u = User.find_or_create_by! email: 'q@qwe.as' do |u|
       u.name = Name.name
       u.password = 'grimpe'
@@ -23,7 +29,7 @@ namespace :populate do
         topic.comments << Group::Comment.create!(message: message, user: u, topic: topic)
       end
     end
-    puts "Created 100 topics with 100 comments each for #{group.name} owned by #{u.name} (#{u.email} password: grimpe)"
+    puts "Created 100 topics with 100 comments for the third's one for #{group.name} owned by #{u.name} (email: #{u.email} password: grimpe)"
   end
 end
 

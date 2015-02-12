@@ -20,6 +20,12 @@ class Group::InvitationsController < ApplicationController
     end
   end
 
+  def destroy
+    @invitation = @group.invitations.where(id: params[:id]).take!
+    @invitation.destroy
+    redirect_to group_group_invitations_path, notice: t('groups.invitations.destroy.notice')
+  end
+
   private
 
   def find_the_group

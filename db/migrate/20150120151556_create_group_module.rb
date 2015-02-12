@@ -59,7 +59,7 @@ class CreateGroupModule < ActiveRecord::Migration
       t.string :email
       t.text :message
       t.string :secret_token
-      t.string :status
+      t.string :status, default: 'pending'
       t.belongs_to :group
       t.belongs_to :sender
     end

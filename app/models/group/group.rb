@@ -192,9 +192,11 @@ class Group::Group < ActiveRecord::Base
 
     def do_invitation(do_invitation, sender: self, receiver_type: 'User')
       do_invitation.users.each do |an_id|
-        next if an_id.to_i < 1 or !an_id.to_i.is_a? Fixnum
-        invitation  = Group::Invitation.new message: do_invitation.message,  receiver_type: receiver_type, receiver_id: an_id, sender: sender
+        next if an_id.to_i < 1
+        invitation  = Group::Invitation.new message: do_invitation.message, receiver_id: an_id, sender: sender
         self.invitations << invitation
+        UserNotifications.create!(:new_invitation, values: invitation, users: an_id)
+        GroupsMailer.new_invitation(invitation).deliver_later
       end
       do_invitation.email_list.each do |an_email|
         if an_email =~ Group::DoInvitationValidator::VALID_EMAIL_REGEX
@@ -206,7 +208,7 @@ class Group::Group < ActiveRecord::Base
             ei = Group::EmailInvitation.create(
                 email: an_email, message: do_invitation.message, group: self, sender: sender, secret_token: SecureRandom.hex(16)
             )
-            GroupsMailer.new_invitation(ei).deliver_later
+            GroupsMailer.new_invitation_from_email(ei).deliver_later
             ei.save
           end
         end

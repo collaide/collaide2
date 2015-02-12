@@ -1,10 +1,10 @@
 =render(layout: 'layout') do
-  -if @groups.empty?
-    %p= t('users.groups.no_group')
   =simple_form_for Group::Group.new do |f|
     .row
       =f.input :name, wrapper_html: {class: 'columns small-9'}
       =f.button :submit, t('groups.buttons.create'), wrapper_html: {class: 'columns small-3'}
+  -if @groups.empty?
+    %p= t('users.groups.no_group')
   -else
     %ul.no-bullet
       -@groups.each do |group|

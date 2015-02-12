@@ -14,10 +14,16 @@ class NotificationSystem::Save
     end
     if owners.respond_to? :each
       owners.each do |user|
-        Notification.create(class_name: class_name, method_name: method_name, values: values, user: user) if user.is_a? User
+        if user.is_a? User
+          Notification.create(class_name: class_name, method_name: method_name, values: values, user: user)
+        elsif user.to_i >= 1
+          Notification.create(class_name: class_name, method_name: method_name, values: values, user_id: user)
+        end
       end
     elsif owners.is_a? User
       Notification.create(class_name: class_name, method_name: method_name, values: values, user: owners)
+    elsif owners.to_i >= 1
+      Notification.create(class_name: class_name, method_name: method_name, values: values, user_id: owners)
     end
   end
 end
