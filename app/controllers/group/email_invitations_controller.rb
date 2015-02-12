@@ -1,6 +1,13 @@
 class Group::EmailInvitationsController < ApplicationController
   before_action :find_required_objects
 
+  # N'importe quel utilisateur qui clique sur le lien (il possède le secret token)
+  # peut rejoindre le groupe
+  # TODO Gérer le cas d'un utilisateur enregistré, inviter par email qui créé un nouveau compte
+  # Ce cas est rare. Il arrive uniquement dans le cas suivant:
+  # 1. Une personne invite qqn par email
+  # 2. Entre temps, cette personne s'inscrit sur collaide
+  # 3. Cette personne reçoit le mail d'invitation
   def update
     # TODO Gérer le cas d'une invitation marquée comme supprimée
     redirect_to back, alert: t('groups.email_invitations.error') and return if @ei.nil?
@@ -17,7 +24,7 @@ class Group::EmailInvitationsController < ApplicationController
         # par défaut l'invitation est acceptée
         else
           if @ei.status == :accepted
-            redirect_to user_path(invitation.user), notice: t('groups.invitations.update.notice.already_member')
+            redirect_to group_group_path(@ei.group), notice: t('groups.invitations.update.notice.already_member')
           end
           @group = Group::Group.find params[:group_group_id]
           if @group.add_members current_user, joined_method: :was_invited_by_email, invited_or_added_by: @ei.sender

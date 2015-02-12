@@ -7,8 +7,9 @@ class GroupsMailerPreview < ActionMailer::Preview
 
   def new_invitation
     receiver = User.find 2
-    sender = Group::Group.find(1).user
-    invitation = Group::Invitation.new message: do_invitation.message, reciever: receiver, sender: sender
+    group = Group::Group.find(1)
+    sender = group.user
+    invitation = Group::Invitation.create message: 'salut', receiver: receiver, sender: sender, group: group
     GroupsMailer.new_invitation invitation
   end
 end

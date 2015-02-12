@@ -1,0 +1,12 @@
+%h3= t('mailers.groups.new_invitation.subject', user: @invitation.sender, group: link_to(h(@invitation.group), group_group_url(@invitation.group))).html_safe
+
+-unless @invitation.message.blank?
+  %h4= t('mailers.groups.new_invitation.message')
+  .panel
+    =@invitation.message
+
+%p
+  =t('mailers.groups.new_invitation.accept_invitation')
+  = link_to t('dico.accept'), reply_link(@invitation, status: 'accepted'), class: 'button tiny'
+  = link_to t('dico.refuse'), reply_link(@invitation, status: 'refused'), class: 'button tiny alert '
+  = link_to t('dico.later'), reply_link(@invitation, status: 'later'), class: 'button tiny secondary'

@@ -1,4 +1,4 @@
-=t('mailers.groups.new_invitation.subject', user: @user.to_s, group: @group.to_s)
+=t('mailers.groups.new_invitation.subject', user: @user.to_s, group: @group.to_s + " (#{group_group_url(@group)})")
 ===============================================
 -unless @message.blank?
   = t('mailers.groups.new_invitation.message')

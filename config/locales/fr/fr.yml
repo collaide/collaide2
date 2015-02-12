@@ -313,6 +313,9 @@ fr:
     are_you_sure: "Êtes-vous sûr ? Cette opération ne peut être annulée"
     cancel: "Annuler"
     modified: "Modifié"
+    accept: "Accepter"
+    refuse: "Refuser"
+    later: "Plus tard"
   simple_form:
     labels:
       group_do_invitation:
@@ -327,6 +330,8 @@ fr:
         message: "Voici son message :"
         text:
           description: "Utilisez le lien suivant pour rejoindre le groupe :"
+          manage_invitations: "Utilisez le lien suivant pour afficher l'invitation dans votre navigateur Web"
         html:
           description: Cliquez sur ce lien pour %{link}.
         join_group: rejoindre le groupe
+        accept_invitation: "Voulez-vous rejoindre le groupe ?"

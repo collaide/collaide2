@@ -20,6 +20,33 @@ class Group::InvitationsController < ApplicationController
     end
   end
 
+  # L'utilisateur rejoint le groupe sur la base de l'invitation
+  # Il rejoint le groupe uniquement si c'est l'utlisateur contenu dans l'invitation
+  def update
+    invitation = Group::Invitation.find params[:id]
+    if invitation.status == :accepted
+      redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.already_member')
+    end
+    if get_status == :accepted
+      group = Group::Group.find params[:work_group_id]
+      group.add_members(invitation.receiver, joined_method: :was_invited, invited_or_added_by: invitation.sender)
+      group.save
+      invitation.status = :accepted
+      invitation.save
+      redirect_to group_work_group_path(group), notice: t('group.invitations.update.notice.accept')
+    elsif get_status == :refused
+      invitation.status = :refused
+      invitation.save
+      redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.refuse')
+    elsif get_status == :later
+      invitation.status = :later
+      invitation.save
+      redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.later')
+    else
+      redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.bordel')
+    end
+  end
+
   def destroy
     @invitation = @group.invitations.where(id: params[:id]).take!
     @invitation.destroy
