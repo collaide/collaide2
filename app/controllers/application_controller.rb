@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     return root_path unless request.env['HTTP_REFERER']
     :back
   end
+
+  def self.permission
+    @@permission ||= Permission.new
+  end
   private
 
   def set_locale
