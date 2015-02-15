@@ -4,18 +4,16 @@ class Ability
 
   def initialize(user)
     @rules = {}
-    define_permissions
+    define_permissions(user)
   end
 
   protected
 
-  def define_permissions
-    can :update, Group::Invitation do |group, invitation|
-      group.can? and invitation.id
-    end
+  def define_permissions(user)
+    can :index, Group::InvitationsController
   end
 
   def can(action, controller, &block)
-    controller.permission.add(action, block)
+    controller.permission.add(action, &block)
   end
 end

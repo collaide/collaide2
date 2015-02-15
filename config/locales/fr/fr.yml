@@ -335,3 +335,6 @@ fr:
           description: Cliquez sur ce lien pour %{link}.
         join_group: rejoindre le groupe
         accept_invitation: "Voulez-vous rejoindre le groupe ?"
+  alerts:
+    not_enough_permissions: "Vous n'avez pas le droit d'accéder à cette page"
+    access_denied: "Cette page requiert d'être connecté. Ci-dessous, vous pouvez vous connecter ou vous inscrire gratuitement."

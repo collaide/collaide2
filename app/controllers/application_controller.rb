@@ -1,10 +1,12 @@
 class ApplicationController < ActionController::Base
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   before_action :set_locale
   before_action :store_location
+  before_action :current_ability
 
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
@@ -19,6 +21,23 @@ class ApplicationController < ActionController::Base
   def self.permission
     @@permission ||= Permission.new
   end
+
+  def permission
+    @@permission ||= Permission.new
+  end
+
+  protected
+  def authorize(*args)
+    unless permission.authorized? params[:action].to_sym, args
+      return if user_signed_in? and current_user.admin?
+      access_denied
+    end
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user)
+  end
+
   private
 
   def set_locale
@@ -26,6 +45,24 @@ class ApplicationController < ActionController::Base
     # uncomment this line to have multi linguale site do it to config/application.rb, too
     #I18n.locale = params[:locale] || ((lang = request.env['HTTP_ACCEPT_LANGUAGE']) && lang[/^[a-z]{2}/]) if Rails.env == 'development'
     #logger.info "lang set to '#{I18n.locale}'"
+  end
+
+  # Deal with the redirection and flash messages when an user doesn't have the permissions
+  # to view a page. Called from the method authorize
+  def access_denied
+    logger.debug "Access denied on #{params[:controller]}##{params[:action]} for user #{current_user.nil? ? 'nil' : current_user.id}"
+    respond_to do |format|
+      format.json do
+        render status: 401, nothing: true
+      end
+      format.html do
+        if user_signed_in?
+          redirect_to back, alert: t('alerts.not_enough_permissions')
+        elsif current_user.nil?
+          redirect_to user_session_path, alert: t('alerts.access_denied')
+        end
+      end
+    end
   end
 
   def store_location
