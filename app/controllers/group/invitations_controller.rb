@@ -23,6 +23,7 @@ class Group::InvitationsController < ApplicationController
   # L'utilisateur rejoint le groupe sur la base de l'invitation
   # Il rejoint le groupe uniquement si c'est l'utlisateur contenu dans l'invitation
   def update
+    authorize @group, invitation
     invitation = Group::Invitation.find params[:id]
     if invitation.status == :accepted
       redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.already_member')

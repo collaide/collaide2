@@ -67,7 +67,7 @@ class Group::Group < ActiveRecord::Base
   has_many :topics, class_name: 'Group::Topic', dependent: :destroy
 
   def invitations_waiting_a_reply
-    self.invitations.wait_a_reply
+    self.invitations.includes(:receiver).wait_a_reply
   end
 
   def email_invitations_waiting_a_reply

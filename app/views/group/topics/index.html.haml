@@ -6,7 +6,7 @@
     #new-topic-form.hide.toggled-element
       = render 'group/topics/form'
   .row
-    .columns.small-24
+    .columns.small-12
       %h4= t('groups.topics.index.last_discussions')
       -if @topics.empty?
         %p= t('groups.topics.index.empty')

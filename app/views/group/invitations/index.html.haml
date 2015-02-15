@@ -1,14 +1,13 @@
 -#content_for :title, t('users.show.meta_title', user: @user.name_to_show)
 =render(:layout => 'group/layouts/layout') do
   %h4= t('groups.invitations.index.h4_title')
+  .sticky-element
+    = link_to foundation_icons('fi-plus large') + t('groups.invitations.index.invit'), '#', class: 'std-button show-hidden', :'data-show-element' => 'invit-people', :'data-other-text' => foundation_icons('fi-minus large') + t('dico.cancel')
+    #invit-people.hide.toggled-element
+      %h5= t('groups.invitations.index.form_title')
+      =render partial: 'group/invitations/form'
+      %hr
   .row
-    .columns.small-12
-      .sticky-element
-        = link_to foundation_icons('fi-plus large') + t('groups.invitations.index.invit'), '#', class: 'std-button show-hidden', :'data-show-element' => 'invit-people', :'data-other-text' => foundation_icons('fi-minus large') + t('dico.cancel')
-        #invit-people.hide.toggled-element
-          %h5= t('groups.invitations.index.form_title')
-          =render partial: 'group/invitations/form'
-          %hr
     .columns.small-12
       - invitations_size = @group.invitations_waiting_a_reply.size + @group.email_invitations_waiting_a_reply.size
       %h5= t('groups.invitations.index.people_invited', count: invitations_size)
