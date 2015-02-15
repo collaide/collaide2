@@ -6,6 +6,10 @@ class Permission
     @actions = {}
   end
 
+  def reset
+    @actions = {}
+  end
+
   def add(action, &block)
     @actions[action] = block
   end

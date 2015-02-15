@@ -18,15 +18,26 @@ class ApplicationController < ActionController::Base
     :back
   end
 
+  # Called from ability.rb for adding a new permission for an action of the current controlller
   def self.permission
     @@permission ||= Permission.new
   end
 
+  # Used to know the permissions of a controller when instancied
   def permission
     @@permission ||= Permission.new
   end
 
   protected
+
+  # Test if an action from the current controller can be authorized
+  # There exists two ways for using it:
+  # - With a +before_action+
+  # - Inside a method. Optionals arguments can be passed to the method. For example, a group and so on.
+  # In both cases, it will test if the current action is authorized from the model Ability
+  #
+  # If this method is newer called, it will not be checked if a user can access this action or not
+  # If this method is called, but there is no permission defined nobody will be able to access this action
   def authorize(*args)
     unless permission.authorized? params[:action].to_sym, args
       return if user_signed_in? and current_user.admin?

@@ -1,10 +1,15 @@
 class Ability
 
-  attr_accessor :rules
-
   def initialize(user)
-    @rules = {}
+    controllers.each do |c|
+      c.permission.reset
+    end
+    @@controllers = []
     define_permissions(user)
+  end
+
+  def controllers
+    @@controllers ||= []
   end
 
   protected
@@ -13,7 +18,9 @@ class Ability
     can :index, Group::InvitationsController
   end
 
+  private
   def can(action, controller, &block)
+    controllers << controller
     controller.permission.add(action, &block)
   end
 end
