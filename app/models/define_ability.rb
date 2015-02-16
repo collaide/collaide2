@@ -1,8 +1,10 @@
 class DefineAbility
   attr_accessor :action_controller, :namespace_controller
 
-  def initialize(user)
+  def initialize(user, current_controller)
+    @current_controller = current_controller
     @action_controller = {}
+    @rules = {}
     @namespace_controller = nil
     controllers.each do |c|
       c.permission.reset
@@ -46,15 +48,17 @@ class DefineAbility
   def rule(action, _controller_class, &block)
     controller_class = if _controller_class.respond_to?(:camelize)
                          _controller_class += '_controller' if not _controller_class.end_with? '_controller'
-                         _controller_class.camelize.constantize
+                         _controller_class.camelize
                        else
                          _controller_class
                        end
-    controllers << controller_class
-    unless controller_class.respond_to? :permission
-      raise NoPermissionsException.new("The controller #{controller_class} does not have a method permission")
-    end
-    controller_class.permission.add(action, &block)
+    controller_class = controller_class.to_s
+    # controllers << controller_class
+    # unless controller_class.respond_to? :permission
+    #   raise NoPermissionsException.new("The controller #{controller_class} does not have a method permission")
+    # end
+    (@rules[controller_class] ||= Permission.new).add(action, &block)
+    @current_controller.permission.add(action, &block) if @current_controller.class.to_s == controller_class
   end
 end
 

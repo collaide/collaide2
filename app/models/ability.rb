@@ -49,7 +49,7 @@ class Ability < DefineAbility
 
       controller :groups do
         can(:show) do |group|
-          group.can? :index, :activity, :user
+          group.can? :index, :activity, user
         end
         can(:invitations) do |group|
           group.user_id == user.id

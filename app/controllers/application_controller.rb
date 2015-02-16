@@ -18,14 +18,9 @@ class ApplicationController < ActionController::Base
     :back
   end
 
-  # Called from ability.rb for adding a new permission for an action of the current controlller
-  def self.permission
-    @@permission ||= Permission.new
-  end
-
   # Used to know the permissions of a controller when instancied
   def permission
-    @@permission ||= Permission.new
+    @permission ||= Permission.new
   end
 
   protected
@@ -46,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_ability
-    @current_ability ||= Ability.new(current_user)
+    @current_ability ||= Ability.new(current_user, self)
   end
 
   private

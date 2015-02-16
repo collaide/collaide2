@@ -29,7 +29,7 @@ namespace :populate do
         topic.comments << Group::Comment.create!(message: message, user: u, topic: topic)
       end
     end
-    puts "Created 100 topics with 100 comments for the third's one for #{group.name} owned by #{u.name} (email: #{u.email} password: grimpe)"
+    puts "Created 100 topics with 100 comments for the fifth's one for #{group.name} owned by #{u.name} (email: #{u.email} password: grimpe)"
   end
 end
 
