@@ -29,25 +29,25 @@ class Group::InvitationsController < ApplicationController
     invitation = Group::Invitation.find params[:id]
     authorize invitation
     if invitation.status == :accepted
-      redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.already_member')
+      redirect_to user_path(invitation.user), notice: t('groups.invitations.update.notice.already_member')
     end
-    if get_status == :accepted
-      group = Group::Group.find params[:work_group_id]
+    if get_status == 'accepted'
+      group = Group::Group.find params[:group_group_id]
       group.add_members(invitation.receiver, joined_method: :was_invited, invited_or_added_by: invitation.sender)
       group.save
-      invitation.status = :accepted
+      invitation.status = 'accepted'
       invitation.save
-      redirect_to group_work_group_path(group), notice: t('group.invitations.update.notice.accept')
-    elsif get_status == :refused
+      redirect_to group_group_path(group), notice: t('groups.invitations.update.notice.accept')
+    elsif get_status == 'refused'
       invitation.status = :refused
       invitation.save
-      redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.refuse')
-    elsif get_status == :later
+      redirect_to user_path(invitation.receiver), notice: t('groups.invitations.update.notice.refuse')
+    elsif get_status == 'later'
       invitation.status = :later
       invitation.save
-      redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.later')
+      redirect_to user_path(invitation.receiver), notice: t('groups.invitations.update.notice.later')
     else
-      redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.bordel')
+      redirect_to user_path(invitation.receiver), notice: t('groups.invitations.update.notice.bordel')
     end
   end
 
@@ -59,6 +59,11 @@ class Group::InvitationsController < ApplicationController
   end
 
   private
+
+  def get_status
+    status = params[:status]
+    status['status'] if status.respond_to? :[]
+  end
 
   def find_the_group
     @group = Group::Group.find params[:group_group_id]

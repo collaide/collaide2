@@ -35,7 +35,7 @@ class Group::EmailInvitationsController < ApplicationController
             redirect_to back, alert: t('groups.email_invitations.error')
             return
           end
-          redirect_to group_group_invitations_path(@group), notice: t('group.email_invitations.member')
+          redirect_to group_group_path(@group), notice: t('group.email_invitations.member')
       end
     else
       redirect_to back, notice: t('groups.email_invitations.error')
