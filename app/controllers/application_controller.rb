@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   # If this method is newer called, it will not be checked if a user can access this action or not
   # If this method is called, but there is no permission defined nobody will be able to access this action
   def authorize(*args)
-    unless permission.authorized? params[:action].to_sym, args
+    unless permission.authorized? params[:action].to_sym, args: args
       return if user_signed_in? and current_user.admin?
       access_denied
     end

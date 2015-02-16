@@ -24,6 +24,7 @@ class Group::GroupsController < ApplicationController
 
   def show
     @group = Group::Group.find params[:id]
+    authorize @group
     @activities = Activity::Activity.order("created_at desc").where('(trackable_id = ? AND trackable_type = ?) OR (recipient_id = ? AND recipient_type = ?) OR (owner_id = ? AND owner_type = ?)', @group.id, @group.class.base_class.to_s, @group.id, @group.class.base_class.to_s, @group.id, @group.class.base_class.to_s)
   end
 

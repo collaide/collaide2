@@ -9,6 +9,7 @@ class Group::EmailInvitationsController < ApplicationController
   # 2. Entre temps, cette personne s'inscrit sur collaide
   # 3. Cette personne reçoit le mail d'invitation
   def update
+    authorize
     # TODO Gérer le cas d'une invitation marquée comme supprimée
     redirect_to back, alert: t('groups.email_invitations.error') and return if @ei.nil?
     if @ei.secret_token = params[:secret_token]
@@ -43,6 +44,7 @@ class Group::EmailInvitationsController < ApplicationController
 
   # TODO ne pas supprimer l'invitation mais lui changer un attribut
   def destroy
+    authorize @group
     @ei.destroy
     redirect_to group_group_invitations_path, notice: t('groups.invitations.destroy.notice')
   end

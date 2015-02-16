@@ -31,7 +31,7 @@ RSpec.describe Permission, type: :model do
     end
     it 'is true with a block with args' do
       permission.add(:block_with_args) { |first_arg, second_arg| first_arg and second_arg }
-      expect(permission.authorized? :block_with_args, true, true).to be_truthy
+      expect(permission.authorized? :block_with_args, args: [true, true]).to be_truthy
     end
     it 'is false with an action unregistred' do
       expect(permission.authorized? :qwertz).to be_falsey

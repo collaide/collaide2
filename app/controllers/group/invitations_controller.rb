@@ -2,16 +2,16 @@
 # C-a-d, demander à une personne inscrite ou non sur collaide à rejoindre un groupe
 class Group::InvitationsController < ApplicationController
 
-  before_action :authorize
-
   before_action :find_the_group
 
   # Liste toutes les invitations qui n'ont pas reçues de réponses positives du groupe
    def index
+     authorize @group
      @invitation = Group::DoInvitation.new
    end
 
   def create
+    authorize @group
     do_invitation = Group::DoInvitation.new(group_invitation_params)
     do_invitation.group_id = params[:group_group_id]
     if do_invitation.valid?
@@ -26,8 +26,8 @@ class Group::InvitationsController < ApplicationController
   # L'utilisateur rejoint le groupe sur la base de l'invitation
   # Il rejoint le groupe uniquement si c'est l'utlisateur contenu dans l'invitation
   def update
-    authorize @group, invitation
     invitation = Group::Invitation.find params[:id]
+    authorize invitation
     if invitation.status == :accepted
       redirect_to user_path(invitation.user), notice: t('group.invitations.update.notice.already_member')
     end
@@ -52,6 +52,7 @@ class Group::InvitationsController < ApplicationController
   end
 
   def destroy
+    authorize @group
     @invitation = @group.invitations.where(id: params[:id]).take!
     @invitation.destroy
     redirect_to group_group_invitations_path, notice: t('groups.invitations.destroy.notice')

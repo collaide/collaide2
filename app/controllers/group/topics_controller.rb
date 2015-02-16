@@ -4,12 +4,14 @@ class Group::TopicsController < ApplicationController
 
   # GET /groups/:group_group_id/topics
   def index
+    authorize @group
     @topic = Group::Topic.new # Pour le formulaire
     @topics = @group.topics.order('group_topics.updated_at DESC, group_topics.created_at DESC, group_topics.views DESC').includes({comments: :user}, :user).page(params[:page])
   end
 
   # POST /groups/:group_group_id/topics
   def create
+    authorize @group
     @topic = Group::Topic.new(topic_params)
     @topic.user = current_user
     @topic.group = @group
@@ -21,6 +23,7 @@ class Group::TopicsController < ApplicationController
   end
 
   def update
+    authorize @group, @topic
     if @topic.update(topic_params)
       redirect_to group_group_topic_path(group_group_id: @group, id: @topic)
     else
@@ -29,14 +32,16 @@ class Group::TopicsController < ApplicationController
   end
 
   def edit
-
+    authorize @group, @topic
   end
 
   def new
+    authorize @group
     @topic = Group::Topic.new
   end
 
   def show
+    authorize @group
     @comments = Group::Comment.includes(:user).where(topic_id: @topic)
 
     render :show
@@ -45,6 +50,7 @@ class Group::TopicsController < ApplicationController
 
   def destroy
     topic = @group.topics.where(id: params[:id]).take
+    authorize @group, topic
     comments = topic.comments
     comments.each { |comment| comment.destroy }
     topic.delete

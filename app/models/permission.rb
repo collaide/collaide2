@@ -14,7 +14,7 @@ class Permission
     @actions[action] = block
   end
 
-  def authorized?(action, *args)
+  def authorized?(action, args: [])
     block = actions[action]
     matches_action?(action) and (no_block? block or true_block? block, args)
   end
@@ -30,6 +30,6 @@ class Permission
   end
 
   def true_block?(block, args)
-    block.try(:call, args)
+    block.try(:call, *args)
   end
 end

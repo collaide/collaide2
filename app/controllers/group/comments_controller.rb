@@ -6,6 +6,7 @@ class Group::CommentsController < ApplicationController
   # Créé un nouveau commentaire pour un sujet
   # POST /groups/:group_group_id/topics/:id
   def create
+    authorize @group
     @comment = Group::Comment.new(comment_params)
     @comment.user = current_user
     @comment.topic = @topic
@@ -18,10 +19,12 @@ class Group::CommentsController < ApplicationController
 
   # GET /groups/:group_group_id/topics/:topic_id/comments/:id/edit
   def edit
+    authorize @group, @comment
   end
 
   # PATCH /groups/:group_group_id/topics/:topic_id/comments/:id
   def update
+    authorize @group, @comment
     if @comment.update(message: params[:group_comment][:message])
       redirect_to group_group_topic_path(group_group_id: @group, id: @topic, anchor: @comment.id), notice: t('groups.comments.notices.comment_updated')
     else
@@ -31,6 +34,7 @@ class Group::CommentsController < ApplicationController
 
   # DELETE /groups/:group_group_id/topics/:topic_id/comments/:id
   def destroy
+    authorize @group, @comment
     @comment.deleted = true
     @comment.save
     redirect_to group_group_topic_path(group_group_id: @group, id: @topic, anchor: @comment.id), notice: t('groups.comments.notices.comment_deleted')

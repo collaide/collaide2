@@ -1,26 +1,60 @@
-class Ability
-
-  def initialize(user)
-    controllers.each do |c|
-      c.permission.reset
-    end
-    @@controllers = []
-    define_permissions(user)
-  end
-
-  def controllers
-    @@controllers ||= []
-  end
+class Ability < DefineAbility
 
   protected
 
-  def define_permissions(user)
-    can :index, Group::InvitationsController
-  end
+  def define!(user)
+    module_name :group do
+      create_and_comment_topics = lambda do |group|
+        group.can?(:write, :topic, user)
+      end
+      edit_comment_and_topics = lambda do |group, topic_or_comment|
+        group.can?(:write, :topic, user) or topic_or_comment.user_id == user.id
+      end
+      destroy_comment_and_topics = lambda do |group, topic_or_comment|
+        group.can?(:delete, :topic, user) or topic_or_comment.user_id == user.id
+      end
+      manage_invitations = lambda do |group|
+        group.can? :manage, :invitations, user
+      end
 
-  private
-  def can(action, controller, &block)
-    controllers << controller
-    controller.permission.add(action, &block)
-  end
+      controller :topics do
+        can([:index, :show]) do |group|
+          group.can? :index, :topics, user
+        end
+        can([:edit, :update], &edit_comment_and_topics)
+        can([:create, :new], &create_and_comment_topics)
+        can(:destroy, &destroy_comment_and_topics)
+      end
+
+      controller :comments do
+        can(:create, &create_and_comment_topics)
+        can [:edit, :update], &edit_comment_and_topics
+        can :destroy, &destroy_comment_and_topics
+      end
+
+      controller :invitations do
+        can([:index, :destroy], &manage_invitations)
+        can(:create) do |group|
+          group.can? :create, :invitation, user
+        end
+        can(:update) do |invitation|
+          invitation.receiver_id == user.id
+        end
+      end
+
+      controller :email_invitations do
+        can(:destroy, &manage_invitations)
+        can :update unless user.nil?
+      end
+
+      controller :groups do
+        can(:show) do |group|
+          group.can? :index, :activity, :user
+        end
+        can(:invitations) do |group|
+          group.user_id == user.id
+        end
+      end
+    end
+    end
 end
