@@ -3,6 +3,14 @@ class Ability < DefineAbility
   protected
 
   def define!(user)
+    unless user.nil?
+      group_permissions(user)
+    end
+  end
+
+  private
+
+  def group_permissions(user)
     module_name :group do
       create_and_comment_topics = lambda do |group|
         group.can?(:write, :topic, user)
@@ -56,5 +64,5 @@ class Ability < DefineAbility
         end
       end
     end
-    end
+  end
 end

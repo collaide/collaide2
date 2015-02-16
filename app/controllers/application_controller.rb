@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
 
+  class AccessDeniedException < Exception
+    def initialize
+      super
+    end
+  end
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -23,6 +29,10 @@ class ApplicationController < ActionController::Base
     @permission ||= Permission.new
   end
 
+  rescue_from AccessDeniedException do
+    access_denied
+  end
+
   protected
 
   # Test if an action from the current controller can be authorized
@@ -36,7 +46,7 @@ class ApplicationController < ActionController::Base
   def authorize(*args)
     unless permission.authorized? params[:action].to_sym, args: args
       return if user_signed_in? and current_user.admin?
-      access_denied
+      raise AccessDeniedException.new
     end
   end
 
