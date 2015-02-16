@@ -55,6 +55,12 @@ class Ability < DefineAbility
         can :update unless user.nil?
       end
 
+      controller :groups_creator do
+        can(:invitations) do |group|
+          user.id == group.user_id
+        end
+      end
+
       controller :groups do
         can(:show) do |group|
           group.can? :index, :activity, user
