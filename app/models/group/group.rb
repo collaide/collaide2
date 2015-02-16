@@ -101,6 +101,10 @@ class Group::Group < ActiveRecord::Base
     self.can_create_invitation << :member
   end
 
+  def is_a_member?(_user)
+    group_members.where(user: _user).exists?
+  end
+
   # send an invitation to the receivers
   def send_invitations(receivers, message: '', sender: self, receiver_type: 'User')
     if receivers.kind_of?(Array)

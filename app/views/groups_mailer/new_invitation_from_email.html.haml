@@ -5,4 +5,4 @@
   .panel
     =@message
 %p
-  = t('mailers.groups.new_invitation.html.description', link: link_to(t('mailers.groups.new_invitation.join_group'), group_group_email_invitations_url(group_group_id: @group.id, id: @email_id, secret_token: @secret_token))).html_safe
+  = t('mailers.groups.new_invitation.html.description', link: link_to(t('mailers.groups.new_invitation.join_group'), group_group_email_invitations_url(group_group_id: @group.id, id: @email_id, secret_token: @secret_token, status: :accepted))).html_safe

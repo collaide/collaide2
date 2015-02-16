@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
     access_denied
   end
 
+  def raise_record_not_found
+    raise ActiveRecord::RecordNotFound
+  end
+
   protected
 
   # Test if an action from the current controller can be authorized

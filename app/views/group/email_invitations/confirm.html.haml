@@ -1,0 +1,6 @@
+%h1= t('groups.email_invitations.confirm.h1_title', group: @group)
+
+%p= t('groups.email_invitations.confirm.are_you_really', user: current_user)
+%p
+  = link_to t('groups.email_invitations.confirm.im_not'), reset_session_group_group_email_invitations_path(group_group_id: @group, id: @ei, secret_token: @ei.secret_token), method: :delete, class: 'button'
+  = link_to t('groups.email_invitations.confirm.im', user: current_user), send_confirmation_group_group_email_invitations_path(group_group_id: @group, id: @ei, secret_token: @ei.secret_token), class: 'std-button'

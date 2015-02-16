@@ -273,7 +273,7 @@ fr:
           later: Noubliez pas de donner une réponse plus tard...
           refuse: Vous avez refusé l'invitation
           bordel: Toi t'as foutu le bordel
-          already_member: Vous êtes déjà membre de ce groupe
+          already_accepted: Vous avez déjà accepé l'invitation à rejoindre ce groupe
       validation:
         not_blank: Ne peut pas être vide
         no_group: Invitez les gens depuis un groupe
@@ -293,6 +293,14 @@ fr:
         notice: "Invitation supprimée"
     email_invitations:
       error: "Impossible de vous ajouter dans ce groupe. Peut-être que vous êtes déjà membre ou que l'invitation a été supprimée"
+      bad_secret_token: "Le mot de passe secret ne corresspond avec celui de l'invitation. Vous ne pouvez pas rejoindre le groupe"
+      invitation_destroyed: "L'invitation n'existe plus. Elle probablement été supprimée, vous ne pouvez pas rejoindre le groupe"
+      confirm:
+        h1_title: "Hum, il y a un doute concernant votre invitation à rejoindre le group %{group}"
+        are_you_really: "Êtes-vous bien %{user} ?"
+        im_not: "Non, je ne le suis pas"
+        im: "Oui, je suis %{user}, envoyez-moi un email de confirmation"
+      confirmation_sended: "Un email de confirmation vous a été envoyé à votre adresse habituelle"
   devise:
     offcanvas:
       signin:
@@ -308,6 +316,7 @@ fr:
         h4_title: "Édition du commentaire"
     email_invitations:
       member: "Vous êtes maintenant membre de ce groupe !"
+      already_member: "Vous êtes déjà membre de ce groupe"
   dico:
     delete: "Supprimer"
     are_you_sure: "Êtes-vous sûr ? Cette opération ne peut être annulée"
@@ -335,6 +344,8 @@ fr:
           description: Cliquez sur ce lien pour %{link}.
         join_group: rejoindre le groupe
         accept_invitation: "Voulez-vous rejoindre le groupe ?"
+      send_confirmation:
+        subject: "Vérification que vous êtes le bon destinataire"
   alerts:
     not_enough_permissions: "Vous n'avez pas le droit d'accéder à cette page"
     access_denied: "Cette page requiert d'être connecté. Ci-dessous, vous pouvez vous connecter ou vous inscrire gratuitement."

@@ -52,7 +52,7 @@ class Ability < DefineAbility
 
       controller :email_invitations do
         can(:destroy, &manage_invitations)
-        can :update unless user.nil?
+        can [:confirm, :update]
       end
 
       controller :groups_creator do

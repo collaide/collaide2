@@ -33,8 +33,10 @@ Rails.application.routes.draw do
       end
       resources :email_invitations, controller: 'group/email_invitations', only: [:destroy] do
         collection do
-          patch ':id/secret_token/:secret_token', action: :update, as: ''
-          get ':id/secret_token/:secret_token', action: :update, as: ''
+          match ':id/secret_token/:secret_token', action: :update, as: '', via: [:get, :patch]
+          get ':id/secret_token/:secret_token/confirm', action: :confirm, as: 'confirm'
+          get ':id/secret_token/:secret_token/send_confirmation', action: :send_confirmation, as: 'send_confirmation'
+          get ':id/secret_token/:secret_token/reset_session', action: :clear_session, as: 'reset_session'
         end
       end
     end

@@ -13,6 +13,12 @@ class GroupsMailer < ApplicationMailer
   def new_invitation(invitation)
     @invitation = invitation
 
-    mail to: invitation.receiver.email, subject: I18n.t('mailers.groups.new_invitation.subject', user: invitation.receiver, group: invitation.group)
+    mail to: invitation.receiver.email, subject: I18n.t('mailers.groups.new_invitation.subject', user: invitation.sender, group: invitation.group)
+  end
+
+  def send_confirmation(email_invitation)
+    @ei = email_invitation
+
+    mail to: email_invitation.email, subject: t('mailers.groups.send_confirmation.subject')
   end
 end

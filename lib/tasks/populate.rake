@@ -13,7 +13,7 @@ namespace :populate do
       u.password = 'grimpe'
       u.password_confirmation = 'grimpe'
     end
-    group = Group::Group.find_or_create_by!(name: Lorem.word) do |g|
+    group = Group::Group.find_or_create_by!(name: Lorem.word.titleize) do |g|
       g.user = u
     end
     100.times do
