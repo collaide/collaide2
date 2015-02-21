@@ -18,6 +18,7 @@
 //= require jquery.sticky
 //= require select2
 //= require select2_locale_fr
+//= require angular
 //= require_tree .
 
 //= require foundation
