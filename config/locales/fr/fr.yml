@@ -349,3 +349,7 @@ fr:
   alerts:
     not_enough_permissions: "Vous n'avez pas le droit d'accéder à cette page"
     access_denied: "Cette page requiert d'être connecté. Ci-dessous, vous pouvez vous connecter ou vous inscrire gratuitement."
+  notifications:
+    groups:
+      create: "Félicitations, vous avez créé le group %{group} !"
+      invitation: "%{user} vous invite à rejoindre le group %{group}"

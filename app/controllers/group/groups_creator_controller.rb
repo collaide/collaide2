@@ -42,7 +42,7 @@ class Group::GroupsCreatorController < ApplicationController
   def invitations
     authorize @group
     @group.finished = true
-    UserNotifications.create!(:group_created, values: [@group, 'nice'], users: current_user)
+    GroupsNotification.create!(:create, values: @group, users: current_user)
     @group.save
   end
 

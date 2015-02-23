@@ -199,7 +199,7 @@ class Group::Group < ActiveRecord::Base
         next if an_id.to_i < 1
         invitation  = Group::Invitation.new message: do_invitation.message, receiver_id: an_id, sender: sender
         self.invitations << invitation
-        UserNotifications.create!(:new_invitation, values: invitation, users: an_id)
+        GroupsNotification.create!(:invitation, values: invitation, users: an_id)
         GroupsMailer.new_invitation(invitation).deliver_later
       end
       do_invitation.email_list.each do |an_email|
