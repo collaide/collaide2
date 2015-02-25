@@ -5,10 +5,11 @@ class GroupsNotification < NotificationSystem::Base
   end
 
   def invitation(invitation)
-    t('notifications.groups.invitation', user: invitation.sender, group: link_to(invitation.group, group_group_path(invitation.group)))
-    +
-    simple_form_for(invitation) do
-
+    if invitation.waiting_a_reply?
+      t('notifications.groups.invitation', user: h(invitation.sender), group: h(invitation.group)) +
+          link_to(t('dico.reply'), user_invitations_path(invitation.receiver), class: 'std-button')
+    else
+      t('notifications.groups.invitation_accepted', group: h(invitation.group))
     end
   end
 end

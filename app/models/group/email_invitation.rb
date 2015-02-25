@@ -9,4 +9,5 @@ class Group::EmailInvitation < ActiveRecord::Base
 
   belongs_to :group, :class_name => 'Group::Group'
   belongs_to :sender, class_name: 'User'
+  belongs_to :receiver, class_name: 'User'
 end

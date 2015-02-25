@@ -146,6 +146,8 @@ fr:
     side_nav:
       infos: "Infos"
       groups: "Mes groupes"
+      notifications: "Notifications"
+      invitations: "Invitations"
     show:
       since: "Membre depuis"
     avatar:
@@ -154,6 +156,11 @@ fr:
       no_group: "Vous n'êtes membres d'aucun groupes"
     notifications:
       no_records: "Pas de notifications"
+    invitations:
+      no_records: "Personne ne vous a invité pour le moment"
+      accept: "Accepter"
+      refuse: "Refuser"
+      later: "Plus tard"
   notifications_mailer:
     signup:
       subject: Bienvenue sur collaide.com
@@ -325,6 +332,7 @@ fr:
     accept: "Accepter"
     refuse: "Refuser"
     later: "Plus tard"
+    reply: "Répondre"
   simple_form:
     labels:
       group_do_invitation:
@@ -352,4 +360,5 @@ fr:
   notifications:
     groups:
       create: "Félicitations, vous avez créé le group %{group} !"
-      invitation: "%{user} vous invite à rejoindre le group %{group}"
+      invitation: "%{user} vous invite à rejoindre le group %{group}."
+      invitation_accepted: "Vous avez accepté l'invitation à rejoindre le groupe %{group}"

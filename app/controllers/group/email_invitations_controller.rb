@@ -85,6 +85,7 @@ class Group::EmailInvitationsController < ApplicationController
 
   def add_current_user
     @group.add_members current_user, joined_method: :was_invited_by_email, invited_or_added_by: @ei.sender
+    @ei.receiver = current_user
     @ei.status = :accepted
     @ei.save
   end

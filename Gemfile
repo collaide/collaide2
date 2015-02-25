@@ -82,6 +82,8 @@ group :development, :test do
   gem 'factory_girl', '~> 4.5.0'
   gem 'factory_girl_rails', '~> 4.5.0'
 
+  gem 'meta_request' # Pour le railsPanel sous chrome
+
   gem 'faker', '~> 1.4.3' # populate with fake datas
 end
 
