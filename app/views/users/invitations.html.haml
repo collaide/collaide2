@@ -1,34 +1,44 @@
 =render layout: 'layout' do
-  -if @invitations.empty?
+  -if @invitations.empty? and @email_invitations.empty?
     %p= t('users.invitations.no_records')
   -else
     -if @invitations.any?
-      -@invitations.each do |invitation|
-        = t('notifications.groups.invitation', user: invitation.sender, group: link_to(h(invitation.group), group_group_path(invitation.group))).html_safe
-        =simple_form_for invitation, url: group_group_invitation_path(group_group_id: invitation.group.id, id: invitation.id), method: :patch do |f|
-          .hide
-            =f.input :status, selected: 'accepted'
-          =f.button :submit, t('users.invitations.accept'), class: 'tiny success'
-        =simple_form_for invitation, url: group_group_invitation_path(group_group_id: invitation.group.id, id: invitation.id), method: :patch do |f|
-          .hide
-            =f.input :status, selected: 'refused'
-          =f.button :submit, t('users.invitations.refuse'), class: 'tiny alert'
-        =simple_form_for invitation, url: group_group_invitation_path(group_group_id: invitation.group.id, id: invitation.id), method: :patch do |f|
-          .hide
-            =f.input :status, selected: 'later'
-          =f.button :submit, t('users.invitations.later'), class: 'tiny secondary'
+      .row
+        -@invitations.each do |invitation|
+          .columns.small-6
+            = t('notifications.groups.invitation', user: invitation.sender, group: link_to(h(invitation.group), group_group_path(invitation.group))).html_safe
+          .columns.small-2
+            =simple_form_for invitation, url: group_group_invitation_path(group_group_id: invitation.group.id, id: invitation.id), method: :patch do |f|
+              .hide
+                =f.input :status, selected: 'accepted'
+              =f.button :submit, t('users.invitations.accept'), class: 'button tiny success'
+          .columns.small-2
+            =simple_form_for invitation, url: group_group_invitation_path(group_group_id: invitation.group.id, id: invitation.id), method: :patch do |f|
+              .hide
+                =f.input :status, selected: 'refused'
+              =f.button :submit, t('users.invitations.refuse'), class: 'button tiny alert'
+          .columns.small-2
+            =simple_form_for invitation, url: group_group_invitation_path(group_group_id: invitation.group.id, id: invitation.id), method: :patch do |f|
+              .hide
+                =f.input :status, selected: 'later'
+              =f.button :submit, t('users.invitations.later'), class: 'button tiny secondary'
     -if @email_invitations.any?
-      -@invitations.each do |invitation|
-        = t('notifications.groups.invitation', user: invitation.sender, group: link_to(h(invitation.group), group_group_path(invitation.group))).html_safe
-        =simple_form_for invitation, url: group_group_email_invitation_path(group_group_id: invitation.group.id, id: invitation.id, secret_token: invitation.secret_token), method: :patch do |f|
-          .hide
-            =f.input :status, selected: 'accepted'
-          =f.button :submit, t('users.invitations.accept'), class: 'tiny success'
-        =simple_form_for invitation, url: group_group_email_invitation_path(group_group_id: invitation.group.id, id: invitation.id, secret_token: invitation.secret_token), method: :patch do |f|
-          .hide
-            =f.input :status, selected: 'refused'
-          =f.button :submit, t('users.invitations.refuse'), class: 'tiny alert'
-        =simple_form_for invitation, url: group_group_email_invitation_path(group_group_id: invitation.group.id, id: invitation.id, secret_token: invitation.secret_token), method: :patch do |f|
-          .hide
-            =f.input :status, selected: 'later'
-          =f.button :submit, t('users.invitations.later'), class: 'tiny secondary'
+      .row
+        -@email_invitations.each do |invitation|
+          .columns.small-6
+            =   t('notifications.groups.invitation', user: invitation.sender, group: link_to(h(invitation.group), group_group_path(invitation.group))).html_safe
+          .columns.small-2
+            =simple_form_for invitation, url: group_group_email_invitations_path(group_group_id: invitation.group.id, id: invitation.id, secret_token: invitation.secret_token), method: :patch do |f|
+              .hide
+                =f.input :status, selected: 'accepted'
+              =f.button :submit, t('users.invitations.accept'), class: 'button tiny success'
+          .columns.small-2
+            =simple_form_for invitation, url: group_group_email_invitations_path(group_group_id: invitation.group.id, id: invitation.id, secret_token: invitation.secret_token), method: :patch do |f|
+              .hide
+                =f.input :status, selected: 'refused'
+              =f.button :submit, t('users.invitations.refuse'), class: 'button tiny alert'
+          .columns.small-2
+            =simple_form_for invitation, url: group_group_email_invitations_path(group_group_id: invitation.group.id, id: invitation.id, secret_token: invitation.secret_token), method: :patch do |f|
+              .hide
+                =f.input :status, selected: 'later'
+              =f.button :submit, t('users.invitations.later'), class: 'button tiny secondary'

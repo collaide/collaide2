@@ -28,7 +28,7 @@ class Group::Invitation < ActiveRecord::Base
   end
 
   def waiting_a_reply?
-    status == :later or status == :pending
+    pending? or later?
   end
 
   def decline

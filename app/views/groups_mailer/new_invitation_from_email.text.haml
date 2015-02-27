@@ -5,5 +5,8 @@
   \-----------------------------------------------
   = @message
   \-----------------------------------------------
-= t('mailers.groups.new_invitation.text.description')
-=group_group_email_invitations_url(group_group_id: @group.id, id: @email_id, secret_token: @secret_token, status: :accepted)
+= (t('mailers.groups.new_invitation.text.description')).html_safe
+= (t('dico.accept') + ' => ' + email_reply_link(@group.id, @email_id, @secret_token, status: 'accepted')).html_safe
+= (t('dico.refuse') + ' => ' + email_reply_link(@group.id, @email_id, @secret_token, status: 'refused')).html_safe
+= (t('dico.later') + ' => ' + email_reply_link(@group.id, @email_id, @secret_token, status: 'later')).html_safe
+-#=group_group_email_invitations_url(group_group_id: @group.id, id: @email_id, secret_token: @secret_token, status: :accepted)

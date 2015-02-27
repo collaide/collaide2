@@ -9,7 +9,7 @@ class GroupsNotification < NotificationSystem::Base
       t('notifications.groups.invitation', user: h(invitation.sender), group: h(invitation.group)) +
           link_to(t('dico.reply'), user_invitations_path(invitation.receiver), class: 'std-button')
     else
-      t('notifications.groups.invitation_accepted', group: h(invitation.group))
+      t('notifications.groups.invitation_accepted', group: link_to(h(invitation.group), group_group_path(invitation.group))).html_safe
     end
   end
 end

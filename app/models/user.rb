@@ -17,9 +17,6 @@ class   User < ActiveRecord::Base
 
   # Les invitations par email que l'utilisateur a envoyées
   has_many :sent_email_invitations, class_name: 'Group::EmailInvitation', foreign_key: 'sender_id'
-  # les invitations par email reçues
-  has_many :received_email_invitations, class_name: 'Group::EmailInvitation', foreign_key: 'receiver_id'
-
 
   # Les différents groupes auquels appartient l'utilisateur
   has_many :group_members, class_name: 'Group::GroupMember'
@@ -47,6 +44,11 @@ class   User < ActiveRecord::Base
   ############## MODULE ACTIVITIES ################
   #################################################
   has_many :params_activities, as: :owner, :class_name => 'Activity::Parameter'
+
+  # les invitations par email reçues
+  def received_email_invitations
+    Group::EmailInvitation.where(receiver: self)
+  end
 
   def activities
     params = self.params_activities.to_a

@@ -62,7 +62,12 @@ class Group::InvitationsController < ApplicationController
 
   def get_status
     status = params[:status]
-    status['status'] if status.respond_to? :[]
+    return status['status'] if status.respond_to? :[]
+    if status.nil?
+      params[:group_invitation][:status]
+    else
+      status
+    end
   end
 
   def find_the_group

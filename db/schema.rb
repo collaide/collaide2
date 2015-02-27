@@ -66,12 +66,15 @@ ActiveRecord::Schema.define(version: 20150204000000) do
   end
 
   create_table "group_email_invitations", force: :cascade do |t|
-    t.string  "email"
-    t.text    "message"
-    t.string  "secret_token"
-    t.string  "status",       default: "pending"
-    t.integer "group_id"
-    t.integer "sender_id"
+    t.string   "email"
+    t.text     "message"
+    t.string   "secret_token"
+    t.string   "status",       default: "pending"
+    t.integer  "group_id"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "group_group_creations", force: :cascade do |t|

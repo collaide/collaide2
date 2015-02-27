@@ -18,7 +18,7 @@ class Group::EmailInvitationsController < ApplicationController
     elsif @ei.status == :accepted
       redirect_to group_group_path(@ei.group), notice: t('groups.invitations.update.notice.already_accepted')
     else
-      case params[:status]
+      case get_status
         when 'later'
           reply_later
         when 'refused'
@@ -52,6 +52,16 @@ class Group::EmailInvitationsController < ApplicationController
 
   private
 
+  def get_status
+    status = params[:status]
+    return status['status'] if status.respond_to? :[]
+    if status.nil?
+      params[:group_email_invitation][:status]
+    else
+      status
+    end
+  end
+
   def get_group
     @group = Group::Group.find params[:group_group_id]
   end
@@ -62,12 +72,14 @@ class Group::EmailInvitationsController < ApplicationController
 
   def invitation_refused
     @ei.status = :refused
+    @ei.receiver = current_user
     @ei.save
     redirect_to user_path(current_user), notice: t('groups.invitations.update.notice.refuse')
   end
 
   def reply_later
     @ei.status = :later
+    @ei.receiver = current_user
     @ei.save
     redirect_to user_path(current_user), notice: t('groups.invitations.update.notice.later')
   end

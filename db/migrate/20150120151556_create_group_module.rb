@@ -63,6 +63,8 @@ class CreateGroupModule < ActiveRecord::Migration
       t.belongs_to :group
       t.belongs_to :sender
       t.belongs_to :receiver
+
+      t.timestamps
     end
 
   end

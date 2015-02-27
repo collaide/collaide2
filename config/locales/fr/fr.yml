@@ -301,7 +301,7 @@ fr:
     email_invitations:
       error: "Impossible de vous ajouter dans ce groupe. Peut-être que vous êtes déjà membre ou que l'invitation a été supprimée"
       bad_secret_token: "Le mot de passe secret ne corresspond avec celui de l'invitation. Vous ne pouvez pas rejoindre le groupe"
-      invitation_destroyed: "L'invitation n'existe plus. Elle probablement été supprimée, vous ne pouvez pas rejoindre le groupe"
+      invitation_destroyed: "L'invitation n'existe plus. Elle a probablement été supprimée, vous ne pouvez pas rejoindre le groupe"
       confirm:
         h1_title: "Hum, il y a un doute concernant votre invitation à rejoindre le group %{group}"
         are_you_really: "Êtes-vous bien %{user} ?"
@@ -346,7 +346,7 @@ fr:
         subject: "%{user} vous invite à rejoindre le groupe %{group} sur Collaide"
         message: "Voici son message :"
         text:
-          description: "Utilisez le lien suivant pour rejoindre le groupe :"
+          description: "Utilisez les liens suivant pour :"
           manage_invitations: "Utilisez le lien suivant pour afficher l'invitation dans votre navigateur Web"
         html:
           description: Cliquez sur ce lien pour %{link}.
@@ -360,5 +360,5 @@ fr:
   notifications:
     groups:
       create: "Félicitations, vous avez créé le group %{group} !"
-      invitation: "%{user} vous invite à rejoindre le group %{group}."
+      invitation: "%{user} vous invite à rejoindre le groupe %{group}."
       invitation_accepted: "Vous avez accepté l'invitation à rejoindre le groupe %{group}"

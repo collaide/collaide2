@@ -71,7 +71,7 @@ class Group::Group < ActiveRecord::Base
   end
 
   def email_invitations_waiting_a_reply
-    self.email_invitations.wait_a_reply
+    self.email_invitations.includes(:receiver).order('updated_at DESC').wait_a_reply
   end
 
   validates :name, presence: true, length: {minimum: 2}
