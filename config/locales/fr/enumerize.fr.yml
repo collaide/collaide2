@@ -49,3 +49,7 @@ fr:
       role:
         admin: Administrateur
         member: Membre
+      sent_notification:
+        never: Jamais
+        always: Pour chaque activités
+        every_day: Une fois par jour

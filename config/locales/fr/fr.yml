@@ -308,6 +308,13 @@ fr:
         im_not: "Non, je ne le suis pas"
         im: "Oui, je suis %{user}, envoyez-moi un email de confirmation"
       confirmation_sended: "Un email de confirmation vous a été envoyé à votre adresse habituelle"
+    admin:
+      menu:
+        members: Membres
+      layout:
+        h1_title: "Administartion du groupe"
+      index:
+        sent_notifications: "Je veux être notifié pour les activités du groupe"
   devise:
     offcanvas:
       signin:
@@ -333,6 +340,8 @@ fr:
     refuse: "Refuser"
     later: "Plus tard"
     reply: "Répondre"
+    since: "Depuis le %{date}"
+    save: "Enregistrer"
   simple_form:
     labels:
       group_do_invitation:

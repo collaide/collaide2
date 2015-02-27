@@ -61,6 +61,17 @@ class Ability < DefineAbility
         end
       end
 
+      controller :admin do
+        can(:index)
+      end
+
+      controller :members do
+        can(:index) do |group|
+          group.can? :index, :members, current_user
+        end
+        can :update
+      end
+
       controller :groups do
         can(:show) do |group|
           group.can? :index, :activity, user

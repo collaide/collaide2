@@ -38,6 +38,7 @@ class CreateGroupModule < ActiveRecord::Migration
       t.belongs_to :user, index: true
       t.string :role
       t.string :joined_method
+      t.string :sent_notification
       t.belongs_to :invited_or_added_by, index: true
 
       t.timestamps

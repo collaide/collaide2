@@ -39,6 +39,8 @@ Rails.application.routes.draw do
           get ':id/secret_token/:secret_token/reset_session', action: :clear_session, as: 'reset_session'
         end
       end
+      resources :admin, controller: 'group/admin', only: :index
+      resources :members, controller: 'group/members', only: [:index, :update]
     end
   end
 

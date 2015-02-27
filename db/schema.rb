@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150204000000) do
     t.integer  "user_id"
     t.string   "role"
     t.string   "joined_method"
+    t.string   "sent_notification"
     t.integer  "invited_or_added_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"

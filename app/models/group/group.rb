@@ -105,6 +105,10 @@ class Group::Group < ActiveRecord::Base
     group_members.where(user: _user).exists?
   end
 
+  def get_member(_user)
+    group_members.where(user:_user).take
+  end
+
   # send an invitation to the receivers
   def send_invitations(receivers, message: '', sender: self, receiver_type: 'User')
     if receivers.kind_of?(Array)
