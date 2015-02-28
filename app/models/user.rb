@@ -10,6 +10,8 @@ class   User < ActiveRecord::Base
 
   enumerize :role, in: [:admin, :moderator, :author, :banned, :super_admin, :doc_validator, :add_validator], scope: true, predicates: true
 
+  enumerize :sent_email, in: [:never, :always], predicates: true, default: :always
+
   # Les invitations que l'utilisateur a envoyées
   has_many :sent_invitations, class_name: 'Group::Invitation', foreign_key: 'sender_id'
   # les invitations reçues

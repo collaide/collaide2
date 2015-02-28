@@ -53,3 +53,7 @@ fr:
         never: Jamais
         always: Pour chaque activités
         every_day: Une fois par jour
+    user:
+      sent_email:
+        always: Toujours
+        never: Jamais

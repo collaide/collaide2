@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 20150227171319) do
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "name"
     t.string   "role"
+    t.string   "sent_email"
     t.string   "avatar"
     t.integer  "points",                 default: 5
     t.boolean  "has_notifications",      default: false

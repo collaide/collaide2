@@ -1,5 +1,10 @@
 module Concerns::ActivityConcern
 
+  # Create an activity for a group
+  def create_group_activity(key)
+    create_activity(key, trackable: @group, owner: current_user)
+  end
+
   # Options Hash (options):
   # :action (Symbol, String) — Name of the action
   # :trackable (Activist) — On with model put the track

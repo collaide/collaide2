@@ -324,6 +324,10 @@ fr:
         manual: "Via votre compte Collaide"
       signup:
         manual: "En créant un compte sur Collaide"
+    registrations:
+      edit:
+        email_preferences: "Préférences de courriel"
+        sent_email: "Je veux recevoir des courriels pour les notifications"
   group:
     topics:
       new:

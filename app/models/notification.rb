@@ -15,6 +15,7 @@
 
 class Notification < ActiveRecord::Base
 
+  after_create :sent_email
   belongs_to :user
 
   serialize :values
@@ -33,5 +34,12 @@ class Notification < ActiveRecord::Base
       gid.nil? ? value : gid
     end
     klass.send(method_name.to_sym, *method_variables)
+  end
+
+  private
+
+  #Send an email to the user when a new notification is created if he wish it
+  def sent_email
+
   end
 end

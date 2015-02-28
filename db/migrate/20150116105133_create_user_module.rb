@@ -7,6 +7,7 @@ class CreateUserModule < ActiveRecord::Migration
       t.string :encrypted_password, :null => false, :default => ""
       t.string :name
       t.string :role
+      t.string :sent_email
       t.string :avatar
 
       ## Added by us

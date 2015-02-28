@@ -11,7 +11,7 @@ class Group::GroupMember < ActiveRecord::Base
                                   :was_invited_by_email,
                                   :by_itself], default: :by_itself
 
-  enumerize :sent_notification, in: [:never, :every_day, :always], default: :always
+  enumerize :sent_notification, in: [:never, :always], default: :always
 
   # Le User qui l'a ajouté ou invité
   belongs_to :invited_or_added_by, class_name: 'User'

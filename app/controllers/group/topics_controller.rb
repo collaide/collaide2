@@ -1,4 +1,5 @@
 class Group::TopicsController < ApplicationController
+  include Concerns::ActivityConcern
   before_action :get_required_objects
   before_action :find_topic, only: [:update, :edit, :show]
 
@@ -16,6 +17,7 @@ class Group::TopicsController < ApplicationController
     @topic.user = current_user
     @topic.group = @group
     if @topic.save
+      create_group_activity :new_topic
       redirect_to group_group_topic_path(group_group_id: @group, id: @topic), notice: t('groups.topics.create.success')
     else
       render :new
@@ -25,6 +27,7 @@ class Group::TopicsController < ApplicationController
   def update
     authorize @group, @topic
     if @topic.update(topic_params)
+      create_group_activity :topic_updated
       redirect_to group_group_topic_path(group_group_id: @group, id: @topic)
     else
       render :edit
@@ -49,6 +52,7 @@ class Group::TopicsController < ApplicationController
   end
 
   def destroy
+    create_group_activity :topic_deleted
     topic = @group.topics.where(id: params[:id]).take
     authorize @group, topic
     comments = topic.comments

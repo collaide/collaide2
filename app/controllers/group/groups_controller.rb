@@ -10,7 +10,8 @@ class Group::GroupsController < ApplicationController
       @group.user = current_user
       @group.steps = :invitations
     end
-    if @group.save && create_activity(:create, trackable: @group, owner: current_user)
+    if @group.save
+      create_activity(:create, trackable: @group, owner: current_user)
       # On redirige vers le prochain pas à effectuer (utilisateur déconnecté = pas de connxion sinon inviter des gens)
       redirect_to eval("group_group_create_#{@group.steps}_path(group_group_id: #{@group.id})")
     else

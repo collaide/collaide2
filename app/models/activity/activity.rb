@@ -171,7 +171,8 @@ class Activity::Activity < ActiveRecord::Base
     group = self.trackable
     members = group.group_members.includes(:user).where(sent_notification: 'always')
     members.each do |member|
-      GroupsNotification.create!(:new_activity, values: group, owners: member.user)
+      next if member.user.id == self.owner_id # On ne notifie pas celui qui a créé l'activitée
+      GroupsNotification.create!(:new_activity, values: group, users: member.user)
     end
   end
 

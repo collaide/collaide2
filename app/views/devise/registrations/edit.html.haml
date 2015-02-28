@@ -4,6 +4,7 @@
     %ul.collaide-side-nav
       = build_active_menu path: edit_user_registration_path(view: :general), text: t('devise.registrations.edit.general_change')
       = build_active_menu path: edit_user_registration_path(view: :password), text: t('devise.registrations.edit.change_password')
+      = build_active_menu path: edit_user_registration_path(view: :email), text: t('devise.registrations.edit.email_preferences')
   .columns.small-12.large-9
     = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name, view: params[:view]), :html => { :method => :put, multipart: true }) do |f|
       = f.error_notification
@@ -26,6 +27,9 @@
             .columns.small-12
               - if devise_mapping.confirmable? && resource.pending_reconfirmation?
                 %p= t("devise.registrations.edit.waiting_confirmation", resource: resource.unconfirmed_email)
+          %div{class: hide_for?(:email)}
+            .columns.small-12
+              = f.input :sent_email, as: :radio_buttons, label: t('devise.registrations.edit.sent_email')
       .form-actions
         = f.button :submit, t("devise.registrations.edit.update")
     %h5= t "devise.registrations.edit.cancel_my_account"
