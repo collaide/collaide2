@@ -5,5 +5,7 @@ namespace :db do
   end
 
   desc 'Drop, create, migrate the development database'
-  task recreate: %w(environment db:dev_only db:drop db:create db:migrate db:test:prepare populate:all)
+  task recreate: %w(environment db:dev_only db:drop db:create db:migrate db:test:prepare populate:all) do
+    sh 'rails server'
+  end
 end

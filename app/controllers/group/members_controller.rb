@@ -11,7 +11,7 @@ class Group::MembersController < ApplicationController
     authorize @group
     get_member
     if @member.update(member_params)
-      redirect_to group_group_admin_index_path(@group)
+      redirect_to group_group_admin_index_path(@group), notice: t('groups.members.update.notice')
     else
       render 'group/admin/index'
     end
@@ -26,7 +26,7 @@ class Group::MembersController < ApplicationController
     @member = @group.group_members.where(id: params[:id]).take!
   end
 
-  def members_params
-    params.require(:group_group_member).permit(:roles)
+  def member_params
+    params.require(:group_group_member).permit(:sent_notification)
   end
 end

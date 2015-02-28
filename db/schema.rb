@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204000000) do
+ActiveRecord::Schema.define(version: 20150227171319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 20150204000000) do
 
   add_index "activity_parameters", ["owner_type", "owner_id"], name: "index_activity_parameters_on_owner_type_and_owner_id", using: :btree
   add_index "activity_parameters", ["trackable_type", "trackable_id"], name: "index_activity_parameters_on_trackable_type_and_trackable_id", using: :btree
+
+  create_table "cron_jobs", force: :cascade do |t|
+    t.string   "job_name"
+    t.datetime "start_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "group_comment_views", force: :cascade do |t|
     t.integer  "user_id"

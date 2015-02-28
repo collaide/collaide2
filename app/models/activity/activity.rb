@@ -19,6 +19,8 @@
 
 class Activity::Activity < ActiveRecord::Base
 
+  after_create :create_notification
+
   # Define polymorphic association to the parent
   belongs_to :trackable, :polymorphic => true
   # Define ownership to a resource responsible for this activity
@@ -162,6 +164,17 @@ class Activity::Activity < ActiveRecord::Base
   end
 
   private
+
+  # Create a notification to the user from a activity of a group
+  def create_notification
+    return if self.key == 'group_group.create'
+    group = self.trackable
+    members = group.group_members.includes(:user).where(sent_notification: 'always')
+    members.each do |member|
+      GroupsNotification.create!(:new_activity, values: group, owners: member.user)
+    end
+  end
+
   def select_path path, root
     [root, path].map(&:to_s).join('/')
   end

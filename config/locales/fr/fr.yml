@@ -315,6 +315,9 @@ fr:
         h1_title: "Administartion du groupe"
       index:
         sent_notifications: "Je veux être notifié pour les activités du groupe"
+    members:
+      update:
+        notice: "Changements enregistrés"
   devise:
     offcanvas:
       signin:

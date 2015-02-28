@@ -40,6 +40,12 @@ module Concerns::ActivityConcern
     activity.save
   end
 
+  def notification_for_group_activity(group, owner)
+    return if user.nil?
+    member = group.get_member(current_user)
+    GroupsNotification.create!(:new_activity, values: [owner, group], owners: group.members) if member.sent_notification.always?
+  end
+
   # Crée le paramètre pour suivre des activités privées
   # params
   #     trackable: lié a l'objet à suivre
