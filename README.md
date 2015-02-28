@@ -1,12 +1,22 @@
-#collaide.com
->Collaide, apprenons ensemble
+# [Collaide](https://beta.collaide.com)
 
-Béta version : http://www.collaide.com
+> Collaide, une plateforme pour le travail de groupe
 
-Hack collaide: [![Hack collaide/collaide on Nitrous.IO](https://d3o0mnbgv6k92a.cloudfront.net/assets/hack-s-v1-7475db0cf93fe5d1e29420c928ebc614.png)](https://www.nitrous.io/hack_button?source=embed&runtime=rails&repo=collaide%2Fcollaide)
+## Motivations
+Le besoin de créer une telle plateforme vient du constat qu'il n'existe aucun outils open-source, gratuits et libre pour faciliter le travail en groupe. En effet, en tant qu'étudiant, pour chaque projet ou séminaire effectué en groupe, nous communiquons par e-mail et échangeons les rapoorts, présentations et autre du plateforme d'échange de fichiers.
 
-## Bugs, suggestion
-Postez une issue sur github: https://github.com/collaide/collaide/issues/new
+## Version beta
+Cette version beta est développée activement. Cela signifie que des bugs peuvent survenir et que des grandes améliorations sont attendues au cours des ces prochaines semaines.
+
+Si vous voulez contribuer à améliorer et développer collaide, lisez la suite.
+
+## Bugs, question, amélioration
+Postez un message sur [github](https://github.com/collaide2/collaide/issues/new) et ajouter le tag `bug` si vous avez rencontré un bug en utlisant collaide, la `feature` si vous suggérez une amélioration et `question` si vous avez une question.
+
+Pour signaler un bug, indiquer:
+ * l'heure et la date à laquelle il s'est produit
+ * idéalement une capture d'écran
+ * Comment le reproduire
 
 ##Déscription
 collaide.com est un site web offrant différents services aux étudiants. Actuellement il est possible de télécharger et mettre à disposition des documents scolaires, acheter et vendre des livres scolaires d'occasion et créer des groupes de travail.
