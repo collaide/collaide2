@@ -1,6 +1,6 @@
 # [Collaide](https://beta.collaide.com)
 
-> Collaide, une plateforme pour le travail de groupe
+Collaide est une plateforme pour faciliter le travail de groupe
 
 ## Motivations
 Le besoin de créer une telle plateforme vient du constat qu'il n'existe aucun outils open-source, gratuits et libre pour faciliter le travail en groupe. Nous sommes étudiant et pour chaque projet de groupe, nous communiquons par e-mail ou facebook et échangeons les fichiers(rapports, présentations, etc) par Dropbox, e-mail, google-doc suivant les envies et les groupes.
@@ -12,6 +12,10 @@ Le problème est que les discussions par e-mail ne sont pas archivées, se perde
 Pour l'échange de fichiers par e-mail, il faut le réenvoyer pour chaque modifications, la taille du fichier est limitée. Il n'y a pas de stcokage centralisé.
 
 En utilisant une plateforme telle que Facebook, Dropbox, GoogelDoc, etc, nous avons un contrôle limité sur nos données et nous ne savons pas à quelle fin elles sont utilisées. Ces entreprises et ces serveurs sont situés presque tous aux États-Unis ce qui ne nous donne presque aucun droit. De plus leur fonctionnement est opaque et ne savons pas ce qu'il se passe derrière. Le risque de perdre le contrôle sur nos données gérées par ces services existe, y compris pour les fichiers qui s'y trouvent.
+
+> Et la solution ?
+
+Notre solution est de proposer une plateforme dédiée au travail de groupe open-source, gratuite et libre. Ainsi, n'importe quel développeur peut connaître son fonctionement et y apporter son savoir-faire. Pour un contrôle total, n'importe qui peut faire tourner sa propre version de collaide sur son serveur et ainsi avoir le plus grand contrôle sur ses données. N'importe quel utilisateur peut utiliser notre service gratuitement pour [créer un groupe](https://beta.collaide.com/fr/groups/new) et commencer à travailler.
 
 ## Version beta
 Cette version beta est développée activement. Cela signifie que des bugs peuvent survenir et que des grandes améliorations sont attendues au cours des ces prochaines semaines.
