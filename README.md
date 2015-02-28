@@ -3,7 +3,15 @@
 > Collaide, une plateforme pour le travail de groupe
 
 ## Motivations
-Le besoin de créer une telle plateforme vient du constat qu'il n'existe aucun outils open-source, gratuits et libre pour faciliter le travail en groupe. En effet, en tant qu'étudiant, pour chaque projet ou séminaire effectué en groupe, nous communiquons par e-mail et échangeons les rapoorts, présentations et autre du plateforme d'échange de fichiers.
+Le besoin de créer une telle plateforme vient du constat qu'il n'existe aucun outils open-source, gratuits et libre pour faciliter le travail en groupe. Nous sommes étudiant et pour chaque projet de groupe, nous communiquons par e-mail ou facebook et échangeons les fichiers(rapports, présentations, etc) par Dropbox, e-mail, google-doc suivant les envies et les groupes.
+
+> Et alors, où est le problème ?
+
+Le problème est que les discussions par e-mail ne sont pas archivées, se perdent dans la masse d'e-mails échangés quotidienement et ne sont pas efficace pour les discussions longues. Les discussions sur Facebook favorisent les échanges courts (pas de mise en forme, pas de pagination, pas de regroupement par sujet, tout est dans une seule page).
+
+Pour l'échange de fichiers par e-mail, il faut le réenvoyer pour chaque modifications, la taille du fichier est limitée. Il n'y a pas de stcokage centralisé.
+
+En utilisant une plateforme telle que Facebook, Dropbox, GoogelDoc, etc, nous avons un contrôle limité sur nos données et nous ne savons pas à quelle fin elles sont utilisées. Ces entreprises et ces serveurs sont situés presque tous aux États-Unis ce qui ne nous donne presque aucun droit. De plus leur fonctionnement est opaque et ne savons pas ce qu'il se passe derrière. Le risque de perdre le contrôle sur nos données gérées par ces services existe, y compris pour les fichiers qui s'y trouvent.
 
 ## Version beta
 Cette version beta est développée activement. Cela signifie que des bugs peuvent survenir et que des grandes améliorations sont attendues au cours des ces prochaines semaines.
