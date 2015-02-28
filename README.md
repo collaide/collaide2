@@ -3,7 +3,7 @@
 Collaide est une plateforme pour faciliter le travail en groupe. Notre plateforme implémente une façon moderne et conviviale de mener des discussions, stocker et échanger des fichiers entre membres d'un groupe.
 
 ## Motivations
-Le besoin de créer une telle plateforme vient du constat qu'il n'existe aucun outils open-source, gratuits et libre pour faciliter le travail en groupe. Nous sommes étudiant et pour chaque projet de groupe, nous communiquons par e-mail ou facebook et échangeons les fichiers(rapports, présentations, etc) par Dropbox, e-mail, google-doc suivant les envies et les groupes.
+Le besoin de créer une telle plateforme vient du constat qu'il n'existe aucun outils open-source, gratuits et libre pour faciliter le travail en groupe. Nous sommes étudiant et pour chaque projet de groupe, nous communiquons par e-mail ou facebook et échangeons les fichiers (rapports, présentations, etc) par Dropbox, e-mail, google-doc suivant les envies et les groupes.
 
 > Et alors, où est le problème ?
 
@@ -59,7 +59,7 @@ Yves Baumann et Numa de Montmollin. [les auteurs](http://www.collaide.com/fr/a-p
 
 License Collaide
 -------
-Copyright (c) 2009-2014 All rights reserved.
+Copyright (c) 2009-2015 All rights reserved.
 
 - Fondateur : Yves Baumann
 - Cofondateur : Numa de Montmollin 
