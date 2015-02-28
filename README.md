@@ -1,6 +1,6 @@
 # [Collaide](https://beta.collaide.com)
 
-Collaide est une plateforme pour faciliter le travail de groupe
+Collaide est une plateforme pour faciliter le travail en groupe. Notre plateforme implémente une façon moderne et conviviale de mener des discussions, stocker et échanger des fichiers entre membres d'un groupe.
 
 ## Motivations
 Le besoin de créer une telle plateforme vient du constat qu'il n'existe aucun outils open-source, gratuits et libre pour faciliter le travail en groupe. Nous sommes étudiant et pour chaque projet de groupe, nous communiquons par e-mail ou facebook et échangeons les fichiers(rapports, présentations, etc) par Dropbox, e-mail, google-doc suivant les envies et les groupes.
