@@ -1,0 +1,8 @@
+= "#{@user},"
+
+= t('mailers.notifications.new_notification.text.description')
+\------------------------------------------------------------
+= @notification.print_message
+\------------------------------------------------------------
+
+= t('mailers.notifications.new_notification.text.view_in_browser', notification: "#{t('mailers.notifications.new_notification.text.the_notification')} (#{user_notifications_url(@user)})")

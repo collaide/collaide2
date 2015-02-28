@@ -6,6 +6,8 @@
     <div class="row">
       <div class="columns.small-12">
         <%= yield %>
+        <p><%= t('notifications_mailer.signup.end', collaide: link_to(t('app_name'), root_url)).html_safe %></p>
+        <p><%= t('notifications_mailer.signup.signature') %></p>
       </div>
     </div>
   </body>

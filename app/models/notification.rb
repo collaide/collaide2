@@ -40,6 +40,7 @@ class Notification < ActiveRecord::Base
 
   #Send an email to the user when a new notification is created if he wish it
   def sent_email
-
+    return unless self.user.sent_email.always?
+    NotificationsMailer.new_notification(self.user, self).deliver_later
   end
 end

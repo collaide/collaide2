@@ -357,6 +357,14 @@ fr:
       group_do_invitation:
         users_id: "Nom ou adresse e-mail des personnes à inviter"
   mailers:
+    notifications:
+      new_notification:
+        subject: "Nouvelle notification sur Collaide"
+        text:
+          description: "Vous avez reçu une nouvelle notification sur Collaide. La voici:"
+          view_in_browser: Voir %{notification} dans la navigateur
+          the_notification: la notification
+
     groups:
       new_invitation:
         subject: "%{user} vous invite à rejoindre le groupe %{group} sur Collaide"
