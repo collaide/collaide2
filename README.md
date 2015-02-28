@@ -135,7 +135,7 @@ Yves Baumann et Numa de Montmollin. [les auteurs](http://www.collaide.com/fr/a-p
 
 License Collaide
 -------
-Copyright (c) 2009-2014 All rights reserved.
+Copyright (c) 2009-2015 All rights reserved.
 
 - Fondateur : Yves Baumann
 - Cofondateur : Numa de Montmollin
