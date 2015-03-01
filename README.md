@@ -72,6 +72,7 @@ d'avoir Ruby > 2.0 installé et PostgreSQL avec une base de donnée du nom
 de collaide-dev
 
 Normalement, si tout ce passe bien, la première fois vous faites:
+
 1. `git clone <votre repo de collaide>`
 2. `cd <votre repo de collaide> && bundle install`
 3. Démarage de PostgreSQL
