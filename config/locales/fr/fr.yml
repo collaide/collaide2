@@ -386,3 +386,4 @@ fr:
       create: "Félicitations, vous avez créé le group %{group} !"
       invitation: "%{user} vous invite à rejoindre le groupe %{group}."
       invitation_accepted: "Vous avez accepté l'invitation à rejoindre le groupe %{group}"
+      new_invitation: "Il y a eu des changements dans le groupe %{group}"

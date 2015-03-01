@@ -1,4 +1,6 @@
 class Group::EmailInvitationsController < ApplicationController
+  include Concerns::ActivityConcern
+
   before_action :find_required_objects
   before_action :authorize, except: :destroy
   before_action :ensure_email_invitation, except: :update
@@ -47,6 +49,7 @@ class Group::EmailInvitationsController < ApplicationController
   def destroy
     authorize @group
     @ei.destroy
+    create_group_activity :email_invitation_destroyed, :deletion, recipient: @ei.receiver.try(:to_s) || @ei.email
     redirect_to group_group_invitations_path, notice: t('groups.invitations.destroy.notice')
   end
 
@@ -74,6 +77,7 @@ class Group::EmailInvitationsController < ApplicationController
     @ei.status = :refused
     @ei.receiver = current_user
     @ei.save
+    create_group_activity :email_invitation_refused, :info, recipient: @ei.email
     redirect_to user_path(current_user), notice: t('groups.invitations.update.notice.refuse')
   end
 
@@ -100,6 +104,7 @@ class Group::EmailInvitationsController < ApplicationController
     @ei.receiver = current_user
     @ei.status = :accepted
     @ei.save
+    create_group_activity :email_invitation_accepted, :addition, recipient: current_user
   end
 
   def find_required_objects

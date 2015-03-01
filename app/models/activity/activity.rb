@@ -21,6 +21,8 @@ class Activity::Activity < ActiveRecord::Base
 
   after_create :create_notification
 
+  enumerize :type, in: [:addition, :deletion, :info], prediactes: true, default: :info
+
   # Define polymorphic association to the parent
   belongs_to :trackable, :polymorphic => true
   # Define ownership to a resource responsible for this activity

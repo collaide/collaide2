@@ -1,5 +1,6 @@
 # Gère les commentaires, réponses d'un sujet. Un sujet fait lui-même parti d'un groupe
 class Group::CommentsController < ApplicationController
+  include Concerns::ActivityConcern
   before_action :get_required_objects # instancie le sujet et le groupe auquel appartient le commentaire
   before_action :get_comment, only: [:edit, :update, :destroy]
 
@@ -11,6 +12,7 @@ class Group::CommentsController < ApplicationController
     @comment.user = current_user
     @comment.topic = @topic
     if @comment.save
+      create_group_activity :new_comment, :addition, recipient: @comment
       redirect_to group_group_topic_path(group_group_id: @group, id: @topic, anchor: @comment.id), notice: t('groups.comments.notices.comment_created')
     else
       render 'group/comments/new'
@@ -26,6 +28,7 @@ class Group::CommentsController < ApplicationController
   def update
     authorize @group, @comment
     if @comment.update(message: params[:group_comment][:message])
+      create_group_activity :update_comment, :info, recipient: @comment
       redirect_to group_group_topic_path(group_group_id: @group, id: @topic, anchor: @comment.id), notice: t('groups.comments.notices.comment_updated')
     else
       render :edit
@@ -37,6 +40,7 @@ class Group::CommentsController < ApplicationController
     authorize @group, @comment
     @comment.deleted = true
     @comment.save
+    create_group_activity :destroy_comment, :deletion, recipient: @comment
     redirect_to group_group_topic_path(group_group_id: @group, id: @topic, anchor: @comment.id), notice: t('groups.comments.notices.comment_deleted')
   end
 

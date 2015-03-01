@@ -14,6 +14,6 @@ class GroupsNotification < NotificationSystem::Base
   end
 
   def new_activity(group)
-    "Il y a eu des changements dans le group #{group}"
+    t('notifications.groups.new_invitation', group: link_to(h(group), group_group_path(groupe))).html_safe
   end
 end

@@ -1,8 +1,11 @@
 module Concerns::ActivityConcern
 
   # Create an activity for a group
-  def create_group_activity(key)
-    create_activity(key, trackable: @group, owner: current_user)
+  def create_group_activity(key, type, options = {})
+    options[:trackable] = @group
+    options[:owner] = current_user
+    options[:type] = type
+    create_activity(key, options)
   end
 
   # Options Hash (options):
@@ -20,6 +23,9 @@ module Concerns::ActivityConcern
 
     activity = Activity::Activity.new
     activity.trackable = options[:trackable]
+    if options[:type]
+      activity.type = options[:type]
+    end
     if options[:owner]
       activity.owner = options[:owner]
     elsif options[:owner_id] && options[:owner_type]

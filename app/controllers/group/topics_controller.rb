@@ -17,7 +17,7 @@ class Group::TopicsController < ApplicationController
     @topic.user = current_user
     @topic.group = @group
     if @topic.save
-      create_group_activity :new_topic
+      create_group_activity :new_topic, :addition, recipient: @topic
       redirect_to group_group_topic_path(group_group_id: @group, id: @topic), notice: t('groups.topics.create.success')
     else
       render :new
@@ -27,7 +27,7 @@ class Group::TopicsController < ApplicationController
   def update
     authorize @group, @topic
     if @topic.update(topic_params)
-      create_group_activity :topic_updated
+      create_group_activity :topic_updated, :info, recipient: @topic
       redirect_to group_group_topic_path(group_group_id: @group, id: @topic)
     else
       render :edit
@@ -52,7 +52,7 @@ class Group::TopicsController < ApplicationController
   end
 
   def destroy
-    create_group_activity :topic_deleted
+    create_group_activity :topic_deleted, :deletion
     topic = @group.topics.where(id: params[:id]).take
     authorize @group, topic
     comments = topic.comments
