@@ -55,6 +55,7 @@ graphisme du site
 
 ### Développer
 Pour contribuer au développement du code source:
+
 1. Faire un fork du projet [github](https://github.com/collaide/collaide2)
 2. Choisir un bug à corriger ou une amélioration à effectuer.
 3. Ouvrir une issue sur Github pour dire ce que vous faites (comme ça le
