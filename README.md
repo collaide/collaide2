@@ -55,6 +55,7 @@ graphisme du site
 
 ### Développer
 Pour contribuer au développement du code source:
+
 1. Faire un fork du projet [github](https://github.com/collaide/collaide2)
 2. Choisir un bug à corriger ou une amélioration à effectuer.
 3. Ouvrir une issue sur Github pour dire ce que vous faites (comme ça le
@@ -71,6 +72,7 @@ d'avoir Ruby > 2.0 installé et PostgreSQL avec une base de donnée du nom
 de collaide-dev
 
 Normalement, si tout ce passe bien, la première fois vous faites:
+
 1. `git clone <votre repo de collaide>`
 2. `cd <votre repo de collaide> && bundle install`
 3. Démarage de PostgreSQL
