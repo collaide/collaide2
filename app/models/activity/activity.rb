@@ -18,6 +18,7 @@
 #
 
 class Activity::Activity < ActiveRecord::Base
+  extend Enumerize
 
   after_create :create_notification
 
