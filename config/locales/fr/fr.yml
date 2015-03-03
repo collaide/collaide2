@@ -349,6 +349,7 @@ fr:
     reply: "Répondre"
     since: "Depuis le %{date}"
     save: "Enregistrer"
+    at: "Il y a %{time}"
   simple_form:
     labels:
       group_do_invitation:

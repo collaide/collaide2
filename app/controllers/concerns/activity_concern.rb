@@ -4,7 +4,7 @@ module Concerns::ActivityConcern
   def create_group_activity(key, type, options = {})
     options[:trackable] = @group
     options[:owner] = current_user
-    options[:type] = type
+    options[:activity_type] = type
     create_activity(key, options)
   end
 
@@ -20,11 +20,11 @@ module Concerns::ActivityConcern
   # :create_related_activity_param (boolean) - If true, we create the activity param
 
   def create_activity(action, options = {})
-
+    byebug
     activity = Activity::Activity.new
     activity.trackable = options[:trackable]
-    if options[:type]
-      activity.type = options[:type]
+    if options[:activity_type]
+      activity.activity_type = options[:activity_type]
     end
     if options[:owner]
       activity.owner = options[:owner]

@@ -43,7 +43,7 @@ class Group::GroupsCreatorController < ApplicationController
   def invitations
     authorize @group
     @group.finished = true
-    create_activity(:create, trackable: @group, owner: current_user, type: :addition)
+    create_activity(:create, trackable: @group, owner: current_user, activity_type: :addition)
     GroupsNotification.create!(:create, values: @group, users: current_user)
     @group.save
   end

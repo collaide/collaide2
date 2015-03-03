@@ -1,4 +1,4 @@
-=raw(t('activity.group_group.create', owner: show_owner(activity.owner)))
+= t('activity.group_group.create', owner: user_image(activity.owner, name: true)).html_safe
 - if activity.trackable
   - if specification == nil
     #{link_to activity.trackable.name, activity.trackable}.

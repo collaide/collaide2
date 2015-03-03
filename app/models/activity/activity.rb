@@ -22,7 +22,7 @@ class Activity::Activity < ActiveRecord::Base
 
   after_create :create_notification
 
-  enumerize :type, in: [:addition, :deletion, :info], prediactes: true, default: :info
+  enumerize :activity_type, in: [:addition, :deletion, :info], prediactes: true, default: :info
 
   # Define polymorphic association to the parent
   belongs_to :trackable, :polymorphic => true

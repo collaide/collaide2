@@ -57,7 +57,7 @@ module ApplicationHelper
         image = user.avatar.mini
     end
     content = image_tag(image, class: 'th', height: height, width: width)
-    content += ' ' + user.to_s if name
+    content += ' ' + h(user.to_s) if name
     link_to content, user_path(user)
   end
 
@@ -69,6 +69,17 @@ module ApplicationHelper
     # ie: current_page?(:controller => 'users', :action => 'index')
     if notifications_size > 0 and request.fullpath != user_notifications_path(current_user)
       "<li><a href='#{user_notifications_path(current_user)}'>#{t('header.user.notifications', size: notifications_size)}</a></li>".html_safe
+    end
+  end
+
+  def icon_from_activity(activity)
+    case activity.activity_type
+      when 'addition'
+        foundation_icons('fi-plus large')
+      when 'deletion'
+        foundation_icons('fi-minus large')
+      else
+        foundation_icons('fi-info large')
     end
   end
 
