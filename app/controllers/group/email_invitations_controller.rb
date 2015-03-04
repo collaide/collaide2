@@ -104,7 +104,7 @@ class Group::EmailInvitationsController < ApplicationController
     @ei.receiver = current_user
     @ei.status = :accepted
     @ei.save
-    create_group_activity :email_invitation_accepted, :addition, recipient: current_user
+    create_group_activity :joined, :addition, recipient: current_user
   end
 
   def find_required_objects

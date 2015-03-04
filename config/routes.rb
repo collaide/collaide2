@@ -39,6 +39,21 @@ Rails.application.routes.draw do
           get ':id/secret_token/:secret_token/reset_session', action: :clear_session, as: 'reset_session'
         end
       end
+      resources :repo_items, only: [:index, :show, :destroy] do
+        get 'download'
+        get 'search'
+        patch 'copy', action: :copy
+        patch 'move', action: :move
+        patch 'rename', action: :rename
+        collection do
+          post 'folder', action: :create_folder, :as => 'create_folder'
+          post 'file', action: :create_file, :as => 'create_file'
+          post 'files', action: :create_files
+        end
+        resources :sharings, only: [:new, :create, :destroy] do
+
+        end
+      end
       resources :admin, controller: 'group/admin', only: :index
       resources :members, controller: 'group/members', only: [:index, :update]
     end
