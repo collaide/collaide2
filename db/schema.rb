@@ -167,18 +167,20 @@ ActiveRecord::Schema.define(version: 20150227171319) do
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "rm_repo_items", force: :cascade do |t|
-    t.integer "owner_id"
-    t.string  "owner_type"
-    t.integer "sender_id"
-    t.string  "sender_type"
-    t.string  "ancestry"
-    t.integer "ancestry_depth", default: 0
-    t.string  "name"
-    t.float   "file_size"
-    t.string  "content_type"
-    t.string  "file"
-    t.string  "type"
-    t.string  "checksum"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "sender_id"
+    t.string   "sender_type"
+    t.string   "ancestry"
+    t.integer  "ancestry_depth", default: 0
+    t.string   "name"
+    t.float    "file_size"
+    t.string   "content_type"
+    t.string   "file"
+    t.string   "type"
+    t.string   "checksum"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rm_repo_items", ["ancestry"], name: "index_rm_repo_items_on_ancestry", using: :btree

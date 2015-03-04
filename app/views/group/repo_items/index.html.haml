@@ -15,7 +15,7 @@
           %tr{'ng-repeat' => 'item in items'}
             %td
               %input{type: 'checkbox'}
-            %td
+            %td{width: '500'}
               {{item.name}}
             %td
               {{item.is_folder === true ? '-' : item.size}}
