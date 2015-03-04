@@ -1,0 +1,17 @@
+=render layout: 'groups/layouts/layout' do
+  %div{'ng-app' => 'repoItemsApp'}
+    #controller{'ng-controller' => 'RepoItemsController', 'api-path' => api_repo_items_path(group_group_id: params[:group_group_id]) }
+      %table
+        %thead
+          %tr
+            %th
+              %input{type: 'checkbox'}
+              Sélectionner
+            %th Nom
+            %th Auteur
+        %tbody
+          %tr{'ng-repeat' => 'item in items'}
+            %td
+              %input{type: 'checkbox'}
+            %td
+              {{item.name}}
