@@ -61,6 +61,10 @@ module ApplicationHelper
     link_to content, user_path(user)
   end
 
+  def user_from_json(name, url, show)
+    "<a href=\"#{url}\" ng-hide=\"#{show}\""">#{h(name)}</a>".html_safe
+  end
+
   # Print to the topbar an item to read the notifications and show the number of unreaded notifications
   def print_unread_notifications
     return unless user_signed_in?

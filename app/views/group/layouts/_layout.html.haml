@@ -17,7 +17,7 @@
         %ul.collaide-side-nav
           = build_active_menu path: group_group_path(@group), text: t('groups.groups.menu.welcome'), icon: 'info'
           = build_active_menu path: group_group_topics_path(group_group_id: @group), text: t('groups.groups.menu.topic'), icon: 'comments', controller: 'group/topics'
-          = build_active_menu path: '', text: t('groups.groups.menu.files'), icon: 'page-multiple'
+          = build_active_menu path: group_group_repo_items_path(@group), text: t('groups.groups.menu.files'), icon: 'page-multiple'
           = build_active_menu path: group_group_invitations_path(@group), text: t('groups.groups.menu.invitations'), icon: 'info'
     -if not local_assigns[:more].nil?
       = render partial: more
