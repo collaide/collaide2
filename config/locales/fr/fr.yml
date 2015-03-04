@@ -318,6 +318,9 @@ fr:
     members:
       update:
         notice: "Changements enregistrés"
+    repo_items:
+      index:
+        you: "Vous"
   devise:
     offcanvas:
       signin:

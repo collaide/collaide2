@@ -39,7 +39,8 @@ Rails.application.routes.draw do
           get ':id/secret_token/:secret_token/reset_session', action: :clear_session, as: 'reset_session'
         end
       end
-      resources :repo_items, controller: 'group/repo_items', only: [:index, :show]
+      get 'repo_items/', controller: 'group/repo_items', action: 'index', as: 'repo_items'
+      get 'repo_items/:id', controller: 'group/repo_items', action: 'index', as: 'repo_items'
       resources :admin, controller: 'group/admin', only: :index
       resources :members, controller: 'group/members', only: [:index, :update]
     end

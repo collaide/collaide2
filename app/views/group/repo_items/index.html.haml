@@ -1,26 +1,4 @@
 =render(layout: 'group/layouts/layout') do
   %div{'ng-app' => 'repoItemsApp', csrf: form_authenticity_token }
-    #controller{'ng-controller' => 'RepoItemsController', 'api-path' => api_repo_items_path(group_group_id: params[:group_group_id], format: :json) }
-      %p{'ng-hide' => 'items.length'} Aucun fichiers ou dossiers pour le moment
-      %table{'ng-show' => 'items.length'}
-        %thead
-          %tr
-            %th
-              %input{type: 'checkbox'}
-            %th Nom
-            %th Taille
-            %th Auteur
-            %th Modifié
-        %tbody
-          %tr{'ng-repeat' => 'item in items'}
-            %td
-              %input{type: 'checkbox'}
-            %td{width: '500'}
-              {{item.name}}
-            %td
-              {{item.is_folder === true ? '-' : item.size}}
-            %td
-              = user_from_json '{{item.sender.name}}', '{{item.sender.url}}', '{{item.sender.you}}'
-              <span ng-show="{{item.sender.you}}">Vous</span>
-            %td
-              {{item.updated_at}}
+    %base{href: group_group_repo_items_path(@group) + '/', group_id: @group.id}
+    %div{'ng-view' => true}

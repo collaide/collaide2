@@ -5,9 +5,6 @@ class Group::RepoItemsController < ApplicationController
   
   def index
   end
-  
-  def show
-  end
 
   private
   def find_the_group

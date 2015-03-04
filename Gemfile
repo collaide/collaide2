@@ -10,6 +10,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # JavaScript library
 gem 'jquery-rails', '~> 4.0.3'
 gem 'ui_datepicker-rails3', '~> 1.2.0'
+gem 'angular-rails-templates'
 
 # JSON
 gem 'jbuilder', '~> 2.0'
