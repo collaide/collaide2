@@ -85,6 +85,8 @@ group :development, :test do
   gem 'meta_request' # Pour le railsPanel sous chrome
 
   gem 'faker', '~> 1.4.3' # populate with fake datas
+
+  gem 'bower-rails', '~> 0.9.2' # manage assets (javascript) more easily
 end
 
 group :production do
