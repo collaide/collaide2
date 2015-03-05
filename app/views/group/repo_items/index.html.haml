@@ -1,4 +1,4 @@
 =render(layout: 'group/layouts/layout') do
-  %div{'ng-app' => 'repoItemsApp', csrf: form_authenticity_token }
-    %base{href: group_group_repo_items_path(@group) + '/', group_id: @group.id}
+  %div{'ng-app' => 'repoItemsApp'}
+    %base{href: group_group_path(@group) + '/', group_id: @group.id}
     %div{'ng-view' => true}

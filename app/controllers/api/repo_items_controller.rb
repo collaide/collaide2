@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Api::RepoItemsController < ApplicationController
+  after_filter :set_csrf_cookie_for_ng
 
-  #load_and_authorize_resource class: RepositoryManager::RepoItem
   before_action :find_the_group
   before_action :find_the_repo, only: [:download, :copy, :move, :rename]
 
@@ -22,7 +22,7 @@ class Api::RepoItemsController < ApplicationController
   end
 
   def create_file
-    repo_item = RepositoryManager::RepoItem.take file_params[:id]
+    repo_item  =repo_item_if_exist file_params[:id]
     options = {source_folder: repo_item, sender: current_user}
     respond_to do |format|
       if (@item = @group.create_file(file_params[:file], options))
@@ -35,11 +35,11 @@ class Api::RepoItemsController < ApplicationController
 
   def create_folder
     folder_params = params.require(:repo_folder).permit(:id, :name)
-    repo_item = RepositoryManager::RepoItem.take folder_params[:id]
+    repo_item = repo_item_if_exist folder_params[:id]
     options = {source_folder: repo_item, sender: current_user}
     respond_to do |format|
       if @item = @group.create_folder(folder_params[:name], options)
-        format.json { render template: 'group/repo_items/create', status: :created }
+        format.json { render template: 'api/repo_items/create', status: :created }
       else
         format.json { render json: options[:errors], status: :unprocessable_entity }
       end
@@ -78,7 +78,7 @@ class Api::RepoItemsController < ApplicationController
 
   def copy
     copy_params = params.require(:repo_item).permit :id
-    target = RepositoryManager::RepoItem.take copy_params[id]
+    target = repo_item_if_exist copy_params[id]
     respond_to do |format|
       if @group.copy_repo_item(@repo_item, source_folder: target)
 
@@ -91,7 +91,7 @@ class Api::RepoItemsController < ApplicationController
 
   def move
     move_params = params.require(:repo_item).permit :id
-    target = RepositoryManager::RepoFolder.take move_params[id]
+    target = repo_item_if_exist move_params[id]
     respond_to do |format|
       if @group.move_repo_item @repo_item, source_folder: target
         format.json { render :show }
@@ -111,7 +111,21 @@ class Api::RepoItemsController < ApplicationController
     end
   end
 
+  protected
+
+  def verified_request?
+    super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+  end
+
   private
+
+  def repo_item_if_exist(id)
+    RepositoryManager::RepoItem.where(id: id).take
+  end
+
+  def set_csrf_cookie_for_ng
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
 
   def file_params
     params.require(:repo_file).permit(:id, :file)

@@ -1,7 +1,7 @@
 json.partial! 'api/repo_items/repo_item', repo_item: @repo_item
 json.partial! 'api/repo_items/parent', repo_item: @repo_item
 json.children @children do |child|
-  json.partial! 'group/repo_items/repo_item', repo_item: child
+  json.partial! 'api/repo_items/repo_item', repo_item: child
 end
 json.breadcrumb @repo_item.path do |element|
   json.id element.id
