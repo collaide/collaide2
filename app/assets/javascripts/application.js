@@ -22,7 +22,8 @@
 //= require angular-route
 //= require angular-resource
 //= require angular-animate
-//= require ng-file-upload
+//= require angular-file-upload
+//= require angular-file-upload-shim
 //= require angular-rails-templates
 //= require_tree .
 

@@ -61,6 +61,8 @@ gem 'angularjs-rails', '~> 1.3.10' # Front-end javascript
 # Gems for the group module
 gem 'repository-manager', '~> 0.2.10'
 
+gem 'puma'
+
 group :development, :test do
 
   gem 'byebug', '~> 3.5.1' # Debugger

@@ -1,26 +1,29 @@
-.view-container
+.view-container{'ng-file-drop' => true, 'ng-model' => 'files', 'drag-over-class' => 'dragover',
+'ng-multiple' => 'true', 'allow-dir' => 'true'}
   .view-frame
     .row.sticky-element
-      .columns.small-12
-        .left
-          %ul.breadcrumbs
-            %li#home{'ng-class' => '{current: !current_item}'}
-              %a{href: "{{$('base').attr('href')}}"} Home
-            %li{'ng-repeat' => 'element in current_item.breadcrumb', 'ng-class' => '{current: $last}'}
-              %a{href: 'repo_items/{{element.id}}'}
-                {{element.name}}
-        .right
-          .row.collapse
-            .columns.small-10
-              %input{type: 'text', 'ng-model' => 'folder_name', placeholder: 'Nom du dossier', 'ng-class' => '{error: folder_error}'}
-              %small.error{'ng-show' => 'folder_error'}
-                {{folder_error}}
-                %a{href: '#', class: 'close', 'ng-click' => 'folder_error=false'}= '&times;'.html_safe
-            .columns.small-2
-              %a.button.button.postfix{'ng-click' => 'createFolder(folder_name, current_item)'}
-                %i.fi-plus.large
-    %p{'ng-hide' => 'items.length'} Aucun fichiers ou dossiers pour le moment
-    %table{'ng-show' => 'items.length'}
+      .columns.small-7
+        %ul.breadcrumbs
+          %li#home{'ng-class' => '{current: !current_item}'}
+            %a{href: "{{$('base').attr('href')}}"} Home
+          %li{'ng-repeat' => 'element in current_item.breadcrumb', 'ng-class' => '{current: $last}'}
+            %a{href: 'repo_items/{{element.id}}'}
+              {{element.name}}
+      .columns.small-5
+        .row.collapse
+          .columns.small-1
+            %a.button.prefix{'ng-file-select' => true, 'ng-file-change' => 'upload($files)',  'ng-multiple' => 'true'}
+              %i.fi-arrow-up.large
+          .columns.small-10
+            %input{type: 'text', 'ng-model' => 'folder_name', placeholder: 'Nom du dossier', 'ng-class' => '{error: folder_error}'}
+            %small.error{'ng-show' => 'folder_error'}
+              {{folder_error}}
+              %a{href: '#', class: 'close', 'ng-click' => 'folder_error=false'}= '&times;'.html_safe
+          .columns.small-1
+            %a.button.button.postfix{'ng-click' => 'createFolder(folder_name, current_item)'}
+              %i.fi-plus.large
+    %p{'ng-hide' => 'items.length || filesUploading.length'} Aucun fichiers ou dossiers pour le moment
+    %table{'ng-show' => 'items.length || filesUploading.length'}
       %thead
         %tr
           %th
@@ -30,10 +33,34 @@
           %th Auteur
           %th Modifié
       %tbody
+        %tr.repo-items-listing{'ng-repeat' => '(key, file) in filesUploading'}
+          %td
+            %input{type: 'checkbox'}
+          %td{width: 450}
+            .row
+              .columns.small-6
+                <i class="{{item_symbol(file)}}"/>
+                {{file.name}}
+              .columns.small-5
+                %p{'ng-show' => 'file.wait'}
+                  Traitement du fichier...
+                .row{'ng-hide' => 'file.wait'}
+                  .columns.small-10
+                    .progress
+                      %span.meter{style: 'width: {{file.progress}}%'}
+                  .columns.small-2
+                    %a{'ng-click' => 'abort(file, key)'}
+                      %i.fi-x.large
+          %td
+            {{file.size}}
+          %td
+            Vous
+          %td
+            < 1s
         %tr.repo-items-listing{'ng-repeat' => 'item in items'}
           %td
             %input{type: 'checkbox'}
-          %td{width: '500'}
+          %td{width: '450'}
             .left
               %a{href: 'repo_items/{{item.id}}'}
                 <i class="{{item_symbol(item)}}"/>
@@ -42,7 +69,7 @@
               %a{'ng-click' => 'delete(item, $index)'}
                 %i.fi-x.large
           %td
-            {{item.is_folder === true ? '-' : item.size}}
+            {{item.is_folder === true ? '-' : item.file_size + ' Ko'}}
           %td
             <a href="{{item.sender.url}}" ng-hide="{{item.sender.you}}">{{item.sender.name}}</a>
             <span ng-show="{{item.sender.you}}">Vous</span>

@@ -22,11 +22,11 @@ class Api::RepoItemsController < ApplicationController
   end
 
   def create_file
-    repo_item  =repo_item_if_exist file_params[:id]
+    repo_item  = repo_item_if_exist file_params[:id]
     options = {source_folder: repo_item, sender: current_user}
     respond_to do |format|
-      if (@item = @group.create_file(file_params[:file], options))
-        format.json { render template: 'group/repo_items/create', status: :created }
+      if (@item = @group.create_file(params.require(:file), options))
+        format.json { render template: 'api/repo_items/create', status: :created }
       else
         format.json { render json: options[:errors], status: :unprocessable_entity }
       end
@@ -128,7 +128,11 @@ class Api::RepoItemsController < ApplicationController
   end
 
   def file_params
-    params.require(:repo_file).permit(:id, :file)
+    if params[:repo_file].present?
+      params.require(:repo_file).permit(:id, :file)
+    else
+      {}
+    end
   end
 
   def find_the_group
