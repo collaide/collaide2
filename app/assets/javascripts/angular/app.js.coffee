@@ -21,45 +21,33 @@ repoItemsApp.factory('RepoItem', ['$resource', ($resource) ->
   RepoItem.prototype.addFolder = ($scope) ->
     this.repo_folder.name = '' if this.repo_folder.name == undefined
     this.$createFolder((data) ->
-      $scope.items.unshift(data)
+      $scope.items[data.id] = data
     , (error) ->
       $scope.folder_error = error.data[0]
     )
-  RepoItem.prototype.deleteItem = ($scope, index)->
+  RepoItem.prototype.deleteItem = ($scope, item)->
+    console.log(item)
     RepoItem.delete({id: this.id}, (data) ->
-      $scope.items.splice(index, 1)
+      delete $scope.items[item.id]
     , (error) ->
+      console.log(error)
     )
   RepoItem.symbol = (item)->
     if item.is_folder
      return 'fi-folder large'
     else
       return 'fi-page large'
-  return RepoItem
-])
-
-controllers = angular.module('controllers',[])
-controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', (RepoItem, $scope, $upload) ->
-  $scope.items = RepoItem.query()
-  $scope.filesUploading = {}
-  $scope.createFolder = (folder_name) ->
-    new RepoItem({repo_folder: {name: folder_name}}).addFolder($scope)
-  $scope.delete = (item, index) ->
-    item.deleteItem($scope, index)
-  $scope.item_symbol = (item) ->
-    return RepoItem.symbol(item)
-  $scope.$watch('files', () ->
-    $scope.upload($scope.files)
-  )
-  $scope.upload = (files) ->
+  RepoItem.upload = ($scope, files, $upload, current_item_id) =>
     return if files == undefined
     i = 0
     for file in files
       file.id = i
-      file.upload = $upload.upload({
+      options = {
         url: '/api/groups/1/repo_items/file.json'
         file: file
-      })
+      }
+      options.fields = {'id': current_item_id} if current_item_id
+      file.upload = $upload.upload(options)
       file.upload.progress((event) ->
         file_id = event.config.file.id
         return if $scope.filesUploading[file_id] == undefined
@@ -68,21 +56,85 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', (
       )
       .success((data, status, headers, config) ->
         delete $scope.filesUploading[config.file.id]
-        $scope.items.unshift(new RepoItem(data))
+        $scope.items[data.id] = new RepoItem(data)
       )
       $scope.filesUploading[i] = file
       i++
-  $scope.abort = (file, $index) ->
-    $scope.filesUploading[$index].upload.abort()
-    delete $scope.filesUploading[$index]
-]).controller('ShowRepoItemsCtrl', ['RepoItem', '$scope', '$routeParams', (RepoItem, $scope, $routeParams) ->
-  $scope.current_item = RepoItem.get({id: $routeParams.id}, (current_item)->
-    $scope.items = current_item.children
+  RepoItem.abort = (file, $scope) ->
+    $scope.filesUploading[file.id].upload.abort()
+    delete $scope.filesUploading[file.id]
+  return RepoItem
+])
+
+controllers = angular.module('controllers',[])
+controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', (RepoItem, $scope, $upload) ->
+  $scope.items = {}
+  RepoItem.query().$promise.then((items) ->
+    for item in items
+      $scope.items[item.id] = item
   )
-  $scope.createFolder = (folder_name, current_folder) ->
-    new RepoItem({repo_folder: {id: current_folder.id, name: folder_name}}).addFolder($scope)
-  $scope.delete = (item, index) ->
-    new RepoItem({id: item.id}).deleteItem($scope, index)
+
+  $scope.filesUploading = {}
+
+  $scope.createFolder = (folder_name) ->
+    new RepoItem({repo_folder: {name: folder_name}}).addFolder($scope)
+
+  $scope.delete = (item) ->
+    item.deleteItem($scope, item)
+
   $scope.item_symbol = (item) ->
     return RepoItem.symbol(item)
+
+  $scope.$watch('files', () ->
+    $scope.upload($scope.files)
+  )
+
+  $scope.empty = (items) ->
+    angular.equals(items, {})
+
+  $scope.upload = (files) ->
+    RepoItem.upload($scope, files, $upload)
+
+  $scope.abort = (file) ->
+    RepoItem.abort(file, $scope)
+
+  $scope.deleteAll = () ->
+      angular.forEach($scope.items, (item) ->
+        item.deleteItem($scope, item) if item.checked || $scope.checked
+      )
+
+]).controller('ShowRepoItemsCtrl', ['RepoItem', '$scope', '$routeParams', '$upload', (RepoItem, $scope, $routeParams, $upload) ->
+  $scope.items = {}
+  $scope.filesUploading = {}
+  $scope.current_item = RepoItem.get({id: $routeParams.id}, (current_item)->
+    for item in current_item.children
+      $scope.items[item.id] = item
+  )
+
+  $scope.createFolder = (folder_name, current_folder) ->
+    new RepoItem({repo_folder: {id: current_folder.id, name: folder_name}}).addFolder($scope)
+
+  $scope.delete = (item) ->
+    new RepoItem({id: item.id}).deleteItem($scope, item)
+
+  $scope.item_symbol = (item) ->
+    return RepoItem.symbol(item)
+
+  $scope.$watch('files', () ->
+    $scope.upload($scope.files, $scope.current_item)
+  )
+
+  $scope.empty = (items) ->
+    angular.equals(items, {})
+
+  $scope.upload = (files, current_item) ->
+    RepoItem.upload($scope, files, $upload, current_item.id)
+
+  $scope.deleteAll = () ->
+    angular.forEach($scope.items, (item) ->
+      new RepoItem({id: item.id}).deleteItem($scope, item) if item.checked || $scope.checked
+    )
+
+  $scope.abort = (file) ->
+    RepoItem.abort(file, $scope)
 ])

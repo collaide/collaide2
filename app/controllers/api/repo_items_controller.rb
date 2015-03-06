@@ -22,7 +22,7 @@ class Api::RepoItemsController < ApplicationController
   end
 
   def create_file
-    repo_item  = repo_item_if_exist file_params[:id]
+    repo_item  = repo_item_if_exist params[:id]
     options = {source_folder: repo_item, sender: current_user}
     respond_to do |format|
       if (@item = @group.create_file(params.require(:file), options))

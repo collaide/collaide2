@@ -452,6 +452,14 @@ a.close {
   color: #2980ba
 }
 
+.drop-box {
+  border: dashed 5px #999999;
+  background-color: $secondary-color;
+  padding: rem-calc(100px) 5px 5px 5px;
+  text-align: center;
+  min-height: rem-calc(400px);
+}
+
 .repo-items-listing.ng-enter,
 .repo-items-listing.ng-leave,
 .repo-items-listing.ng-move {
