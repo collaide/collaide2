@@ -20,7 +20,6 @@ module Concerns::ActivityConcern
   # :create_related_activity_param (boolean) - If true, we create the activity param
 
   def create_activity(action, options = {})
-    byebug
     activity = Activity::Activity.new
     activity.trackable = options[:trackable]
     if options[:activity_type]
