@@ -1,33 +1,36 @@
 .view-container{'ng-file-drop' => true, 'ng-model' => 'files', 'drag-over-class' => 'dragover',
 'ng-multiple' => 'true', 'allow-dir' => 'true'}
   .view-frame
-    .row.sticky-element
-      .columns.small-7
-        %ul.breadcrumbs
-          %li#home{'ng-class' => '{current: !current_item}'}
-            %a{href: "{{$('base').attr('href')}}"}
-              %i.fi-home.large
-          %li{'ng-repeat' => 'element in current_item.breadcrumb', 'ng-class' => '{current: $last}'}
-            %a{href: 'repo_items/{{element.id}}'}
-              {{element.name}}
-      .columns.small-5
-        .row.collapse
-          .columns.small-1
-            %a.button.prefix{'data-dropdown' => 'drop2', 'aria-controls' => 'drop2', 'aria-expanded' => 'false'}
-              %i.fi-clipboard
-            #drop2.f-dropdown.content{'data-dropdown-content' => true, 'aria-hidden' => 'true', 'tabindex' => '-1'}
-              %p Mettez dans le presse-papier les fichiers ou dossiers que vous souhaitez déplacer ou copier
-          .columns.small-1
-            %a.button.prefix.success{'ng-file-select' => true, 'ng-file-change' => 'upload($files, current_item)',  'ng-multiple' => 'true'}
-              %i.fi-arrow-up.large
-          .columns.small-9
-            %input{type: 'text', 'ng-model' => 'folder_name', placeholder: 'Nom du dossier', 'ng-class' => '{error: folder_error}'}
-            %small.error{'ng-show' => 'folder_error'}
-              {{folder_error}}
-              %a{href: '#', class: 'close', 'ng-click' => 'folder_error=false'}= '&times;'.html_safe
-          .columns.small-1
-            %a.button.button.success.postfix{'ng-click' => 'createFolder(folder_name, current_item)'}
-              %i.fi-plus.large
+    .sticky-element
+      .row
+        .columns.small-7
+          %ul.breadcrumbs
+            %li#home{'ng-class' => '{current: !current_item}'}
+              %a{href: "{{$('base').attr('href')}}"}
+                %i.fi-home.large
+            %li{'ng-repeat' => 'element in current_item.breadcrumb', 'ng-class' => '{current: $last}'}
+              %a{href: 'repo_items/{{element.id}}'}
+                {{element.name}}
+        .columns.small-5
+          .row.collapse
+            .columns.small-1
+              %a.button.prefix{'data-dropdown' => 'drop2', 'aria-controls' => 'drop2', 'aria-expanded' => 'false'}
+                %i.fi-clipboard
+            .columns.small-1
+              %a.button.prefix.success{'ng-file-select' => true, 'ng-file-change' => 'upload($files, current_item)',  'ng-multiple' => 'true'}
+                %i.fi-arrow-up.large
+            .columns.small-9
+              %input{type: 'text', 'ng-model' => 'folder_name', placeholder: 'Nom du dossier', 'ng-class' => '{error: folder_error}'}
+              %small.error{'ng-show' => 'folder_error'}
+                {{folder_error}}
+                %a{href: '#', class: 'close', 'ng-click' => 'folder_error=false'}= '&times;'.html_safe
+            .columns.small-1
+              %a.button.button.success.postfix{'ng-click' => 'createFolder(folder_name, current_item)'}
+                %i.fi-plus.large
+      .row
+        .columns-small-12
+          #drop2.f-dropdown.content.mega{'data-dropdown-content' => true, 'aria-hidden' => 'true', 'tabindex' => '-1'}
+            %p Le presse-papier est actuellement vide. Des éléments sont ajoutés quand vous copier ou déplacer des fichiers ou des dossiers.
     .drop-box{'ng-show' => 'empty(items) && empty(filesUploading)'}
       %p Vous pouvez ajouter des fichiers et dossiers par glisser-déposer ou en
       %a.button.success{'ng-file-select' => true, 'ng-file-change' => 'upload($files, current_item)',  'ng-multiple' => 'true'}
@@ -50,7 +53,7 @@
         %tr
           %th
             %input{type: 'checkbox', 'ng-model' => 'checked'}
-          %th
+          %th{width: '500px'}
             .left
               Nom
             .right
