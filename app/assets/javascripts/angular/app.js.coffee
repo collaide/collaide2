@@ -1,6 +1,6 @@
 repoItemsApp = angular.module('repoItemsApp', ['controllers', 'templates', 'ngRoute', 'ngResource', 'ngAnimate', 'angularFileUpload'])
 
-repoItemsApp.config(($routeProvider, $locationProvider) ->
+repoItemsApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider.when('/repo_items', {
     templateUrl: 'repo_items.html'
     controller: 'IndexRepoItemsCtrl'
@@ -10,7 +10,7 @@ repoItemsApp.config(($routeProvider, $locationProvider) ->
   })
   .otherwise({redirectTo: '/repo_items'})
   $locationProvider.html5Mode(true);
-)
+])
 repoItemsApp.factory('RepoItem', ['$resource', ($resource) ->
   RepoItem = $resource('/api/groups/1/repo_items/:id:action_type.json', {action_type: ''}, {
     query: {method: 'GET', params: {id: ''}, isArray: true}
