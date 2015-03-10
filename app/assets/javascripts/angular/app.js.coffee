@@ -12,7 +12,7 @@ repoItemsApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $lo
   $locationProvider.html5Mode(true);
 ])
 repoItemsApp.factory('RepoItem', ['$resource', ($resource) ->
-  RepoItem = $resource('/api/groups/1/repo_items/:id:action_type.json', {action_type: ''}, {
+  RepoItem = $resource("/api/groups/#{$('base').attr('group_id')}/repo_items/:id:action_type.json", {action_type: ''}, {
     query: {method: 'GET', params: {id: ''}, isArray: true}
     createFolder: {
       method: 'POST', params: {id: '', action_type: 'folder'}
