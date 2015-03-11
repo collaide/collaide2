@@ -59,7 +59,8 @@ gem 'angularjs-rails', '~> 1.3.10' # Front-end javascript
 
 
 # Gems for the group module
-gem 'repository-manager', '~> 0.2.10'
+gem 'repository-manager', '~> 0.2.11'
+gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp', github: 'collaide/carrierwave-ftp' # SFTP only for carrierwave
 
 gem 'puma'
 

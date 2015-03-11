@@ -18,4 +18,18 @@ RepositoryManager.setup do |config|
 
   # Define if a repo item with the same name will be automaticaly overwrited when a new item is create
   config.auto_overwrite_item = false
+
+  config.storage = :sftp if Rails.env.production?
+end
+
+if Rails.env.production?
+  CarrierWave.configure do |config|
+    config.sftp_host = 'collaide.com'
+    config.sftp_user = ENV['SFTP_USER']
+    config.sftp_folder = 'uploads'
+    config.sftp_options = {
+        :password => ENV['SFTP_PASSWORD'],
+        :port     => 22
+    }
+  end
 end
