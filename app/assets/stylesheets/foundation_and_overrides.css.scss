@@ -49,6 +49,7 @@ $off-canvas-width: 400px;
 $off-canvas-bg: $primary-light-color;
 
 $footer-height: 200px;
+$std-button-border-radius: 5px;
 
 
 
@@ -123,7 +124,8 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 //########################################
 // ########## Bouton standard ###########
 // ######################################
-.std-button {
+.std-button, input.std-button  {
+  //@include button($bg: $secondary-color, $radius: $std-button-border-radius);
   @include button;
   color: $font-color;
   background-color: $secondary-color;
@@ -131,17 +133,16 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   border-color: $primary-color;
   border-style: solid;
   //border-bottom-width: 4px;
-
   box-shadow: 0px 3px 0px $primary-color;
-  border-radius: 5px;
+  border-radius: $std-button-border-radius;
 }
-.std-button:hover {
+.std-button:hover, input.std-button:hover {
   color: $font-color;
   background-color: $secondary-color;
   border-width: 1px;
   border-color: $primary-color;
   border-style: solid;
-  border-radius: 5px;
+  border-radius: $std-button-border-radius;
   box-shadow: 0px 1px 0px $primary-color;
   top: 2px;
   //border-bottom-width: 1px;
@@ -154,20 +155,19 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   border-width: 1px;
   border-color:  $secondary-color;
   border-style: solid;
-  //border-bottom-width: 4px;
-
   box-shadow: 0px 3px 0px $secondary-color;
-  border-radius: 5px;
+  border-radius: $std-button-border-radius;
 }
-.std-button-i:hover {
+#header-sign-up-panel .std-button:hover, .std-button-i:hover {
   color: $secondary-color;
   background-color: $primary-light-color;
   border-width: 1px;
   border-color: $secondary-color;
   border-style: solid;
-  border-radius: 5px;
+  border-radius: $std-button-border-radius;
   box-shadow: 0px 1px 0px $secondary-color;
   top: 2px;
+
   //border-bottom-width: 1px;
 }
 
@@ -193,7 +193,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   //border-bottom-width: 4px;
 
   //box-shadow: 0px 3px 0px $primary-color;
-  border-radius: 5px;
+  border-radius: $std-button-border-radius;
   margin-top: 8px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -207,7 +207,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   border-width: 1px;
   border-color: $secondary-color;
   border-style: solid;
-  border-radius: 5px;
+  border-radius: $std-button-border-radius;
   box-shadow: none;
   transition-duration: 300ms;
   //border-bottom-width: 1px;
@@ -224,7 +224,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   //border-bottom-width: 4px;
 
   //box-shadow: 0px 3px 0px $primary-color;
-  border-radius: 5px;
+  border-radius: $std-button-border-radius;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 8px;
@@ -239,7 +239,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   border-width: 1px;
   border-color: $primary-color;
   border-style: solid;
-  border-radius: 5px;
+  border-radius: $std-button-border-radius;
   box-shadow: none;
   //border-bottom-width: 1px;
 }
@@ -264,7 +264,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   input {
     background-color: $primary-light-color;
     color: $secondary-color;
-    border-radius: 5px;
+    border-radius: $std-button-border-radius;
   }
   .button {
     padding-top: 10px;
@@ -295,7 +295,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   }
   input {
     background-color: $secondary-color;
-    border-radius: 5px;
+    border-radius: $std-button-border-radius;
   }
   .button {
     padding-top: 10px;
