@@ -14,6 +14,6 @@ class GroupsNotification < NotificationSystem::Base
   end
 
   def new_activity(group)
-    t('notifications.groups.new_invitation', group: link_to(h(group), group_group_path(groupe))).html_safe
+    t('notifications.groups.new_invitation', group: link_to(h(group), group_group_path(group))).html_safe
   end
 end

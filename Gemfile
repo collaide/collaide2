@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.3' # For heroku
+
 gem 'rails', '4.2.0'
 
 # CSS + JavaSscript
@@ -57,9 +59,11 @@ gem 'tinymce-rails-langs', '~> 4.20140129'
 
 gem 'angularjs-rails', '~> 1.3.10' # Front-end javascript
 
+gem 'rack-canonical-host', '~> 0.1.0' # For redirecting to beta.collaide.com
 
 # Gems for the group module
-gem 'repository-manager', '~> 0.2.10'
+gem 'repository-manager', '~> 0.2.11'
+gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp', github: 'collaide/carrierwave-ftp' # SFTP only for carrierwave
 
 gem 'puma'
 

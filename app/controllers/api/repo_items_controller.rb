@@ -21,6 +21,10 @@ class Api::RepoItemsController < ApplicationController
     @repo_items = @group.root_repo_items.includes(:owner).includes(:sender).order(name: :asc).order(file: :asc)
   end
 
+  def details
+    @repo_item = RepositoryManager::RepoItem.find(params[:repo_item_id])
+  end
+
   def create_file
     repo_item  = repo_item_if_exist params[:id]
     options = {source_folder: repo_item, sender: current_user}
@@ -49,7 +53,7 @@ class Api::RepoItemsController < ApplicationController
   def download
     path = @group.download_repo_item(@repo_item)
     # Si le fichier n'est pas trouvé
-    render status: :bad_request and return unless File.exist?(path)
+    render status: :bad_request, text: '' and return unless File.exist?(path)
 
     send_file_options = {disposition: :inline, filename: @repo_item.name}
     if MIME::Types.type_for(path).any?

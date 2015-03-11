@@ -7,12 +7,21 @@ repoItemsApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $lo
   }).when('/repo_items/:id', {
     templateUrl: 'repo_items.html'
     controller: 'ShowRepoItemsCtrl'
+  }).when('/repo_items/:id/details', {
+    templateUrl: 'detail_item.html'
+    controller: 'DetailRepoItemCtrl'
   })
   .otherwise({redirectTo: '/repo_items'})
   $locationProvider.html5Mode(true);
 ])
-repoItemsApp.factory('RepoItem', ['$resource', ($resource) ->
-  RepoItem = $resource("/api/groups/#{$('base').attr('group_id')}/repo_items/:id:action_type.json", {action_type: ''}, {
+repoItemsApp.factory('Collaide', () ->
+  {
+    api_path: (path) ->
+      "/api/groups/#{$('base').attr('group_id')}/" + path
+  }
+)
+repoItemsApp.factory('RepoItem', ['$resource', 'Collaide', ($resource, Collaide) ->
+  RepoItem = $resource(Collaide.api_path('repo_items/:id:action_type.json'), {action_type: ''}, {
     query: {method: 'GET', params: {id: ''}, isArray: true}
     createFolder: {
       method: 'POST', params: {id: '', action_type: 'folder'}
@@ -43,7 +52,7 @@ repoItemsApp.factory('RepoItem', ['$resource', ($resource) ->
     for file in files
       file.id = i
       options = {
-        url: '/api/groups/1/repo_items/file.json'
+        url: Collaide.api_path('repo_items/file.json')
         file: file
       }
       options.fields = {'id': current_item_id} if current_item_id
@@ -137,4 +146,6 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', (
 
   $scope.abort = (file) ->
     RepoItem.abort(file, $scope)
+]).controller('DetailRepoItemCtrl', ['RepoItem', '$scope', '$routeParams', '$upload', (RepoItem, $scope, $routeParams, $upload) ->
+  $scope.current_item = RepoItem.get({id:$routeParams.id})
 ])

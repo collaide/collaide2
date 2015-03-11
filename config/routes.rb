@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       end
       get 'repo_items/', controller: 'group/repo_items', action: 'index', as: 'repo_items'
       get 'repo_items/:id', controller: 'group/repo_items', action: 'index', as: 'repo_items'
+      get 'repo_items/:id/details', controller: 'group/repo_items', action: 'index', as: 'repo_items'
       resources :admin, controller: 'group/admin', only: :index
       resources :members, controller: 'group/members', only: [:index, :update]
     end
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
     end
     scope 'groups/:group_group_id' do
       resources :repo_items, only: [:index, :show, :destroy] do
+        get 'details'
         get 'download'
         patch 'copy', action: :copy
         patch 'move', action: :move

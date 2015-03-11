@@ -1,0 +1,7 @@
+%ul.breadcrumbs
+  %li#home{'ng-class' => '{current: !current_item}'}
+    %a{href: "{{$('base').attr('href')}}"}
+      %i.fi-home.large
+  %li{'ng-repeat' => 'element in current_item.breadcrumb', 'ng-class' => '{current: $last}'}
+    %a{href: 'repo_items/{{element.id}}'}
+      {{element.name}}

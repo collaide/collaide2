@@ -58,7 +58,6 @@ class Group::InvitationsController < ApplicationController
   def destroy
     authorize @group
     @invitation = @group.invitations.where(id: params[:id]).take!
-    create_group_activity :invitation_destroyed, :deletion, recipient: @invitation.receiver
     @invitation.destroy
     redirect_to group_group_invitations_path, notice: t('groups.invitations.destroy.notice')
   end
