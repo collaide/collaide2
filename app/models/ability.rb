@@ -67,7 +67,7 @@ class Ability < DefineAbility
 
       controller :members do
         can(:index) do |group|
-          group.can? :index, :members, current_user
+          group.can? :index, :members, user
         end
         can :update
       end
