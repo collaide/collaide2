@@ -10,7 +10,7 @@ class Group::GroupsController < ApplicationController
       @group.user = current_user
       @group.steps = :invitations
     end
-    if @group.save
+    if @group.save && create_activity(:create, trackable: @group, owner: current_user)
       # On redirige vers le prochain pas à effectuer (utilisateur déconnecté = pas de connxion sinon inviter des gens)
       redirect_to eval("group_group_create_#{@group.steps}_path(group_group_id: #{@group.id})")
     else
@@ -24,7 +24,6 @@ class Group::GroupsController < ApplicationController
 
   def show
     @group = Group::Group.find params[:id]
-    authorize @group
     @activities = Activity::Activity.order("created_at desc").where('(trackable_id = ? AND trackable_type = ?) OR (recipient_id = ? AND recipient_type = ?) OR (owner_id = ? AND owner_type = ?)', @group.id, @group.class.base_class.to_s, @group.id, @group.class.base_class.to_s, @group.id, @group.class.base_class.to_s)
   end
 
