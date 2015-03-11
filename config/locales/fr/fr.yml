@@ -37,6 +37,9 @@ fr:
       contact: Contact
       about: A propos
   main:
+    index:
+      title: Collaide facilite l'organisation des travaux de groupe
+      submit_group: Créer un groupe
     contact:
       bc: Nous contacter
       title: Contact

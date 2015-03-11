@@ -55,6 +55,16 @@ $footer-height: 200px;
 @import 'foundation';
 
 //########################################
+// ############# INDEX ##################
+// ######################################
+#index-title {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: rem-calc(37);
+
+}
+
+//########################################
 // ########## SIDE NAV ##################
 // ######################################
 $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);

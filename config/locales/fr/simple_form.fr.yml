@@ -33,7 +33,7 @@ fr:
         name: Nom
         avatar: Image de profil
       group_group:
-        name: Nom
+        name: Nom du groupe
       group_topic:
         title: Titre
         message: Message

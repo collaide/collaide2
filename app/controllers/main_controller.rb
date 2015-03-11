@@ -6,6 +6,8 @@ class MainController < ApplicationController
       redirect_to eval("root_#{I18n.locale}_path")
     end
 
+    @group = Group::Group.new
+
     # if current_user
     #   # On va chercher les activités liés au membre
     #   @activities = current_user.activities.order("created_at desc").limit(20).includes(:trackable, :owner, :recipient)

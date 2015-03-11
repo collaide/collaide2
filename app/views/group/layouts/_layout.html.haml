@@ -5,7 +5,7 @@
     = '/'
     = link_to @group.topics.size.to_s.html_safe + ' ' + foundation_icons('fi-comments large'), group_group_topics_path(group_group_id: @group)
     = '/'
-    = link_to @group.root_repo_items.size.to_s.html_safe + ' ' + foundation_icons('fi-page-multiple large'), group_group_topics_path(group_group_id: @group)
+    = link_to @group.root_repo_items.size.to_s.html_safe + ' ' + foundation_icons('fi-page-multiple large'), group_group_repo_items_path(group_group_id: @group)
   .right
     = link_to 'Administrer', group_group_admin_index_path(@group), class: 'std-button'
 

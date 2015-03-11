@@ -62,7 +62,7 @@ module Concerns::ActivityConcern
   #     owner: Qui suit cette objet
   #     options :
   #       starting_at : le temps auquel on commence à suivre, default : now
-  #       ending_at: Le temps ou la track s'arrête
+  #       ending_at: Le temps ou la track s'arrête, défault : 1 million d'années
   def create_activity_param(trackable, owner, options = {})
     param = Activity::Parameter.new
     param.trackable = trackable

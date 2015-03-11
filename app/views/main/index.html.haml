@@ -1,5 +1,16 @@
-=link_to 'Créer un groupe', new_group_group_path, class: 'std-button'
-
+-if current_user.nil?
+  .row
+    .large-7.columns.end
+      %h1#index-title= t'main.index.title'
+      =simple_form_for(@group) do |f|
+        =f.error_notification
+        .row
+          .large-8.columns
+            .form-inputs
+              =f.input :name
+          .large-4.columns
+            .form-actions
+              =f.button :submit, t('main.index.submit_group')#, class: "tiny"
+-else
+  -# lol
 -#= render_activity @activities, layout: 'activity', locals: {specification: nil}
-#angular{:'ng-app' => true}
-  1 + 2 =  {{1 + 2}}
