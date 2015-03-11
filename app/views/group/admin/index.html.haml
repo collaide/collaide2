@@ -1,0 +1,4 @@
+=render layout: 'layout' do
+  = simple_form_for @member, url: group_group_member_path(group_group_id: @group, id: @member), method: :patch do |f|
+    = f.input :sent_notification, as: :radio_buttons, label: t('groups.admin.index.sent_notifications')
+    = f.button :submit, t('dico.save')

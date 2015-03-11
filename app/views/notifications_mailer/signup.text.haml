@@ -1,9 +1,8 @@
 = t('notifications_mailer.signup.greeting', user: @user.to_s)
 = ''
--#TODO: ajouter l'URI pour créer un groupe
 = t('notifications_mailer.signup.p1') + "\n"
 = ''
-= t('notifications_mailer.signup.p2', link: t('notifications_mailer.signup.group_created') + "(#{'#'})")
+= t('notifications_mailer.signup.p2', link: t('notifications_mailer.signup.group_created') + "(#{new_group_group_url})")
 -t('notifications_mailer.signup.list').each_line do |line|
     = '  –' + line
 = ''

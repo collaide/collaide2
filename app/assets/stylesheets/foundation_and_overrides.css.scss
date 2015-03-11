@@ -60,7 +60,6 @@ $footer-height: 200px;
 $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 .collaide-side-nav {
   border-right: 1px solid $secondary-color;
-  min-height: 500px;
   @include side-nav(
   // Border color of divider
   $divider-color: '#ccc',
@@ -314,7 +313,7 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 //  height: 100%;
 //}
 #main-content {
-  height: 400px; //TODO: Do it better
+  height: 900px; //TODO: Do it better
   position: relative;
 }
 
@@ -376,25 +375,21 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
 .row .topic-message {
   border-bottom: 1px solid #dddddd;
   padding-top: rem-calc(20px);
-  margin-top: rem-calc(30px);
-  margin-bottom: rem-calc(20px);
 }
 
 .comments-topic {
   li:nth-of-type(even) {
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
     padding-top: rem-calc(20px);
-    margin-top: rem-calc(10px);
-    margin-bottom: rem-calc(10px);
   }
 
   li:nth-of-type(odd) {
-    padding-top: rem-calc(10px);
+    padding-top: rem-calc(20px);
     background-color: $secondary-color;
   }
 }
+
 #post-indicator {
+  margin-top: rem-calc(15px);
   z-index: 2;
 }
 
@@ -423,6 +418,19 @@ $collaide-side-nav-font-color: scale-color($secondary-color, $lightness: 35%);
   background-color: white;
   border-bottom: 1px solid $secondary-color;
 }
+
+.is-sticky {
+  .sticky-element {
+    padding-top: rem-calc(15px);
+  }
+}
+// ##########################################
+// ############### SELECT2 ##################
+// ##########################################
+.s2, .s2_users_select, .s2_general, .select2-search-field  {
+  width: 100%;
+  padding-bottom: 1em;
+}
 // ############### FOOTER ###################
 // ##########################################
 footer {
@@ -432,4 +440,109 @@ footer {
   padding-top: 30px;
   padding-bottom: 30px;
   //height: $footer-height;
+}
+
+//################REPOITEMS################
+
+a.close {
+  color: white;
+}
+
+.breadcrumbs > * a {
+  color: #2980ba
+}
+
+.drop-box {
+  border: dashed 5px #999999;
+  background-color: $secondary-color;
+  padding: rem-calc(100px) 5px 5px 5px;
+  text-align: center;
+  min-height: rem-calc(400px);
+}
+
+.repo-items-listing.ng-enter,
+.repo-items-listing.ng-leave,
+.repo-items-listing.ng-move {
+  -webkit-transition: 0.3s linear all;
+  -moz-transition: 0.3s linear all;
+  -o-transition: 0.3s linear all;
+  transition: 0.3s linear all;
+}
+
+.repo-items-listing.ng-enter,
+.repo-items-listing.ng-move {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.repo-items-listing.ng-move.ng-move-active,
+.repo-items-listing.ng-enter.ng-enter-active {
+  opacity: 1;
+  height: 120px;
+}
+
+.repo-items-listing.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+
+.repo-items-listing.ng-leave.ng-leave-active {
+  opacity: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.view-container {
+  position: relative;
+}
+
+.view-frame.ng-enter, .view-frame.ng-leave {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.view-frame.ng-enter {
+  -webkit-animation: 0.5s fade-in;
+  -moz-animation: 0.5s fade-in;
+  -o-animation: 0.5s fade-in;
+  animation: 0.5s fade-in;
+  z-index: 100;
+}
+
+.view-frame.ng-leave {
+  -webkit-animation: 0.5s fade-out;
+  -moz-animation: 0.5s fade-out;
+  -o-animation: 0.5s fade-out;
+  animation: 0.5s fade-out;
+  z-index:99;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-moz-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-webkit-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-moz-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-webkit-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }

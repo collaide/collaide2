@@ -18,6 +18,11 @@
 #
 
 class Activity::Activity < ActiveRecord::Base
+  extend Enumerize
+
+  after_create :create_notification
+
+  enumerize :activity_type, in: [:addition, :deletion, :info], prediactes: true, default: :info
 
   # Define polymorphic association to the parent
   belongs_to :trackable, :polymorphic => true
@@ -162,6 +167,18 @@ class Activity::Activity < ActiveRecord::Base
   end
 
   private
+
+  # Create a notification to the user from a activity of a group
+  def create_notification
+    return if self.key == 'group_group.create'
+    group = self.trackable
+    members = group.group_members.includes(:user).where(sent_notification: 'always')
+    members.each do |member|
+      next if member.user.id == self.owner_id # On ne notifie pas celui qui a créé l'activitée
+      GroupsNotification.create!(:new_activity, values: group, users: member.user)
+    end
+  end
+
   def select_path path, root
     [root, path].map(&:to_s).join('/')
   end

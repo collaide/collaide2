@@ -7,6 +7,7 @@ class CreateUserModule < ActiveRecord::Migration
       t.string :encrypted_password, :null => false, :default => ""
       t.string :name
       t.string :role
+      t.string :sent_email
       t.string :avatar
 
       ## Added by us
@@ -58,9 +59,15 @@ class CreateUserModule < ActiveRecord::Migration
     add_index :users, :confirmation_token,   :unique => true
     add_index :users, :unlock_token,         :unique => true
     add_index :users, :authentication_token, :unique => true
+
+    create_table :notifications do |t|
+      t.string :class_name
+      t.string :method_name
+      t.text :values
+      t.boolean :is_viewed, default: false
+      t.belongs_to :user, index: true
+
+      t.timestamps
+    end
   end
-
-
-
-
 end

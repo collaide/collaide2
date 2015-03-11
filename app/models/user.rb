@@ -10,16 +10,25 @@ class   User < ActiveRecord::Base
 
   enumerize :role, in: [:admin, :moderator, :author, :banned, :super_admin, :doc_validator, :add_validator], scope: true, predicates: true
 
+  enumerize :sent_email, in: [:never, :always], predicates: true, default: :always
+
   # Les invitations que l'utilisateur a envoyées
   has_many :sent_invitations, class_name: 'Group::Invitation', foreign_key: 'sender_id'
   # les invitations reçues
   has_many :received_invitations, class_name: 'Group::Invitation', foreign_key: 'receiver_id'
 
+  # Les invitations par email que l'utilisateur a envoyées
+  has_many :sent_email_invitations, class_name: 'Group::EmailInvitation', foreign_key: 'sender_id'
+
   # Les différents groupes auquels appartient l'utilisateur
   has_many :group_members, class_name: 'Group::GroupMember'
   has_many :groups, class_name: 'Group::Group', through: :group_members
 
+  # Les groupes créés par un utilisateur
   has_many :groups_created, class_name: 'Group::Group'
+
+  # Les notifications d'un utilisateur
+  has_many :notifications
 
   validates :name, presence: true
 
@@ -31,10 +40,17 @@ class   User < ActiveRecord::Base
       only_integer: true
   }
 
+  scope :search_by_email_or_name, -> (term) { where('email LIKE :email or name LIKE :name', email: "%#{term}%", name: "%#{term}%").limit 10 }
+
   #################################################
   ############## MODULE ACTIVITIES ################
   #################################################
   has_many :params_activities, as: :owner, :class_name => 'Activity::Parameter'
+
+  # les invitations par email reçues
+  def received_email_invitations
+    Group::EmailInvitation.where(receiver: self)
+  end
 
   def activities
     params = self.params_activities.to_a

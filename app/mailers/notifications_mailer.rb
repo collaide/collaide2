@@ -9,4 +9,10 @@ class NotificationsMailer < ApplicationMailer
     @user = user
     mail to: user.email
   end
+
+  def new_notification(user, notification)
+    @user = user
+    @notification = notification
+    mail to: user.email
+  end
 end

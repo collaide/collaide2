@@ -1,6 +1,23 @@
-//console.log('salut');
 $('#new-topic-form').show('slow');
-console.log('hello');
+var new_comment_html = $("#comment-form-container").html();
 $('#comment-form-container').html("<%= escape_javascript(render partial: 'form') %>");
-$(document).trigger('tinymce:init')
-//$('#comment-reply-form').val(s(@comment.message))
+$(document).trigger('tinymce:init');
+var button = $('#new-comment');
+var current_text = button.html();
+if($("#comment-form-container").is(":visible")) {
+    button.html(button.attr('data-other-text'));
+    button.attr('data-other-text', current_text);
+}
+button.addClass('comment-modified');
+button.on('click', function() {
+    if(button.hasClass('comment-modified') != true) {
+        return null;
+    }
+    button.removeClass('comment-modified');
+    console.log("clicked");
+    $("#comment-form-container").html(new_comment_html);
+    $("#mceu_22").remove();
+    $("#comment-reply-form").removeAttr('aria-hidden');
+    $("#comment-reply-form").removeAttr('style');
+    $("#comment-reply-form").attr('id', 'new-comment-<%= rand(1..1000) %>');
+});

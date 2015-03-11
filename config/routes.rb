@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     #UsersController
     resources :users, only: [:show] do
       get 'groups'
+      get 'notifications'
+      get 'invitations'
     end
 
     # GroupsController
@@ -23,16 +25,49 @@ Rails.application.routes.draw do
       get 'create/password', controller: 'group/groups_creator', action: 'password', as: 'create_password' # Pour la création d'un groupe pas à pas
       get 'create/invitations', controller: 'group/groups_creator', action: 'invitations', as: 'create_invitations' # Pour la création d'un groupe pas à pas
       # TopicsController -> discussions
+      resources :invitations, controller: 'group/invitations', only: [:index, :create, :destroy, :update] do
+        get ':id', action: :update, on: :collection
+      end
       resources :topics, controller: 'group/topics' do
         resources :comments, controller: 'group/comments', only: [:create, :update, :edit, :destroy]
       end
+      resources :email_invitations, controller: 'group/email_invitations', only: [:destroy] do
+        collection do
+          match ':id/secret_token/:secret_token', action: :update, as: '', via: [:get, :patch]
+          get ':id/secret_token/:secret_token/confirm', action: :confirm, as: 'confirm'
+          get ':id/secret_token/:secret_token/send_confirmation', action: :send_confirmation, as: 'send_confirmation'
+          get ':id/secret_token/:secret_token/reset_session', action: :clear_session, as: 'reset_session'
+        end
+      end
+      get 'repo_items/', controller: 'group/repo_items', action: 'index', as: 'repo_items'
+      get 'repo_items/:id', controller: 'group/repo_items', action: 'index', as: 'repo_items'
+      resources :admin, controller: 'group/admin', only: :index
+      resources :members, controller: 'group/members', only: [:index, :update]
     end
   end
 
   namespace :api do
     resources :auth_token, controller: 'auth_token', only: [:create]
+    resources :comment_views, controller: 'comment_views', only: [:create, :index]
     resources :users, controller: 'users', only: :show do
       post 'valid', on: :collection
+    end
+    resources :search, only: :index do
+      collection do
+        get :users
+      end
+    end
+    scope 'groups/:group_group_id' do
+      resources :repo_items, only: [:index, :show, :destroy] do
+        get 'download'
+        patch 'copy', action: :copy
+        patch 'move', action: :move
+        patch 'rename', action: :rename
+        collection do
+          post 'folder', action: :create_folder, :as => 'create_folder'
+          post 'file', action: :create_file, :as => 'create_file'
+        end
+      end
     end
   end
 end

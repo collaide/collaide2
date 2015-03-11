@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204000000) do
+ActiveRecord::Schema.define(version: 20150227171319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150204000000) do
     t.text     "parameters"
     t.integer  "recipient_id"
     t.string   "recipient_type"
+    t.string   "activity_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,8 +49,24 @@ ActiveRecord::Schema.define(version: 20150204000000) do
   add_index "activity_parameters", ["owner_type", "owner_id"], name: "index_activity_parameters_on_owner_type_and_owner_id", using: :btree
   add_index "activity_parameters", ["trackable_type", "trackable_id"], name: "index_activity_parameters_on_trackable_type_and_trackable_id", using: :btree
 
+  create_table "cron_jobs", force: :cascade do |t|
+    t.string   "job_name"
+    t.datetime "start_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_comment_views", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "group_comments", force: :cascade do |t|
     t.text     "message"
+    t.boolean  "deleted",    default: false
     t.integer  "user_id"
     t.integer  "topic_id"
     t.datetime "created_at"
@@ -57,12 +74,15 @@ ActiveRecord::Schema.define(version: 20150204000000) do
   end
 
   create_table "group_email_invitations", force: :cascade do |t|
-    t.string  "email"
-    t.text    "message"
-    t.string  "secret_token"
-    t.string  "status"
-    t.integer "group_id"
-    t.integer "user_id"
+    t.string   "email"
+    t.text     "message"
+    t.string   "secret_token"
+    t.string   "status",       default: "pending"
+    t.integer  "group_id"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "group_group_creations", force: :cascade do |t|
@@ -75,6 +95,7 @@ ActiveRecord::Schema.define(version: 20150204000000) do
     t.integer  "user_id"
     t.string   "role"
     t.string   "joined_method"
+    t.string   "sent_notification"
     t.integer  "invited_or_added_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -133,19 +154,33 @@ ActiveRecord::Schema.define(version: 20150204000000) do
     t.datetime "updated_at"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string   "class_name"
+    t.string   "method_name"
+    t.text     "values"
+    t.boolean  "is_viewed",   default: false
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
   create_table "rm_repo_items", force: :cascade do |t|
-    t.integer "owner_id"
-    t.string  "owner_type"
-    t.integer "sender_id"
-    t.string  "sender_type"
-    t.string  "ancestry"
-    t.integer "ancestry_depth", default: 0
-    t.string  "name"
-    t.float   "file_size"
-    t.string  "content_type"
-    t.string  "file"
-    t.string  "type"
-    t.string  "checksum"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "sender_id"
+    t.string   "sender_type"
+    t.string   "ancestry"
+    t.integer  "ancestry_depth", default: 0
+    t.string   "name"
+    t.float    "file_size"
+    t.string   "content_type"
+    t.string   "file"
+    t.string   "type"
+    t.string   "checksum"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rm_repo_items", ["ancestry"], name: "index_rm_repo_items_on_ancestry", using: :btree
@@ -185,6 +220,7 @@ ActiveRecord::Schema.define(version: 20150204000000) do
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "name"
     t.string   "role"
+    t.string   "sent_email"
     t.string   "avatar"
     t.integer  "points",                 default: 5
     t.boolean  "has_notifications",      default: false

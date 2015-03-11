@@ -1,8 +1,10 @@
 =render layout: 'group/layouts/layout' do
   %h3= "Fil d'actualités"
   .row
-    .columns.small-24
-      - @activities.each do |activity|
+    .columns.small-12
+      -#- @activities.each do |activity|
         .activity
           -# :specification says if it is specific for group or general, etc
-          = render_activity activity, layout: 'activity', locals: {specification: :group}
+          -#= render_activity activity, layout: 'activity', locals: {specification: :group}
+      %p Ici viendra bientôt le fil d'actualité du groupe.
+      %p Vous êtes programmeur ? le code est sur github. Let's go!!

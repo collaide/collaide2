@@ -21,6 +21,7 @@ fr:
       edit: Modifier mon profil
       settings: Paramètres
       logout: "Déconnexion"
+      notifications: "Notifications (%{size})"
     sign_up: "Inscription"
     sign_in: "Connexion"
   footer:
@@ -145,12 +146,21 @@ fr:
     side_nav:
       infos: "Infos"
       groups: "Mes groupes"
+      notifications: "Notifications"
+      invitations: "Invitations"
     show:
       since: "Membre depuis"
     avatar:
       title: "Image de %{user}"
     groups:
       no_group: "Vous n'êtes membres d'aucun groupes"
+    notifications:
+      no_records: "Pas de notifications"
+    invitations:
+      no_records: "Personne ne vous a invité pour le moment"
+      accept: "Accepter"
+      refuse: "Refuser"
+      later: "Plus tard"
   notifications_mailer:
     signup:
       subject: Bienvenue sur collaide.com
@@ -221,10 +231,15 @@ fr:
         submit: "Répondre"
         modify_message: "Modifier"
         delete_topic: "Supprimer"
+        10_less: "10 avant"
+        10_more: "10 après"
+        comment_date: "Le %{date}"
       comments:
         top: "En-haut"
         bottom: "En-bas"
         reply: "Réponse"
+        deleted: "Commentaire supprimé le %{date}"
+        modified: "Modifié le %{date}"
       notice:
         deleted: "Le sujet '%{topic}' a été supprimé"
       edit:
@@ -245,12 +260,77 @@ fr:
         h4_title: "Ajouter une réponse au sujet '%{topic}'"
       edit:
         submit: "Mettre le commentaire à jour"
+    invitations:
+      index:
+        h4_title: "Gestion des invitations"
+        form_title: "Inviter des nouvelles personnes"
+        people_invited:
+          zero: "Aucune personne invitée"
+          one: "Une personne invitée"
+          other: "%{count} personnes invitées"
+        no_people_invited: "Aucune personne invitée"
+        invit: "Inviter"
+        cancel_invitation: "Annuler l'invitation"
+      create:
+        notice: "Toutes les invitations ont été envoyées"
+        submit: "Envoyer les invitations"
+      update:
+        notice:
+          accept: Bienvenue dans le groupe
+          later: Noubliez pas de donner une réponse plus tard...
+          refuse: Vous avez refusé l'invitation
+          bordel: Toi t'as foutu le bordel
+          already_accepted: Vous avez déjà accepé l'invitation à rejoindre ce groupe
+      validation:
+        not_blank: Ne peut pas être vide
+        no_group: Invitez les gens depuis un groupe
+        no_valid:
+          one: "L'adresse '%{email}' n'est pas valide"
+          other: "Les addresses suivantes ne sont pas valides: %{email}"
+        already_invited:
+          one: "%{people} à déjà été invitée"
+          other: Les personnes %{people} ont déjà été invitées
+        already_invited_by_email:
+          one: "Un e-mail a déjà été envoyé à '%{email}'"
+          other: "les e-mails ont déjà été envoyé aux addresses '%{email}'"
+        already_member:
+          one: "%{people} est déjà membre"
+          other: Les personnes %{people} sont déjà membres
+      destroy:
+        notice: "Invitation supprimée"
+    email_invitations:
+      error: "Impossible de vous ajouter dans ce groupe. Peut-être que vous êtes déjà membre ou que l'invitation a été supprimée"
+      bad_secret_token: "Le mot de passe secret ne corresspond avec celui de l'invitation. Vous ne pouvez pas rejoindre le groupe"
+      invitation_destroyed: "L'invitation n'existe plus. Elle a probablement été supprimée, vous ne pouvez pas rejoindre le groupe"
+      confirm:
+        h1_title: "Hum, il y a un doute concernant votre invitation à rejoindre le group %{group}"
+        are_you_really: "Êtes-vous bien %{user} ?"
+        im_not: "Non, je ne le suis pas"
+        im: "Oui, je suis %{user}, envoyez-moi un email de confirmation"
+      confirmation_sended: "Un email de confirmation vous a été envoyé à votre adresse habituelle"
+    admin:
+      menu:
+        members: Membres
+      layout:
+        h1_title: "Administartion du groupe"
+      index:
+        sent_notifications: "Je veux être notifié pour les activités du groupe"
+    members:
+      update:
+        notice: "Changements enregistrés"
+    repo_items:
+      index:
+        you: "Vous"
   devise:
     offcanvas:
       signin:
         manual: "Via votre compte Collaide"
       signup:
         manual: "En créant un compte sur Collaide"
+    registrations:
+      edit:
+        email_preferences: "Préférences de courriel"
+        sent_email: "Je veux recevoir des courriels pour les notifications"
   group:
     topics:
       new:
@@ -258,6 +338,59 @@ fr:
     comments:
       edit:
         h4_title: "Édition du commentaire"
+    email_invitations:
+      member: "Vous êtes maintenant membre de ce groupe !"
+      already_member: "Vous êtes déjà membre de ce groupe"
   dico:
     delete: "Supprimer"
     are_you_sure: "Êtes-vous sûr ? Cette opération ne peut être annulée"
+    cancel: "Annuler"
+    modified: "Modifié"
+    accept: "Accepter"
+    refuse: "Refuser"
+    later: "Plus tard"
+    reply: "Répondre"
+    since: "Depuis le %{date}"
+    save: "Enregistrer"
+    at: "Il y a %{time}"
+  simple_form:
+    labels:
+      group_do_invitation:
+        users_id: "Personnes à inviter"
+    placeholders:
+      group_do_invitation:
+        users_id: "Nom ou adresse e-mail des personnes à inviter"
+  mailers:
+    notifications:
+      new_notification:
+        subject: "Nouvelle notification sur Collaide"
+        text:
+          description: "Vous avez reçu une nouvelle notification sur Collaide. La voici:"
+          view_in_browser: Voir %{notification} dans la navigateur
+          the_notification: la notification
+
+    groups:
+      new_invitation:
+        subject: "%{user} vous invite à rejoindre le groupe %{group} sur Collaide"
+        message: "Voici son message :"
+        text:
+          description: "Utilisez les liens suivant pour :"
+          manage_invitations: "Utilisez le lien suivant pour afficher l'invitation dans votre navigateur Web"
+        html:
+          description: Cliquez sur ce lien pour %{link}.
+        join_group: rejoindre le groupe
+        accept_invitation: "Voulez-vous rejoindre le groupe ?"
+      send_confirmation:
+        subject: "Vérification que vous êtes le bon destinataire"
+  alerts:
+    not_enough_permissions: "Vous n'avez pas le droit d'accéder à cette page"
+    access_denied: "Cette page requiert d'être connecté. Ci-dessous, vous pouvez vous connecter ou vous inscrire gratuitement."
+  notifications:
+    groups:
+      create: "Félicitations, vous avez créé le group %{group} !"
+      invitation: "%{user} vous invite à rejoindre le groupe %{group}."
+      invitation_accepted: "Vous avez accepté l'invitation à rejoindre le groupe %{group}"
+      new_invitation: "Il y a eu des changements dans le groupe %{group}"
+  activity:
+    comment:
+      delete: "%{user} a supprimé un commentaire dans la discussion %{topic}"

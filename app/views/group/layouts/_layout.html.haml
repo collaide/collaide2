@@ -1,11 +1,13 @@
 %h1
   = t('groups.groups.layout.title', group: @group)
   %span.statistics
-    = link_to @group.members.size.to_s.html_safe + ' ' + foundation_icons('fi-torsos-male-female large'), group_group_topics_path(group_group_id: @group)
+    = link_to @group.members.size.to_s.html_safe + ' ' + foundation_icons('fi-torsos-male-female large'), group_group_members_path(group_group_id: @group)
     = '/'
     = link_to @group.topics.size.to_s.html_safe + ' ' + foundation_icons('fi-comments large'), group_group_topics_path(group_group_id: @group)
     = '/'
     = link_to @group.root_repo_items.size.to_s.html_safe + ' ' + foundation_icons('fi-page-multiple large'), group_group_topics_path(group_group_id: @group)
+  .right
+    = link_to 'Administrer', group_group_admin_index_path(@group), class: 'std-button'
 
 %hr
 .row
@@ -15,9 +17,8 @@
         %ul.collaide-side-nav
           = build_active_menu path: group_group_path(@group), text: t('groups.groups.menu.welcome'), icon: 'info'
           = build_active_menu path: group_group_topics_path(group_group_id: @group), text: t('groups.groups.menu.topic'), icon: 'comments', controller: 'group/topics'
-          = build_active_menu path: '', text: t('groups.groups.menu.files'), icon: 'page-multiple'
-          = build_active_menu path: '', text: t('groups.groups.menu.invitations'), icon: 'info'
-          = build_active_menu path: '', text: t('groups.groups.menu.admin'), icon: 'widget'
+          = build_active_menu path: group_group_repo_items_path(@group), text: t('groups.groups.menu.files'), icon: 'page-multiple', controller: 'group/repo_items'
+          = build_active_menu path: group_group_invitations_path(@group), text: t('groups.groups.menu.invitations'), icon: 'info'
     -if not local_assigns[:more].nil?
       = render partial: more
   .columns.small-9

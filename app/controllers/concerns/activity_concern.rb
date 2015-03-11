@@ -1,5 +1,13 @@
 module Concerns::ActivityConcern
 
+  # Create an activity for a group
+  def create_group_activity(key, type, options = {})
+    options[:trackable] = @group
+    options[:owner] = current_user
+    options[:activity_type] = type
+    create_activity(key, options)
+  end
+
   # Options Hash (options):
   # :action (Symbol, String) — Name of the action
   # :trackable (Activist) — On with model put the track
@@ -12,9 +20,11 @@ module Concerns::ActivityConcern
   # :create_related_activity_param (boolean) - If true, we create the activity param
 
   def create_activity(action, options = {})
-
     activity = Activity::Activity.new
     activity.trackable = options[:trackable]
+    if options[:activity_type]
+      activity.activity_type = options[:activity_type]
+    end
     if options[:owner]
       activity.owner = options[:owner]
     elsif options[:owner_id] && options[:owner_type]
@@ -38,6 +48,12 @@ module Concerns::ActivityConcern
     end
 
     activity.save
+  end
+
+  def notification_for_group_activity(group, owner)
+    return if user.nil?
+    member = group.get_member(current_user)
+    GroupsNotification.create!(:new_activity, values: [owner, group], owners: group.members) if member.sent_notification.always?
   end
 
   # Crée le paramètre pour suivre des activités privées

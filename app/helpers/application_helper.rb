@@ -26,7 +26,7 @@ module ApplicationHelper
 
   # add a foundation icon
   def foundation_icons(classes)
-    "<i class=\"#{h(classes)}\"></i> ".html_safe
+    "<i class='#{h(classes)}'></i> ".html_safe
   end
 
   # Used for hiding part of the form for editing user's profile
@@ -57,8 +57,34 @@ module ApplicationHelper
         image = user.avatar.mini
     end
     content = image_tag(image, class: 'th', height: height, width: width)
-    content += ' ' + user.to_s if name
+    content += ' ' + h(user.to_s) if name
     link_to content, user_path(user)
+  end
+
+  def user_from_json(name, url, show)
+    "<a href=\"#{url}\" ng-hide=\"#{show}\""">#{h(name)}</a>".html_safe
+  end
+
+  # Print to the topbar an item to read the notifications and show the number of unreaded notifications
+  def print_unread_notifications
+    return unless user_signed_in?
+    notifications_size = current_user.notifications.where(is_viewed: false).size
+    # todo: update with the current_path method
+    # ie: current_page?(:controller => 'users', :action => 'index')
+    if notifications_size > 0 and request.fullpath != user_notifications_path(current_user)
+      "<li><a href='#{user_notifications_path(current_user)}'>#{t('header.user.notifications', size: notifications_size)}</a></li>".html_safe
+    end
+  end
+
+  def icon_from_activity(activity)
+    case activity.activity_type
+      when 'addition'
+        foundation_icons('fi-plus large')
+      when 'deletion'
+        foundation_icons('fi-minus large')
+      else
+        foundation_icons('fi-info large')
+    end
   end
 
   private

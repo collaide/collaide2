@@ -1,0 +1,7 @@
+= render layout: 'group/admin/layout' do
+  %ul.no-bullet
+  - @members.each do |member|
+    %li
+      = user_image member.user, name: true
+      = member.role.text
+      = t 'dico.since', date: l(member.created_at, format: :short)

@@ -8,6 +8,7 @@ class Group::Invitation < ActiveRecord::Base
   scope :pending, -> { where(status: :pending) }
   scope :later, -> { where(status: :later) }
   scope :wait_a_reply, -> { where("group_invitations.status='later' OR group_invitations.status='pending'") }
+  scope :responded, -> {where("group_invitations.status='refused' OR group_invitations.status='accepted'")}
 
 
   # Celui qui emet l'invitation
@@ -24,6 +25,10 @@ class Group::Invitation < ActiveRecord::Base
     self.status = :accepted
     self.group.add_members(self.receiver, self.role, :was_invited, self.sender)
     self.save
+  end
+
+  def waiting_a_reply?
+    pending? or later?
   end
 
   def decline

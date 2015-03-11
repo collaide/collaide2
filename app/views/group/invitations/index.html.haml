@@ -1,0 +1,24 @@
+-#content_for :title, t('users.show.meta_title', user: @user.name_to_show)
+=render(:layout => 'group/layouts/layout') do
+  %h4= t('groups.invitations.index.h4_title')
+  .sticky-element
+    = link_to foundation_icons('fi-plus large') + t('groups.invitations.index.invit'), '#', class: 'std-button show-hidden', :'data-show-element' => 'invit-people', :'data-other-text' => foundation_icons('fi-minus large') + t('dico.cancel')
+    #invit-people.hide.toggled-element
+      %h5= t('groups.invitations.index.form_title')
+      =render partial: 'group/invitations/form'
+      %hr
+  .row
+    .columns.small-12
+      - invitations_size = @group.invitations_waiting_a_reply.size + @group.email_invitations_waiting_a_reply.size
+      %h5= t('groups.invitations.index.people_invited', count: invitations_size)
+      - if invitations_size > 0
+        - @group.invitations_waiting_a_reply.each do |an_invitation|
+          .row
+            .columns.small-12
+              = user_image an_invitation.receiver, name: true
+              = link_to t('groups.invitations.index.cancel_invitation'), group_group_invitation_path(group_group_id: @group, id: an_invitation), method: :delete, data: {confirm: t('dico.are_you_sure')}, class: 'button tiny secondary'
+        - @group.email_invitations_waiting_a_reply.each do |email_invit|
+          .row
+            .columns.small-12
+              = email_invit.receiver.nil? ? email_invit.email : user_image(email_invit.receiver, name: true)
+              = link_to t('groups.invitations.index.cancel_invitation'), group_group_email_invitation_path(group_group_id: @group, id: email_invit), method: :delete, data: {confirm: t('dico.are_you_sure')}, class: 'button tiny secondary'

@@ -1,4 +1,5 @@
 class Group::GroupsCreatorController < ApplicationController
+  include Concerns::ActivityConcern
 
   before_action :get_group
   before_action :redirect_if_finished
@@ -40,7 +41,10 @@ class Group::GroupsCreatorController < ApplicationController
   end
 
   def invitations
+    authorize @group
     @group.finished = true
+    create_activity(:create, trackable: @group, owner: current_user, activity_type: :addition)
+    GroupsNotification.create!(:create, values: @group, users: current_user)
     @group.save
   end
 
@@ -72,7 +76,7 @@ class Group::GroupsCreatorController < ApplicationController
   def redirect_if_user_signed_in
     @group.user = current_user
     @group.steps = :invitations
-    #@group.add_members()
+    @group.add_members(current_user, role: :admin)
     @group.save
     redirect_to_steps
   end

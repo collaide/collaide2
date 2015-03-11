@@ -1,4 +1,7 @@
 fr:
+  date:
+    formats:
+      short: "%e à %b"
   datetime:
     distance_in_words:
       about_x_hours:

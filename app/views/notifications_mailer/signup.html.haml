@@ -1,10 +1,7 @@
 %p= t('notifications_mailer.signup.greeting', user: @user.to_s)
--#TODO: ajouter l'URI pour créer un groupe
 %p= t('notifications_mailer.signup.p1')
-%p= t('notifications_mailer.signup.p2', link: link_to(t('notifications_mailer.signup.group_created'), '#')).html_safe
+%p= t('notifications_mailer.signup.p2', link: link_to(t('notifications_mailer.signup.group_created'), new_group_group_url)).html_safe
 %ul
   -t('notifications_mailer.signup.list').each_line do |line|
     %li= line
 %p= t('notifications_mailer.signup.p3')
-%p= t('notifications_mailer.signup.end', collaide: link_to(t('app_name'), root_url)).html_safe
-%p= t('notifications_mailer.signup.signature')

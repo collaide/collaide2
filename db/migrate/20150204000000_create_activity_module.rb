@@ -17,7 +17,7 @@ class CreateActivityModule < ActiveRecord::Migration
       t.boolean :public, default: :false
       t.text    :parameters
       t.belongs_to :recipient, :polymorphic => true, index: true
-
+      t.string :activity_type
       #t.integer :condition, index: true
       t.timestamps
     end

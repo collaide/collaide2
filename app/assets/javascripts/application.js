@@ -16,6 +16,15 @@
 //= require jquery.infinitescroll
 //= require jquery.appear
 //= require jquery.sticky
+//= require select2
+//= require select2_locale_fr
+//= require angular
+//= require angular-route
+//= require angular-resource
+//= require angular-animate
+//= require angular-file-upload
+//= require angular-file-upload-shim
+//= require angular-rails-templates
 //= require_tree .
 
 //= require foundation

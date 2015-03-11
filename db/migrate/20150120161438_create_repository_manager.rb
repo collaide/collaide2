@@ -31,6 +31,8 @@ class CreateRepositoryManager < ActiveRecord::Migration
       t.string :file
       t.string :type
       t.string :checksum
+
+      t.timestamps
     end
   end
 end

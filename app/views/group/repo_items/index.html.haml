@@ -1,0 +1,4 @@
+=render(layout: 'group/layouts/layout') do
+  %div{'ng-app' => 'repoItemsApp'}
+    %base{href: group_group_path(@group) + '/', group_id: @group.id}
+    %div{'ng-view' => true}

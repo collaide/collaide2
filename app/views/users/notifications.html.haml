@@ -1,0 +1,14 @@
+=render layout: 'layout' do
+  -if @notifications.empty?
+    %p= t('users.notifications.no_records')
+  -else
+    %ul.no-bullet
+      -@notifications.each do |n|
+        %li
+          .panel{:class => ('active' unless n.is_viewed?)}
+            .right.info_text
+              = time_ago_in_words(n.created_at)
+            = n.print_message.html_safe
+            -unless n.is_viewed?
+              %span.label.success= t('groups.topics.index.table.new')
+    =paginate @notifications

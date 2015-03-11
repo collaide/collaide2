@@ -20,7 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def edit
     view = params[:view]
-    if view == 'general' or view == 'password'
+    if view == 'general' or view == 'password' or view == 'email'
       super
     else
       redirect_to edit_user_registration_path(view: :general)
@@ -40,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     devise_parameter_sanitizer.for(:account_update) do |u|
       u.permit(:name, :avatar,
-               :email, :password, :password_confirmation, :current_password)
+               :email, :password, :password_confirmation, :current_password, :sent_email, :avatar_cache)
     end
   end
 
