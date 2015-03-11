@@ -49,7 +49,6 @@ class Group::EmailInvitationsController < ApplicationController
   def destroy
     authorize @group
     @ei.destroy
-    create_group_activity :email_invitation_destroyed, :deletion, recipient: @ei.receiver.try(:to_s) || @ei.email
     redirect_to group_group_invitations_path, notice: t('groups.invitations.destroy.notice')
   end
 
