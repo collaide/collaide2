@@ -53,7 +53,7 @@ class Api::RepoItemsController < ApplicationController
   def download
     path = @group.download_repo_item(@repo_item)
     # Si le fichier n'est pas trouvé
-    render status: :bad_request, text: '' and return unless File.exist?(path)
+    render status: :bad_request, json: @repo_item.errors and return if not path or not File.exist?(path)
 
     send_file_options = {disposition: :inline, filename: @repo_item.name}
     if MIME::Types.type_for(path).any?

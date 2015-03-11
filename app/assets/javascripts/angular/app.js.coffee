@@ -7,11 +7,7 @@ repoItemsApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $lo
   }).when('/repo_items/:id', {
     templateUrl: 'repo_items.html'
     controller: 'ShowRepoItemsCtrl'
-  }).when('/repo_items/:id/details', {
-    templateUrl: 'detail_item.html'
-    controller: 'DetailRepoItemCtrl'
-  })
-  .otherwise({redirectTo: '/repo_items'})
+  }).otherwise({redirectTo: '/repo_items'})
   $locationProvider.html5Mode(true);
 ])
 repoItemsApp.factory('Collaide', () ->
@@ -26,6 +22,7 @@ repoItemsApp.factory('RepoItem', ['$resource', 'Collaide', ($resource, Collaide)
     createFolder: {
       method: 'POST', params: {id: '', action_type: 'folder'}
     }
+    download: {method: 'GET', params: {id: this.id, action_type: '/download'}}
   })
   RepoItem.prototype.addFolder = ($scope) ->
     this.repo_folder.name = '' if this.repo_folder.name == undefined
@@ -120,6 +117,10 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', (
       $scope.items[item.id] = item
   )
 
+  res = new RepoItem({id: $routeParams.id}).$download({id: $routeParams.id})
+
+  console.log res
+
   $scope.createFolder = (folder_name, current_folder) ->
     new RepoItem({repo_folder: {id: current_folder.id, name: folder_name}}).addFolder($scope)
 
@@ -143,9 +144,14 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', (
     angular.forEach($scope.items, (item) ->
       new RepoItem({id: item.id}).deleteItem($scope, item) if item.checked || $scope.checked
     )
+  $scope.print_type = (item) ->
+    switch item.content_type
+      when 'text/plain' then 'Fichier texte'
+      else 'Inconnu'
 
   $scope.abort = (file) ->
     RepoItem.abort(file, $scope)
 ]).controller('DetailRepoItemCtrl', ['RepoItem', '$scope', '$routeParams', '$upload', (RepoItem, $scope, $routeParams, $upload) ->
   $scope.current_item = RepoItem.get({id:$routeParams.id})
+
 ])

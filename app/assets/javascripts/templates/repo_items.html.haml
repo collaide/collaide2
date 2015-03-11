@@ -4,106 +4,47 @@
     .sticky-element
       .row
         .columns.small-7
-          %ul.breadcrumbs
-            %li#home{'ng-class' => '{current: !current_item}'}
-              %a{href: "{{$('base').attr('href')}}"}
-                %i.fi-home.large
-            %li{'ng-repeat' => 'element in current_item.breadcrumb', 'ng-class' => '{current: $last}'}
-              %a{href: 'repo_items/{{element.id}}'}
-                {{element.name}}
+          %div{'ng-include' => '"breadcrumb.html"'}
         .columns.small-5
           .row.collapse
             .columns.small-1
               %a.button.prefix{'data-dropdown' => 'drop2', 'aria-controls' => 'drop2', 'aria-expanded' => 'false'}
                 %i.fi-clipboard
-            .columns.small-1
+            .columns.small-1{'ng-show' => 'current_item && current_item.is_folder'}
               %a.button.prefix.success{'ng-file-select' => true, 'ng-file-change' => 'upload($files, current_item)',  'ng-multiple' => 'true'}
                 %i.fi-arrow-up.large
-            .columns.small-9
+            .columns.small-9{'ng-show' => 'current_item && current_item.is_folder'}
               %input{type: 'text', 'ng-model' => 'folder_name', placeholder: 'Nom du dossier', 'ng-class' => '{error: folder_error}'}
               %small.error{'ng-show' => 'folder_error'}
                 {{folder_error}}
                 %a{href: '#', class: 'close', 'ng-click' => 'folder_error=false'}= '&times;'.html_safe
-            .columns.small-1
+            .columns.small-1{'ng-show' => 'current_item && current_item.is_folder'}
               %a.button.button.success.postfix{'ng-click' => 'createFolder(folder_name, current_item)'}
                 %i.fi-plus.large
       .row
         .columns-small-12
           #drop2.f-dropdown.content.mega{'data-dropdown-content' => true, 'aria-hidden' => 'true', 'tabindex' => '-1'}
             %p Le presse-papier est actuellement vide. Des éléments sont ajoutés quand vous copier ou déplacer des fichiers ou des dossiers.
-    .drop-box{'ng-show' => 'empty(items) && empty(filesUploading)'}
-      %p Vous pouvez ajouter des fichiers et dossiers par glisser-déposer ou en
-      %a.button.success{'ng-file-select' => true, 'ng-file-change' => 'upload($files, current_item)',  'ng-multiple' => 'true'}
-        %i.fi-arrow-up.large
-          Choisissant des fichiers
-      .columns.small-9.small-centered
-        .row.collapse
-          %p
-            Vous également créer un dossier
-          .columns.small-11
-            %input{type: 'text', 'ng-model' => 'folder_name', placeholder: 'Nom du dossier', 'ng-class' => '{error: folder_error}'}
-            %small.error{'ng-show' => 'folder_error'}
-              {{folder_error}}
-              %a{href: '#', class: 'close', 'ng-click' => 'folder_error=false'}= '&times;'.html_safe
-          .columns.small-1
-            %a.button.button.success.postfix{'ng-click' => 'createFolder(folder_name, current_item)'}
-              %i.fi-plus.large
-    %table{'ng-hide' => 'empty(items) && empty(filesUploading)'}
-      %thead
-        %tr
-          %th
-            %input{type: 'checkbox', 'ng-model' => 'checked'}
-          %th{width: '500px'}
-            .left
-              Nom
-            .right
-              %a{'ng-click' => 'deleteAll()'}
-                %i.fi-x.large
-          %th Taille
-          %th Auteur
-          %th Modifié
-      %tbody
-        %tr.repo-items-listing{'ng-repeat' => '(key, file) in filesUploading'}
-          %td
-            %input{type: 'checkbox'}
-          %td{width: 450}
-            .row
-              .columns.small-6
-                <i class="{{item_symbol(file)}}"/>
-                {{file.name}}
-              .columns.small-5
-                %p{'ng-show' => 'file.wait'}
-                  Traitement du fichier...
-                .row{'ng-hide' => 'file.wait'}
-                  .columns.small-10
-                    .progress
-                      %span.meter{style: 'width: {{file.progress}}%'}
-                  .columns.small-2
-                    %a{'ng-click' => 'abort(file)'}
-                      %i.fi-x.large
-          %td
-            {{file.size}}
-          %td
-            Vous
-          %td
-            < 1s
-        %tr.repo-items-listing{'ng-repeat' => '(key, item) in items | orderBy:name'}
-          %td
-            <input type="checkbox" ng-checked="checked" ng-model="item.checked"/>
-          %td{width: '450'}
-            .left
-              %a{href: 'repo_items/{{item.id}}{{item.is_folder ? "" : "/details"}}'}
-                <i class="{{item_symbol(item)}}"/>
-                {{item.name}}
-            .right
-              %a{'ng-click' => 'delete(item)'}
-                %i.fi-x.large
-          %td
-            {{item.is_folder === true ? '-' : item.file_size + ' Ko'}}
-          %td
-            <a href="{{item.sender.url}}" ng-hide="{{item.sender.you}}">{{item.sender.name}}</a>
-            <span ng-show="{{item.sender.you}}">Vous</span>
-          %td
-            {{item.updated_at}}
+    .row
+      .columns.small-12{'ng-show' => 'current_item && !current_item.is_folder'}
+        %h4
+          {{current_item.name}}
+          .right
+            %i.fi-pencil.large
+            %i.fi-x.large
+      .columns.small-12{'ng-show' => 'current_item'}
+        %p
+          Modifié il y {{current_item.updated_at}}
+          \/
+          <span ng-show="{{current_item.is_folder}}">Dossier</span>
+          <span ng-hide="{{current_item.is_folder}}">{{print_type(current_item)}}</span>
+          \/
+          Créé par
+          <a href="{{current_item.sender.url}}" ng-hide="{{current_item.sender.you}}">{{current_item.sender.name}}</a>
+          <span ng-show="{{current_item.sender.you}}">Vous</span>
+      .columns.small-12
+        %div{'ng-include' => '"folder_view.html"', 'ng-if' => '!current_item || current_item.is_folder'}
+        %div
+          salut
     :javascript
       $('.sticky-element').stickyJQuery({topSpacing: 0})
