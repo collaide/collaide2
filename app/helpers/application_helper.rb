@@ -76,6 +76,12 @@ module ApplicationHelper
     end
   end
 
+  # Determine the super type of an item (file or folder). A super type is text or image, etc
+  # return true or false depending on +type+
+  def determine_super_type(item, type)
+    not item.is_folder? and item.content_type.include? type
+  end
+
   def icon_from_activity(activity)
     case activity.activity_type
       when 'addition'

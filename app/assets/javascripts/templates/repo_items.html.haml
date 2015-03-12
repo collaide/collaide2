@@ -30,21 +30,29 @@
         %h4
           {{current_item.name}}
           .right
+            %a{href: '{{current_item.download_path}}', target: '_blank'}
+              %i.fi-download.large
             %i.fi-pencil.large
             %i.fi-x.large
       .columns.small-12{'ng-show' => 'current_item'}
         %p
           Modifié il y {{current_item.updated_at}}
           \/
-          <span ng-show="{{current_item.is_folder}}">Dossier</span>
-          <span ng-hide="{{current_item.is_folder}}">{{print_type(current_item)}}</span>
+          <span ng-show="current_item.is_folder">Dossier</span>
+          <span ng-hide="current_item.is_folder">{{print_type(current_item)}}</span>
           \/
           Créé par
           <a href="{{current_item.sender.url}}" ng-hide="{{current_item.sender.you}}">{{current_item.sender.name}}</a>
           <span ng-show="{{current_item.sender.you}}">Vous</span>
       .columns.small-12
         %div{'ng-include' => '"folder_view.html"', 'ng-if' => '!current_item || current_item.is_folder'}
-        %div
-          salut
+        .modal{'ng-if' => 'current_item.is_image'}
+          %a{href: '#', 'data-reveal-id' => 'image-modal'}
+            <img ng-src="{{current_item.download_path}}"/>
+          #image-modal.reveal-modal{'data-reveal' => true}
+            <img ng-src="{{current_item.download_path}}"/>
+            %a.close-reveal-modal &#215;
+        %pre{'ng-if' => 'current_item.content'}
+          {{current_item.content}}
     :javascript
       $('.sticky-element').stickyJQuery({topSpacing: 0})

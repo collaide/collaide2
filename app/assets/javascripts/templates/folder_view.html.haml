@@ -63,6 +63,8 @@
             <i class="{{item_symbol(item)}}"/>
             {{item.name}}
         .right
+          %a{href: '{{item.download_path}}', target: '_blank'}
+            %i.fi-download.large
           %a{'ng-click' => 'delete(item)'}
             %i.fi-x.large
       %td
