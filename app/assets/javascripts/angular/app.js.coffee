@@ -7,11 +7,7 @@ repoItemsApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $lo
   }).when('/repo_items/:id', {
     templateUrl: 'repo_items.html'
     controller: 'ShowRepoItemsCtrl'
-  }).when('/repo_items/:id/details', {
-    templateUrl: 'detail_item.html'
-    controller: 'DetailRepoItemCtrl'
-  })
-  .otherwise({redirectTo: '/repo_items'})
+  }).otherwise({redirectTo: '/repo_items'})
   $locationProvider.html5Mode(true);
 ])
 repoItemsApp.factory('Collaide', () ->
@@ -20,7 +16,7 @@ repoItemsApp.factory('Collaide', () ->
       "/api/groups/#{$('base').attr('group_id')}/" + path
   }
 )
-repoItemsApp.factory('RepoItem', ['$resource', 'Collaide', ($resource, Collaide) ->
+repoItemsApp.factory('RepoItem', ['$resource', 'Collaide', '$http', ($resource, Collaide, $http) ->
   RepoItem = $resource(Collaide.api_path('repo_items/:id:action_type.json'), {action_type: ''}, {
     query: {method: 'GET', params: {id: ''}, isArray: true}
     createFolder: {
@@ -72,15 +68,20 @@ repoItemsApp.factory('RepoItem', ['$resource', 'Collaide', ($resource, Collaide)
   RepoItem.abort = (file, $scope) ->
     $scope.filesUploading[file.id].upload.abort()
     delete $scope.filesUploading[file.id]
+
+  RepoItem.viewContent = (id) ->
+    $http.get(Collaide.api_path("repo_items/#{id}/download.json"))
+
   return RepoItem
 ])
 
 controllers = angular.module('controllers',[])
-controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', (RepoItem, $scope, $upload) ->
+controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', 'Collaide', (RepoItem, $scope, $upload, Collaide) ->
   $scope.items = {}
   RepoItem.query().$promise.then((items) ->
     for item in items
       $scope.items[item.id] = item
+      $scope.items[item.id].download_path = Collaide.api_path("repo_items/#{item.id}/download.json")
   )
 
   $scope.filesUploading = {}
@@ -112,14 +113,21 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', (
         item.deleteItem($scope, item) if item.checked || $scope.checked
       )
 
-]).controller('ShowRepoItemsCtrl', ['RepoItem', '$scope', '$routeParams', '$upload', (RepoItem, $scope, $routeParams, $upload) ->
+]).controller('ShowRepoItemsCtrl', ['RepoItem', '$scope', '$routeParams', '$upload', 'Collaide', (RepoItem, $scope, $routeParams, $upload, Collaide) ->
   $scope.items = {}
   $scope.filesUploading = {}
   $scope.current_item = RepoItem.get({id: $routeParams.id}, (current_item)->
+    $scope.current_item.download_path = Collaide.api_path("repo_items/#{current_item.id}/download.json")
+    if current_item.is_text
+      RepoItem.viewContent(current_item.id).success((data) ->
+        $scope.current_item.content = data
+      ).error((data) ->
+        $scope.current_item.content = data
+      )
     for item in current_item.children
       $scope.items[item.id] = item
+      $scope.items[item.id].download_path = Collaide.api_path("repo_items/#{item.id}/download.json")
   )
-
   $scope.createFolder = (folder_name, current_folder) ->
     new RepoItem({repo_folder: {id: current_folder.id, name: folder_name}}).addFolder($scope)
 
@@ -143,9 +151,15 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', (
     angular.forEach($scope.items, (item) ->
       new RepoItem({id: item.id}).deleteItem($scope, item) if item.checked || $scope.checked
     )
+  $scope.print_type = (item) ->
+    switch item.content_type
+      when 'text/plain' then 'Fichier texte'
+      when 'image/jpeg' then 'Image JPEG'
+      else 'Inconnu'
 
   $scope.abort = (file) ->
     RepoItem.abort(file, $scope)
 ]).controller('DetailRepoItemCtrl', ['RepoItem', '$scope', '$routeParams', '$upload', (RepoItem, $scope, $routeParams, $upload) ->
   $scope.current_item = RepoItem.get({id:$routeParams.id})
+
 ])
