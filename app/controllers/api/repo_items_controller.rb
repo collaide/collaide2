@@ -51,7 +51,7 @@ class Api::RepoItemsController < ApplicationController
   end
 
   def download
-    path = @group.download_repo_item(@repo_item)
+    path = @repo_item.file.url
     # Si le fichier n'est pas trouvé
     render status: :bad_request, json: @repo_item.errors and return if not path or not File.exist?(path)
 
