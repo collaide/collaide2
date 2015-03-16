@@ -19,17 +19,21 @@ RepositoryManager.setup do |config|
   # Define if a repo item with the same name will be automaticaly overwrited when a new item is create
   config.auto_overwrite_item = false
 
-  config.storage = :sftp if Rails.env.production?
+  config.storage = :fog if Rails.env.production?
 end
 
 if Rails.env.production?
   CarrierWave.configure do |config|
-    config.sftp_host = 'collaide.com'
-    config.sftp_user = ENV['SFTP_USER']
-    config.sftp_folder = 'uploads'
-    config.sftp_options = {
-        :password => ENV['SFTP_PASSWORD'],
-        :port     => 22
+    config.fog_credentials = {
+        provider:              'AWS',                        # required
+        aws_access_key_id:     ENV['S3_KEY'],                        # required
+        aws_secret_access_key: ENV['S3_ACCESS'],                        # required
+        region:                'eu-west-1',                  # optional, defaults to 'us-east-1'
+        # host:                  's3.example.com',             # optional, defaults to nil
+        # endpoint:              'https://s3.example.com:8080' # optional, defaults to nil
     }
+    config.fog_directory  = ENV['S3_BUCKET']                          # required
+    config.fog_public     = false                                        # optional, defaults to true
+    #config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
   end
 end

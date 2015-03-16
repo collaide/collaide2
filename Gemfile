@@ -63,7 +63,7 @@ gem 'rack-canonical-host', '~> 0.1.0' # For redirecting to beta.collaide.com
 
 # Gems for the group module
 gem 'repository-manager', '~> 0.2.11'
-gem 'carrierwave-ftp', :require => 'carrierwave/storage/sftp', github: 'collaide/carrierwave-ftp' # SFTP only for carrierwave
+gem 'fog-aws'
 
 gem 'puma'
 

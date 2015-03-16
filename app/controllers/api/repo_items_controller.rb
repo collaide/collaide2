@@ -52,22 +52,22 @@ class Api::RepoItemsController < ApplicationController
 
   def download
     # Pour le stockage des fichiers par sftp
-    file = @repo_item.try(:file).try(:read)
-    render status: :bad_request, json: @repo_item.errors and return if not file or file.size < 1
-    send_data file, type: @repo_item.content_type, filename: @repo_item.name
+    # file = @repo_item.try(:file).try(:read)
+    # render status: :bad_request, json: @repo_item.errors and return if not file or file.size < 1
+    # send_data file, type: @repo_item.content_type, filename: @repo_item.name
     ############################################
 
     # Pour tout autre type de stockage
-    # path = @repo_item.file.url
+    path = @group.download_repo_item(@repo_item)
     # Si le fichier n'est pas trouvé
-    # render status: :bad_request, json: @repo_item.errors and return if not path or not File.exist?(path)
+    render status: :bad_request, json: @repo_item.errors and return if not path or not File.exist?(path)
 
-    # send_file_options = {disposition: :attachment, filename: @repo_item.name}
-    # if MIME::Types.type_for(path).any?
-    #   send_file_options[:type] = MIME::Types.type_for(path).first.content_type
-    # end
-    # send_file_options[:x_sendfile] = true if Rails.env == 'production' # For apache
-    # send_file(path, send_file_options)
+    send_file_options = {disposition: :attachment, filename: @repo_item.name}
+    if MIME::Types.type_for(path).any?
+      send_file_options[:type] = MIME::Types.type_for(path).first.content_type
+    end
+    send_file_options[:x_sendfile] = true if Rails.env == 'production' # For apache
+    send_file(path, send_file_options)
   end
 
   def destroy
