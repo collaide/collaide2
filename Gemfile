@@ -63,7 +63,6 @@ gem 'rack-canonical-host', '~> 0.1.0' # For redirecting to beta.collaide.com
 
 # Gems for the group module
 gem 'repository-manager', '~> 0.2.11'
-gem 'fog-aws'
 
 gem 'puma'
 
@@ -97,5 +96,6 @@ group :development, :test do
 end
 
 group :production do
+  gem 'fog', '~> 1.28.0'
   gem 'rails_12factor'
 end
