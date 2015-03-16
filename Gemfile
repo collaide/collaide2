@@ -96,6 +96,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'fog', '~> 1.28.0'
+  gem 'carrierwave-aws', '~> 0.5.0'
   gem 'rails_12factor'
 end
