@@ -19,7 +19,7 @@ RepositoryManager.setup do |config|
   # Define if a repo item with the same name will be automaticaly overwrited when a new item is create
   config.auto_overwrite_item = false
 
-  config.storage = :fog if Rails.env.production?
+  config.storage = :aws if Rails.env.production?
 end
 
 if Rails.env.production?
