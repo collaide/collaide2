@@ -10,10 +10,10 @@
             .columns.small-1
               %a.button.prefix{'data-dropdown' => 'drop2', 'aria-controls' => 'drop2', 'aria-expanded' => 'false'}
                 %i.fi-clipboard
-            .columns.small-1{'ng-show' => 'current_item && current_item.is_folder'}
+            .columns.small-1{'ng-show' => '!current_item || (current_item && current_item.is_folder)'}
               %a.button.prefix.success{'ng-file-select' => true, 'ng-file-change' => 'upload($files, current_item)',  'ng-multiple' => 'true'}
                 %i.fi-arrow-up.large
-            .columns.small-9{'ng-show' => 'current_item && current_item.is_folder'}
+            .columns.small-9{'ng-show' => '!current_item || (current_item && current_item.is_folder)'}
               %input{type: 'text', 'ng-model' => 'folder_name', placeholder: 'Nom du dossier', 'ng-class' => '{error: folder_error}'}
               %small.error{'ng-show' => 'folder_error'}
                 {{folder_error}}
