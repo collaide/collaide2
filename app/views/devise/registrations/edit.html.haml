@@ -27,11 +27,11 @@
             .columns.small-12
               - if devise_mapping.confirmable? && resource.pending_reconfirmation?
                 %p= t("devise.registrations.edit.waiting_confirmation", resource: resource.unconfirmed_email)
+            %h5= t "devise.registrations.edit.cancel_my_account"
+            %p
+              = t "devise.registrations.edit.unhappy"
           %div{class: hide_for?(:email)}
             .columns.small-12
               = f.input :sent_email, as: :radio_buttons, label: t('devise.registrations.edit.sent_email')
       .form-actions
         = f.button :submit, t("devise.registrations.edit.update")
-    %h5= t "devise.registrations.edit.cancel_my_account"
-    %p
-      = t "devise.registrations.edit.unhappy"

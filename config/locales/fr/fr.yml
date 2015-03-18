@@ -7,7 +7,7 @@ fr:
   titles:
     users:
       registrations:
-        edit: Modifier mon profil
+        edit: Modifier votre profil
   views:
     pagination:
       first: "&laquo; Premier"
@@ -75,13 +75,13 @@ fr:
       the_authors: Les auteurs
       text:
         numa: |
-          Etudiant en Bachelor en Informatique avec une option journalisme et médias, je suis passionné par la montagne, l'escalade et le ski de randonnée.
+          Etudiant en Master en Informatique, je suis passionné par la montagne, l'escalade et le ski de randonnée.
 
           Fan de l'idée du site de collaide, j'ai rejoint Yves en 2012. Depuis, nous n'avons pas cessé de développer des projets.
 
           Découvert en fin 2012, je suis un grand amateur du framework Rails.
         yves: |
-          Actuellement étudiant en Master en Sport et Informatique, je désire me diriger vers l'enseignement.
+          Ayant terminé mon Master en Sport et Informatique en janvier 2015, je désire me diriger vers l'enseignement.
 
           Etant passionné par l'informatique, je me suis lancé le défit de mettre en place un site qui aurait pour but d'aider et de rassembler les étudiants de tous niveaux et degrés dans leurs études.
 
@@ -116,7 +116,7 @@ fr:
       key_words: "règlement, conditions d'utilisation"
       description_meta: "Vous trouvererz ici le réglement d'utilisation du site"
       h1_title: Règlement
-      blockquote: "Ce site contient un espace membres, un système de news, un système de commentaire ainsi que d'autres modules.
+      blockquote: "Ce site contient un espace membres, des groupes privés un système de commentaire ainsi que d'autres modules.
                   En vous inscrivant, vous reconnaissez avoir pris connaissance de cette charte et l'avoir acceptée. Si tel n'est pas le cas, vous ne pouvez vous inscrire."
       h3_title: Règlement général du site
       documents:
@@ -162,11 +162,11 @@ fr:
     avatar:
       title: "Image de %{user}"
     groups:
-      no_group: "Vous n'êtes membres d'aucun groupes"
+      no_group: "Vous n'êtes membres d'aucun groupe."
     notifications:
-      no_records: "Pas de notifications"
+      no_records: "Pas de notification."
     invitations:
-      no_records: "Personne ne vous a invité pour le moment"
+      no_records: "Vous n'avez aucune invitation à rejoindre un groupe pour le moment."
       accept: "Accepter"
       refuse: "Refuser"
       later: "Plus tard"
