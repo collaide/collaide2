@@ -12,5 +12,12 @@
             .form-actions
               =f.button :submit, t('main.index.submit_group')#, class: "tiny"
 -else
-  -# lol
+  #index-signed-in
+    %h1#title
+      = t'main.index.signed_id.h1_title', user: current_user
+      %span.blue= current_user
+    %p Ici viendra bientôt votre fil d'actualité.
+    %p Vous êtes programmeur ? le code est sur github. Let's go!!
+
+
 -#= render_activity @activities, layout: 'activity', locals: {specification: nil}

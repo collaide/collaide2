@@ -11,6 +11,7 @@ $primary-light-color: #3D5164;
 $secondary-color: #F6F6F7;
 $link-color: #2980BA;
 $font-color: #363737;
+
 //$primary-other-color: #DBEEFF;
 
 $secondary-other-color: #ecf0f1;
@@ -55,6 +56,10 @@ $std-button-border-radius: 5px;
 
 @import 'foundation';
 
+.blue {
+  color: $link-color;
+}
+
 //########################################
 // ############# INDEX ##################
 // ######################################
@@ -62,7 +67,12 @@ $std-button-border-radius: 5px;
   margin-top: 50px;
   margin-bottom: 50px;
   font-size: rem-calc(37);
+}
 
+#index-signed-in {
+  #title {
+    font-size: rem-calc(37);
+  }
 }
 
 //########################################

@@ -18,10 +18,14 @@ fr:
   header:
     user:
       profil: "Mon profil"
-      edit: Modifier mon profil
+      edit: Modifier votre profil
       settings: Paramètres
+      groups:
+        title: Vos groupes
+        empty: Vous n'êtes dans aucun groupe
+        create: Créer un nouveau groupe
       logout: "Déconnexion"
-      notifications: "Notifications (%{size})"
+      notifications: "Notifications"
     sign_up: "Inscription"
     sign_in: "Connexion"
   footer:
@@ -40,6 +44,8 @@ fr:
     index:
       title: Collaide facilite l'organisation des travaux de groupe
       submit_group: Créer un groupe
+      signed_id:
+        h1_title: Bienvenu dans ton actualité,
     contact:
       bc: Nous contacter
       title: Contact
@@ -148,7 +154,7 @@ fr:
   users:
     side_nav:
       infos: "Infos"
-      groups: "Mes groupes"
+      groups: "Vos groupes"
       notifications: "Notifications"
       invitations: "Invitations"
     show:
