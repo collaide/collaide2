@@ -1,6 +1,7 @@
 = render layout: 'group/layouts/group_creation', locals: {step: 3} do
-  %h2= t('groups.group_creation.password.user_exists.h1_title', user: @user)
-
+  %h1= t('groups.group_creation.password.user_exists.h1_title', user: @user)
+  %h3.subheader= t('groups.group_creation.password.user_exists.subheader', user: @user)
+  %p= t('groups.group_creation.password.user_exists.connection')
   = simple_form_for(@user, url: session_path('user'), method: :post, html: {id: 'user_sign_in'}) do |f|
     .form-inputs
       = f.input :email, :required => false, :autofocus => true, input_html: { id: 'sign_in_email' }

@@ -34,7 +34,8 @@ class Group::GroupsCreatorController < ApplicationController
         @user = User.find_by email: email
         render :user_exists
       else
-        @user = User.new(email: email, name: (('a'..'z').to_a + ('A'..'Z').to_a).shuffle[0..rand(5..10)].join)
+        @user = User.new(email: email)
+        #@user = User.new(email: email, name: (('a'..'z').to_a + ('A'..'Z').to_a).shuffle[0..rand(5..10)].join)
         render :unknow_user
       end
     end
@@ -46,6 +47,9 @@ class Group::GroupsCreatorController < ApplicationController
     create_activity(:create, trackable: @group, owner: current_user, activity_type: :addition)
     GroupsNotification.create!(:create, values: @group, users: current_user)
     @group.save
+    @invitation = Group::DoInvitation.new
+    # TODO : A voir si on laisse ou si on laisse afficher la page d'invitation
+    #redirect_if_finished
   end
 
   private

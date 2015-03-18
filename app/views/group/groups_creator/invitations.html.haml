@@ -1,4 +1,5 @@
-%h1 Bravo!! Votre groupe est créé!!!!
-=link_to 'Vers le groupe', group_group_path(@group)
-
-%p TODO: Voir quoi en faire de cette page. La supprimer ou en faire une page de présentation
+= render layout: 'group/layouts/group_creation', locals: {step: 4} do
+  %h1= t('groups.group_creation.invitations.h1_title', group: @group)
+  %h3.subheader= t('groups.group_creation.invitations.subheader', group: @group)
+  =render partial: 'group/invitations/form'
+  =link_to(t('groups.group_creation.invitations.pass_step', group: @group), group_group_path(@group), class: "std-button")
