@@ -25,6 +25,8 @@
 //= require angular-file-upload
 //= require angular-file-upload-shim
 //= require angular-rails-templates
+//= require spin
+//= require angular-spinner
 //= require_tree .
 
 //= require foundation

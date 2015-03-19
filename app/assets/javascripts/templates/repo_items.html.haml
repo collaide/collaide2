@@ -46,13 +46,32 @@
           <span ng-show="{{current_item.sender.you}}">Vous</span>
       .columns.small-12
         %div{'ng-include' => '"folder_view.html"', 'ng-if' => '!current_item || current_item.is_folder'}
-        .modal{'ng-if' => 'current_item.is_image'}
-          %a{href: '#', 'data-reveal-id' => 'image-modal'}
-            <img ng-src="{{current_item.download_path}}"/>
-          #image-modal.reveal-modal{'data-reveal' => true}
-            <img ng-src="{{current_item.download_path}}"/>
-            %a.close-reveal-modal &#215;
-        %pre{'ng-if' => 'current_item.content'}
-          {{current_item.content}}
+        %div{'ng-include' => '"loading.html"'}
+        %div{'ng-switch' => true, 'on' => 'current_item.content.status'}
+          %div{'ng-switch-when' => 'error'}
+            .panel.error
+              %div{'ng-switch' => true, 'on' => 'current_item.content.error'}
+                %div{'ng-switch-when' => '404'}
+                  %h4 Fichier non trouvé
+                  %p Le fichier n'a pas été trouvé sur le serveur.
+                %div{'ng-switch-when' => '500'}
+                  %h4 Erreur interne
+                  %p Une erreur interne au serveur est survenue. Impossible d'afficher le fichier
+                %div{'ng-switch-default' => true}
+                  %h4
+                    {{current_item.content.data}}
+          %div{'ng-switch-when' => 'too_big'}
+            %h4.panel
+              Le fichier est trop gros pour être visualisé...
+          %div{'ng-switch-default' => true}
+            .modal{'ng-if' => 'current_item.is_image'}
+              %a{href: '#', 'data-reveal-id' => 'image-modal'}
+                <img ng-src="{{current_item.download_path}}"/>
+              #image-modal.reveal-modal{'data-reveal' => true}
+                <img ng-src="{{current_item.download_path}}"/>
+                %a.close-reveal-modal &#215;
+            %pre{'ng-if' => 'current_item.content'}
+              %code
+                {{current_item.content.data}}
     :javascript
       $('.sticky-element').stickyJQuery({topSpacing: 0})

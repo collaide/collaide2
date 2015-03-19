@@ -7,6 +7,7 @@ repoItemsService = angular.module('repoItemsService', ['ngResource', 'angularFil
         method: 'POST', params: {id: '', action_type: 'folder'}
       }
     })
+
     RepoItem.prototype.addFolder = ($scope) ->
       this.repo_folder.name = '' if this.repo_folder.name == undefined
       this.$createFolder((data) ->
@@ -14,18 +15,20 @@ repoItemsService = angular.module('repoItemsService', ['ngResource', 'angularFil
       , (error) ->
         $scope.folder_error = error.data[0]
       )
+
     RepoItem.prototype.deleteItem = ($scope, item)->
-      console.log(item)
       RepoItem.delete({id: this.id}, (data) ->
         delete $scope.items[item.id]
       , (error) ->
         console.log(error)
       )
+
     RepoItem.symbol = (item)->
       if item.is_folder
         return 'fi-folder large'
       else
         return 'fi-page large'
+
     RepoItem.upload = ($scope, files, $upload, current_item_id) =>
       return if files == undefined
       i = 0
@@ -49,6 +52,7 @@ repoItemsService = angular.module('repoItemsService', ['ngResource', 'angularFil
         )
         $scope.filesUploading[i] = file
         i++
+
     RepoItem.abort = (file, $scope) ->
       $scope.filesUploading[file.id].upload.abort()
       delete $scope.filesUploading[file.id]
