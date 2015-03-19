@@ -50,7 +50,7 @@ fr:
         waiting_confirmation: "%{resource} doit encore être confirmé"
         cancel_my_account: Supprimer mon compte
         leave_blank_if_you_don_t_want_to_change_it: laissez ce champ vide si vous ne voulez pas changer le mot de passe
-        title: Modifier mon profil
+        title: Paramètres
         we_need_your_current_password_to_confirm_your_changes: nous avons besoin de votre mot de passe actuel pour valider ces modifications
         update: "Enregistrer les changements"
         unhappy: "Pas satisafait ? Envoyez un e-mail à contact@collaide.com afin de demander la suppression de votre compte."
