@@ -18,7 +18,7 @@
               %small.error{'ng-show' => 'folder_error'}
                 {{folder_error}}
                 %a{href: '#', class: 'close', 'ng-click' => 'folder_error=false'}= '&times;'.html_safe
-            .columns.small-1{'ng-show' => 'current_item && current_item.is_folder'}
+            .columns.small-1{'ng-show' => '!current_item || (current_item && current_item.is_folder)'}
               %a.button.button.success.postfix{'ng-click' => 'createFolder(folder_name, current_item)'}
                 %i.fi-plus.large
       .row
