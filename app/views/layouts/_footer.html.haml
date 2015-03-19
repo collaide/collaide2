@@ -1,22 +1,27 @@
 %footer
   .row
-    .large-6.columns
+    .large-9.columns
       %p= link_to(image_tag("collaide_logo.svg", size: "70x200"), eval("root_#{I18n.locale}_path"))
-      %p Copyright 2014, tous droits réservés.
-    .columns.large-6
+    .columns.large-3
       %p= t('footer.titles.follow_us')
       %ul.inline-list
         %li= link_to 'Facebook', 'http://www.facebook.com/infocollaide', class: 'webicon facebook large'
         %li= link_to 'Twitter', 'http://twitter.com/#!/collaide', class: 'webicon twitter large'
   .row
     .columns.large-12
-      %ul
+      %ul.inline-list.module-list
         -#%li= link_to t('footer.collaide.documents'), document_documents_path
         -#%li= link_to t('footer.collaide.groups'), group_groups_path
+
+        %li= link_to t('footer.collaide.index'), root_path
         %li= link_to t('footer.collaide.rules'), rules_path
         %li= link_to t('footer.collaide.partners'), partners_path
         %li= link_to t('footer.collaide.about'), about_path
         %li= link_to t('footer.collaide.contact'), contact_path
+  .row
+    .columns.large-12
+      %p= t'footer.copyright', year: Time.now.year
+
 
   -#%li
   -#  =t'header.lang'
