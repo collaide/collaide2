@@ -52,6 +52,8 @@ $off-canvas-bg: $primary-light-color;
 $footer-height: 200px;
 $std-button-border-radius: 5px;
 
+$progress-meter-color: $link-color;
+
 
 
 @import 'foundation';
@@ -460,6 +462,14 @@ footer {
   padding-top: 30px;
   padding-bottom: 30px;
   //height: $footer-height;
+  .inline-list a {
+    color: $secondary-color
+  }
+  .module-list {
+    li {
+      margin-right: 50px;
+    }
+  }
 }
 
 //################REPOITEMS################

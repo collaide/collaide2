@@ -18,7 +18,7 @@ fr:
   header:
     user:
       profil: "Mon profil"
-      edit: Modifier votre profil
+      edit: Paramètres
       settings: Paramètres
       groups:
         title: Vos groupes
@@ -35,11 +35,13 @@ fr:
       partners: &partners Partenaires
       follow_us: Nous suivre
     collaide:
+      index: Accueil
       rules: Règlements
       partners: Partenaires
       guest_book: Livre d'or
       contact: Contact
       about: A propos
+    copyright: © Copyright 2012 - %{year}, tous droits réservés.
   main:
     index:
       title: Collaide facilite l'organisation des travaux de groupe
@@ -154,7 +156,7 @@ fr:
   users:
     side_nav:
       infos: "Infos"
-      groups: "Vos groupes"
+      groups: "Groupes"
       notifications: "Notifications"
       invitations: "Invitations"
     show:

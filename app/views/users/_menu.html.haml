@@ -2,5 +2,8 @@
   = build_active_menu path: user_path(@user), text: t('users.side_nav.infos'), icon: 'info'
   = build_active_menu path: user_groups_path(@user), text: t('users.side_nav.groups'), icon: 'torsos-male-female'
   -#= build_active_menu path: '', text: 'Vos documents', icon: 'page-multiple'
-  = build_active_menu path: user_notifications_path(@user), text: t('users.side_nav.notifications'), icon: 'compass'
+  = build_active_menu path: user_notifications_path(@user), text: t('users.side_nav.notifications'), icon: 'eye'
   = build_active_menu path: user_invitations_path(@user), text: t('users.side_nav.invitations'), icon: 'plus'
+  = build_active_menu path: edit_user_registration_path(view: :general), text: t('header.user.settings'), icon: 'widget'
+
+  -#=link_to t('header.user.edit'), edit_user_registration_path(view: :general), class: 'std-button tiny'
