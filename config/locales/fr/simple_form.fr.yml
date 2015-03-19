@@ -37,3 +37,6 @@ fr:
       group_topic:
         title: Titre
         message: Message
+    placeholders:
+      user:
+        name: Afin que vos amis puissent vous identifier

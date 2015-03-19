@@ -65,17 +65,17 @@ module ApplicationHelper
     "<a href=\"#{url}\" ng-hide=\"#{show}\""">#{h(name)}</a>".html_safe
   end
 
-  # Print to the topbar an item to read the notifications and show the number of unreaded notifications
-  def print_unread_notifications
+  # Count unreaded notifications
+  def count_unread_notifications
     return unless user_signed_in?
     notifications_size = current_user.notifications.where(is_viewed: false).size
     # todo: update with the current_path method
     # ie: current_page?(:controller => 'users', :action => 'index')
-    if notifications_size > 0 and request.fullpath != user_notifications_path(current_user)
-      "<li><a href='#{user_notifications_path(current_user)}'>#{t('header.user.notifications', size: notifications_size)}</a></li>".html_safe
-    end
   end
 
+  def current_user_groups
+    @current_user_groups ||= current_user.groups
+  end
   # Determine the super type of an item (file or folder). A super type is text or image, etc
   # return true or false depending on +type+
   def determine_super_type(item, type)

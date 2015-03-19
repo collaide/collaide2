@@ -1,5 +1,6 @@
 = render layout: 'group/layouts/group_creation', locals: {step: 3} do
-  %h2= t('groups.group_creation.password.unknow_user.h1_title')
+  %h1= t('groups.group_creation.password.unknow_user.h1_title')
+  %h4.subheader= t 'groups.group_creation.password.unknow_user.subheader'
 
   =simple_form_for @user, url: registration_path('user'), html: {id: 'user_sign_in'} do |f|
     = f.error_notification

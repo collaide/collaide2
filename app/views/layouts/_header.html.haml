@@ -10,15 +10,35 @@
       %ul.right
         - if user_signed_in?
           %li.divider.hide-for-small
-          = print_unread_notifications
+          %li
+            %a{href:user_path(current_user)}
+              =image_tag current_user.avatar.mini, size: "40x40"
+              =current_user
+          %li.divider.hide-for-small
+          %li.has-dropdown
+            %a{href:"#", title: t('header.user.groups.title')}
+              %span.fi-torsos-male-female
+              %span.show-for-small=t('header.user.groups.title')
+            %ul.dropdown
+              -if current_user_groups.empty?
+                %li=t('header.user.groups.empty')
+                %li.divider.hide-for-small
+              -else
+                -current_user_groups.each do |group|
+                  %li= link_to group.name, group
+              %li= link_to t('header.user.groups.create'), new_group_group_path
+          %li.divider.hide-for-small
+          %li
+            %a{href: user_notifications_path(current_user), title: t('header.user.notifications')}
+              %span.fi-eye
+                %span.show-for-small= t('header.user.notifications')
+                ="(#{count_unread_notifications})"
           %li.divider.hide-for-small
           %li.has-dropdown
             %a{href: "#"}
               %span.fi-widget
-                %span.show-for-small=t('header.user.settings')
+              %span.show-for-small=t('header.user.settings')
             %ul.dropdown
-              %li= link_to current_user, user_path(current_user)
-              %li.divider
               %li= link_to t('header.user.edit'), edit_user_registration_path
               %li.divider
               %li= link_to t('header.user.logout'), destroy_user_session_path, method: :delete
