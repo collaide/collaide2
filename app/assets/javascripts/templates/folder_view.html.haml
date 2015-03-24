@@ -43,7 +43,7 @@
             .columns.small-5
               .alert-box.alert.round{'data-alert' => true, 'ng-show' => 'file.error'}
                 {{file.error}}
-                -#%a.close{href: '#', 'ng-click' => 'closeAlertBox(file)'} &times;
+                %a.close{href: '#', 'ng-click' => 'removeDownload(key)'} &times;
               %p{'ng-show' => 'file.wait'}
                 Traitement du fichier...
               .row{'ng-hide' => 'file.wait || file.error'}

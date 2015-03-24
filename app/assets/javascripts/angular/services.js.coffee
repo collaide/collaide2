@@ -54,6 +54,7 @@ repoItemsService = angular.module('repoItemsService', ['ngResource', 'angularFil
           $scope.items[data.id] = new RepoItem(data)
         ).error((data, status, error, config) ->
           file_id = config.file.id
+          data = data.join(' ')
           if status == 500
             data = 'Une erreur interne du serveur emêche de décharger le fichier'
           if status == 404

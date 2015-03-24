@@ -36,6 +36,9 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', '
   $scope.abort = (file) ->
     RepoItem.abort(file, $scope)
 
+  $scope.removeDownload = (key) ->
+    delete $scope.filesUploading[key]
+
   $scope.deleteAll = () ->
     angular.forEach($scope.items, (item) ->
       item.deleteItem($scope, item) if item.checked || $scope.checked
@@ -100,4 +103,6 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', '
 
   $scope.abort = (file) ->
     RepoItem.abort(file, $scope)
+  $scope.removeDownload = (key) ->
+    delete $scope.filesUploading[key]
 ])
