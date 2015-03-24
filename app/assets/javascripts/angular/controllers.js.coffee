@@ -24,6 +24,9 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', '
     $scope.upload($scope.files)
   )
 
+  $scope.closeAlertBox = (item) ->
+    item.error = undefined
+
   $scope.empty = (items) ->
     angular.equals(items, {})
 
@@ -46,7 +49,7 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', '
   $scope.current_item = RepoItem.get({id: $routeParams.id}, (current_item)->
     $scope.current_item.download_path = Collaide.download_path(current_item)
     $scope.current_item.content = {}
-    if parseInt(current_item.file_size) > 1000000
+    if parseInt(current_item.file_size) > 1000000 and current_item.is_text
       $scope.current_item.content.status = 'too_big'
     else if current_item.is_text
       RepoItem.viewContent(current_item.id).success((data) ->
@@ -81,6 +84,9 @@ controllers.controller('IndexRepoItemsCtrl', ['RepoItem', '$scope', '$upload', '
 
   $scope.upload = (files, current_item) ->
     RepoItem.upload($scope, files, $upload, current_item.id)
+
+  $scope.closeAlertBox = (item) ->
+    item.error = undefined
 
   $scope.deleteAll = () ->
     angular.forEach($scope.items, (item) ->

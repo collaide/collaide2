@@ -51,7 +51,7 @@ class Api::RepoItemsController < ApplicationController
   end
 
   def download
-    # Pour le stockage des fichiers par sftp
+    # Pour le stockage des fichiers par sftp ou aws
     file = @repo_item.try(:file).try(:read)
     render status: :bad_request, json: @repo_item.errors and return if not file or file.size < 1
     send_data file, type: @repo_item.content_type, filename: @repo_item.name

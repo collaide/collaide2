@@ -19,8 +19,11 @@ repoItemsService = angular.module('repoItemsService', ['ngResource', 'angularFil
     RepoItem.prototype.deleteItem = ($scope, item)->
       RepoItem.delete({id: this.id}, (data) ->
         delete $scope.items[item.id]
-      , (error) ->
-        console.log(error)
+      ,(error) ->
+        data = error.data
+        if error.status == 500
+          data = 'Impossible de supprimer le fichier'
+        $scope.items[item.id].error = data
       )
 
     RepoItem.symbol = (item)->
