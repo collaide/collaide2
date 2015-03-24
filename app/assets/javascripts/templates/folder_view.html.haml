@@ -41,9 +41,12 @@
               <i class="{{item_symbol(file)}}"/>
               {{file.name}}
             .columns.small-5
+              .error{'ng-show' => 'file.error'}
+                %p
+                  {{file.error}}
               %p{'ng-show' => 'file.wait'}
                 Traitement du fichier...
-              .row{'ng-hide' => 'file.wait'}
+              .row{'ng-hide' => 'file.wait || file.error'}
                 .columns.small-10
                   .progress
                     %span.meter{style: 'width: {{file.progress}}%'}

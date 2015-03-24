@@ -49,6 +49,14 @@ repoItemsService = angular.module('repoItemsService', ['ngResource', 'angularFil
         .success((data, status, headers, config) ->
           delete $scope.filesUploading[config.file.id]
           $scope.items[data.id] = new RepoItem(data)
+        ).error((data, status, error, config) ->
+          file_id = config.file.id
+          if status == 500
+            data = 'Une erreur interne du serveur emêche de décharger le fichier'
+          if status == 404
+            data = "Dossier de déchargement non trouvé"
+          $scope.filesUploading[file_id].error = data
+          $scope.filesUploading[file_id].wait = false
         )
         $scope.filesUploading[i] = file
         i++

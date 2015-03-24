@@ -46,7 +46,7 @@
           <span ng-show="{{current_item.sender.you}}">Vous</span>
       .columns.small-12
         %div{'ng-include' => '"folder_view.html"', 'ng-if' => '!current_item || current_item.is_folder'}
-        %div{'ng-include' => '"loading.html"'}
+        %div{'ng-include' => '"loading.html"', 'ng-if' => 'current_item && !current_item.is_folder'}
         %div{'ng-switch' => true, 'on' => 'current_item.content.status'}
           %div{'ng-switch-when' => 'error'}
             .panel.error
