@@ -1,5 +1,5 @@
 development:
-  facebook_key: <%= ENV['facebook_key'] %>
+  facebook_key: <%= ENV["facebook_key"] %>
   facebook_secret: <%= ENV['facebook_secret'] %>
 
   twitter_key: "Enter your keys here. Check Read me file to know how to get keys"
@@ -31,7 +31,7 @@ test:
   google_secret: <%= ENV['google_secret'] %>
 
 production:
-  facebook_key: <%= ENV['facebook_key'] %>
+  facebook_key: <%= ENV["facebook_key"] %>
   facebook_secret: <%= ENV['facebook_secret'] %>
 
   twitter_key: "Enter your keys here. Check Read me file to know how to get keys"
