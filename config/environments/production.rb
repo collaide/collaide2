@@ -39,15 +39,16 @@ Rails.application.configure do
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
-  #config.action_mailer.smtp_settings = {
-    #:address        => 'localhost',
-    #:port           => '587',
+  config.action_mailer.smtp_settings = {
+    :address        => 'ssl0.ovh.net',
+    :port           => '465',
     #:authentication => :plain,
-    #:user_name      => ENV['email_username'],
-    #:password       => ENV['email_password'],
+    #
+    :user_name      => ENV['email_username'],
+    :password       => ENV['email_password'],
     #:domain         => 'heroku.com',
     #:enable_starttls_auto => true
-  #}
+  }
   config.action_mailer.default_url_options = { :host => 'collaide.com' }
 
   # Specifies the header that your server uses for sending files.
