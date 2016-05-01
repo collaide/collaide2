@@ -1,70 +1,72 @@
 source 'https://rubygems.org'
 
-ruby '2.1.3' # For heroku
+#ruby '2.1.3' # For heroku
 
 gem 'rails', '4.2.0'
 
 # CSS + JavaSscript
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'sass-rails'#, '~> 5.0'
+gem 'uglifier'#, '>= 1.3.0'
+gem 'coffee-rails'#, '~> 4.1.0'
 
 # JavaScript library
-gem 'jquery-rails', '~> 4.0.3'
-gem 'ui_datepicker-rails3', '~> 1.2.0'
+gem 'jquery-rails'#, '~> 4.0.3'
+gem 'ui_datepicker-rails3'#, '~> 1.2.0'
 gem 'angular-rails-templates'
 
 # JSON
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'#, '~> 2.0'
 
 # DataBases
-gem 'pg', '~> 0.17.1'
+gem 'pg'#, '~> 0.17.1'
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc'#, '~> 0.4.0', group: :doc
 
 # HTML
-gem 'foundation-rails', '~> 5.5.0.0'
-gem 'foundation-icons-sass-rails', '~> 3.0.0'
-gem 'haml', '~> 4.0.6'
+gem 'foundation-rails'#, '~> 5.5.0.0'
+gem 'foundation-icons-sass-rails'#, '~> 3.0.0'
+gem 'haml'#, '~> 4.0.6'
 
 # I18n
-gem 'rails-i18n', '~> 4.0.0'
-gem 'i18n', '~> 0.7.0'
-gem 'route_translator', '~> 4.0.0'
+gem 'rails-i18n'#, '~> 4.0.0'
+gem 'i18n'#, '~> 0.7.0'
+gem 'route_translator'#, '~> 4.0.0'
 
 #Formular
-gem 'simple_form', '~> 3.1.0'
-gem 'select2-rails', '~> 3.5.9.1' # séléction multiple
+gem 'simple_form'#, '~> 3.1.0'
+gem 'select2-rails'#, '~> 3.5.9.1' # séléction multiple
 
 #User
-gem 'devise', '~> 3.4.1'
-gem 'devise-i18n-views', '~> 0.3.3'
-gem 'geocoder', '~> 1.2.6'
+gem 'devise'#, '~> 3.4.1'
+gem 'devise-i18n-views'#, '~> 0.3.3'
+gem 'geocoder'#, '~> 1.2.6'
 # Social networks authentication
-gem 'omniauth', '~> 1.2.2'
-gem 'omniauth-facebook', '~> 2.0.0'
-gem 'omniauth-google-oauth2', '~> 0.2.6'
+gem 'omniauth'#, '~> 1.2.2'
+gem 'omniauth-facebook'#, '~> 2.0.0'
+gem 'omniauth-google-oauth2'#, '~> 0.2.6'
 
 #Helper gems
-gem 'enumerize', '~> 0.9.0' # Enumration dans les modèles
-gem 'carrierwave', '~> 0.10.0' # Upload de fichier facilité
-gem 'mini_magick', '~> 4.0.2' # Redimmensionnement d'image
-gem 'kaminari', '~> 0.16.2' # Pagination
+gem 'enumerize'#, '~> 0.9.0' # Enumration dans les modèles
+gem 'carrierwave'#, '~> 0.10.0' # Upload de fichier facilité
+gem 'mini_magick'#, '~> 4.0.2' # Redimmensionnement d'image
+gem 'kaminari'#, '~> 0.16.2' # Pagination
 # gem 'sanitize', '~> 3.1.0' # Escape les éléments HTML sauf ceux spécifiés
 
 #Tinymce (html editor)
-gem 'tinymce-rails', '~> 4.1.6'
-gem 'tinymce-rails-langs', '~> 4.20140129'
+gem 'tinymce-rails'#, '~> 4.1.6'
+gem 'tinymce-rails-langs'#, '~> 4.20140129'
 
-gem 'angularjs-rails', '~> 1.3.10' # Front-end javascript
+gem 'angularjs-rails'#, '~> 1.3.10' # Front-end javascript
 
-gem 'rack-canonical-host', '~> 0.1.0' # For redirecting to beta.collaide.com
+gem 'rack-canonical-host'#, '~> 0.1.0' # For redirecting to beta.collaide.com
 
 # Gems for the group module
-gem 'repository-manager', '~> 0.2.11'
+gem 'repository-manager'#, '~> 0.2.11'
 
 gem 'puma'
+
+gem 'figaro'
 
 group :development, :test do
 

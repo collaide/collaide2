@@ -42,3 +42,6 @@ dump.rdb
 .ruby-version
 
 heroku_set_var.rb
+
+# Ignore application configuration
+/config/application.yml
