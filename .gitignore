@@ -8,8 +8,8 @@
 /.bundle
 /.idea
 
-/config/database.yml
-/config/social_keys.yml
+#/config/database.yml
+#/config/social_keys.yml
 
 /config/development.sphinx.conf
 /config/production.spinx.conf
