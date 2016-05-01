@@ -1,4 +1,4 @@
-[Collaide](https://beta.collaide.com)
+[Collaide](https://collaide.com)
  Collaide is Web plateform for working more efficiently in groups. We
  implement a modern and convivial way of discussing, saving and sharing
  files with members of a group. Thus, the gestionary and creation of

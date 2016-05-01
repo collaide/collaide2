@@ -1,4 +1,4 @@
-# [Collaide](https://beta.collaide.com)
+# [Collaide](https://collaide.com)
 
 Collaide est une plateforme Web pour faciliter le travail de groupe. Nous implémentons une façon moderne et conviviale de mener des discussions, de stocker et de partager des fichiers avec les membres d'un groupe. De plus, nous facilitons la gestion et la création de groupes avec une interface claire et intuitive.
 
@@ -15,7 +15,7 @@ En utilisant une plateforme telle que Facebook, Dropbox, GoogelDoc, etc, nous av
 
 > Et la solution ?
 
-Notre solution est de proposer une plateforme dédiée au travail de groupe open-source, gratuite et libre. Ainsi, n'importe quel développeur peut connaître son fonctionement et y apporter son savoir-faire. Pour un contrôle total, n'importe qui peut faire tourner sa propre version de collaide sur son serveur et ainsi avoir le plus grand contrôle sur ses données. N'importe quel utilisateur peut utiliser notre service gratuitement pour [créer un groupe](https://beta.collaide.com/fr/groups/new) et commencer à travailler.
+Notre solution est de proposer une plateforme dédiée au travail de groupe open-source, gratuite et libre. Ainsi, n'importe quel développeur peut connaître son fonctionement et y apporter son savoir-faire. Pour un contrôle total, n'importe qui peut faire tourner sa propre version de collaide sur son serveur et ainsi avoir le plus grand contrôle sur ses données. N'importe quel utilisateur peut utiliser notre service gratuitement pour [créer un groupe](https://collaide.com/fr/groups/new) et commencer à travailler.
 
 ## Version beta
 Cette version beta est développée activement. Cela signifie que des bugs peuvent survenir et que des grandes améliorations sont attendues au cours des ces prochaines semaines.

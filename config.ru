@@ -2,6 +2,6 @@
 
 require ::File.expand_path('../config/environment', __FILE__)
 
-use Rack::CanonicalHost, 'beta.collaide.com' if Rails.env.production?
+u#se Rack::CanonicalHost, 'beta.collaide.com' if Rails.env.production?
 
 run Rails.application

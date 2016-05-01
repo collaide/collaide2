@@ -59,7 +59,7 @@ gem 'tinymce-rails-langs', '~> 4.20140129'
 
 gem 'angularjs-rails', '~> 1.3.10' # Front-end javascript
 
-gem 'rack-canonical-host', '~> 0.1.0' # For redirecting to beta.collaide.com
+#gem 'rack-canonical-host', '~> 0.1.0' # For redirecting to beta.collaide.com
 
 # Gems for the group module
 gem 'repository-manager', '~> 0.2.11'
