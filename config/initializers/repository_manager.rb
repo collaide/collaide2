@@ -19,20 +19,20 @@ RepositoryManager.setup do |config|
   # Define if a repo item with the same name will be automaticaly overwrited when a new item is create
   config.auto_overwrite_item = false
 
-  config.storage = :aws if Rails.env.production?
+  #config.storage = :aws if Rails.env.production?
 end
 
-if Rails.env.production?
-  CarrierWave.configure do |config|
-    config.storage    = :aws
-    config.aws_bucket = ENV.fetch('S3_BUCKET')
-    config.aws_acl    = :private
-    # config.asset_host = 'http://beta.collaide.com'
-    config.aws_authenticated_url_expiration = 60 * 60 * 24 * 365
-
-    config.aws_credentials = {
-        access_key_id:     ENV.fetch('S3_KEY'),
-        secret_access_key: ENV.fetch('S3_ACCESS')
-    }
-  end
-end
+# if Rails.env.production?
+#   CarrierWave.configure do |config|
+#     config.storage    = :aws
+#     config.aws_bucket = ENV.fetch('S3_BUCKET')
+#     config.aws_acl    = :private
+#     # config.asset_host = 'http://beta.collaide.com'
+#     config.aws_authenticated_url_expiration = 60 * 60 * 24 * 365
+#
+#     config.aws_credentials = {
+#         access_key_id:     ENV.fetch('S3_KEY'),
+#         secret_access_key: ENV.fetch('S3_ACCESS')
+#     }
+#   end
+# end
