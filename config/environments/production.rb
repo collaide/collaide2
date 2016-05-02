@@ -39,17 +39,25 @@ Rails.application.configure do
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :address        => 'ssl0.ovh.net',
+  #   :port           => '465',
+  #   :authentication => :plain,
+  #   :user_name      => ENV['email_username'],
+  #   :password       => ENV['email_password'],
+  #   #:domain         => 'heroku.com',
+  #   #:enable_starttls_auto => true
+  # }
   config.action_mailer.smtp_settings = {
-    :address        => 'ssl0.ovh.net',
-    :port           => '465',
-    :authentication => :plain,
-    :user_name      => ENV['email_username'],
-    :password       => ENV['email_password'],
-    #:domain         => 'heroku.com',
-    #:enable_starttls_auto => true
+      :address   => "smtp.mandrillapp.com",
+      :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
+      :enable_starttls_auto => true, # detects and uses STARTTLS
+      :user_name => ENV['email_username'],
+      :password  => ENV['email_password'], # SMTP password is any valid API key
+      :authentication => 'login', # Mandrill supports 'plain' or 'login'
   }
-  #config.action_mailer.default_url_options = { :host => 'collaide.com' }
+  config.action_mailer.default_url_options = { :host => 'collaide.com' }
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
