@@ -39,6 +39,7 @@ Rails.application.configure do
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address        => 'ssl0.ovh.net',
     :port           => '465',
@@ -48,7 +49,7 @@ Rails.application.configure do
     #:domain         => 'heroku.com',
     #:enable_starttls_auto => true
   }
-  config.action_mailer.default_url_options = { :host => 'collaide.com' }
+  #config.action_mailer.default_url_options = { :host => 'collaide.com' }
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
