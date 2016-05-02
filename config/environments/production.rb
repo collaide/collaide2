@@ -42,8 +42,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address        => 'ssl0.ovh.net',
     :port           => '465',
-    #:authentication => :plain,
-    #
+    :authentication => :plain,
     :user_name      => ENV['email_username'],
     :password       => ENV['email_password'],
     #:domain         => 'heroku.com',
