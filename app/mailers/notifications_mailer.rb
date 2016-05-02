@@ -13,6 +13,6 @@ class NotificationsMailer < ApplicationMailer
   def new_notification(user, notification)
     @user = user
     @notification = notification
-    mail to: user.email
+    mail to: user.email, subject: t('mailers.notifications.new_notification.subject')
   end
 end

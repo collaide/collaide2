@@ -57,7 +57,7 @@ Rails.application.configure do
       :password  => ENV['email_password'], # SMTP password is any valid API key
       :authentication => 'login', # Mandrill supports 'plain' or 'login'
   }
-  config.action_mailer.default_url_options = { :host => 'collaide.com' }
+  config.action_mailer.default_url_options = { :host => 'www.collaide.com' }
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
