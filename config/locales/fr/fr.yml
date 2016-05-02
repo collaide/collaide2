@@ -175,18 +175,17 @@ fr:
   notifications_mailer:
     signup:
       subject: Bienvenue sur collaide.com
-      greeting: Cher, Chère %{user}
-      p1: Merci de t'être inscris sur collaide.com et bienvenue !
-      group_created: créé
-      p2: "Collaide facilite tes études grâce à des groupes de travails en ligne. En effet, une fois un groupe %{link} tu peux :"
+      greeting: Bonjour %{user}
+      p1: Merci de t'être inscrit sur collaide.com et bienvenue !
+      group_created: groupe créé
+      p2: "Collaide facilite tes études grâce à des groupes de travail en ligne. En effet, une fois un %{link} tu peux :"
       list: |
         Inviter d'autres personnes à te rejoindre dans ton groupe
-        Mener des discussions approfondies en groupe
-        Partager des fichiers et des dossiers dans le groupe
-        Administrer le groupe
-      p3: Des questions ? Des remarques ? N'hésite pas à nous écrire à l'adresse e-mai contact@collaide.com
-      end: A bientôt sur %{collaide} !
-      signature: L'équipe collaide
+        Mener des discussions approfondies
+        Partager des fichiers privés
+      p3: Des questions ? Des remarques ? N'hésite pas à nous écrire à l'adresse e-mail contact@collaide.com !
+      end: À bientôt sur %{collaide}
+      signature: L'équipe Collaide
   groups:
     buttons:
       create: "Nouveau groupe"
@@ -379,14 +378,14 @@ fr:
       group_do_invitation:
         users_id: "Nom ou adresse e-mail des personnes à inviter"
   mailers:
+    greeting: Bonjour %{user}
     notifications:
       new_notification:
         subject: "Nouvelle notification sur Collaide"
         text:
-          description: "Vous avez reçu une nouvelle notification sur Collaide. La voici:"
+          description: "Vous avez reçu une nouvelle notification sur collaide. La voici:"
           view_in_browser: Voir %{notification} dans la navigateur
           the_notification: la notification
-
     groups:
       new_invitation:
         subject: "%{user} vous invite à rejoindre le groupe %{group} sur Collaide"

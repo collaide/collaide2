@@ -1,6 +1,6 @@
-%p= "#{@user},"
+%p= t('mailers.greeting', user: @user.to_s)
 
 %p= t('mailers.notifications.new_notification.text.description')
 
 %p= @notification.print_message.html_safe
-%p= t('mailers.notificati ons.new_notification.text.view_in_browser', notification: link_to(t('mailers.notifications.new_notification.text.the_notification'), user_notifications_url(@user))).html_safe
+%p= t('mailers.notifications.new_notification.text.view_in_browser', notification: link_to(t('mailers.notifications.new_notification.text.the_notification'), user_notifications_url(@user))).html_safe

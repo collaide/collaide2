@@ -1,4 +1,5 @@
-= "#{@user},"
+= t('mailers.greeting', user: @user.to_s)
+
 
 = t('mailers.notifications.new_notification.text.description')
 \------------------------------------------------------------
